@@ -1,0 +1,8 @@
+{
+  "port": 3001,
+  "serverurl": "http://localhost:4200",
+  "host": "localhost",
+  "user": "root",
+  "password": "",
+  "database": "insurance"
+  }
