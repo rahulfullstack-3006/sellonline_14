@@ -1,0 +1,214 @@
+<!-- <div class="heading">
+  <h2>TATA AIA</h2>
+  <p>LIFE INSURANCE</p>
+</div> -->
+<app-header></app-header>
+
+
+<div class="container">
+  <div class="main_section">
+    <div class="lead_create">
+      <div class="lead_heading">
+       <h2>Lead</h2>
+      </div>
+      <div class="lead_search_create">
+        <input type="text" id="search" placeholder="Searh here." (input)="onSearch()" [(ngModel)]="searchText">
+        <fa-icon [icon]="faSearch"></fa-icon>
+        <button class="btn btn-primary" (click)="createNewLead()">+ Create New Lead</button>
+        <button class="btn btn-primary">Generate Link</button>
+      </div>
+    </div>
+
+           <!-- tabs  start-->
+
+           <div class="section_tabs">
+            <mat-tab-group id="linkLabel" mat-stretch-tabs animationDuration="0ms">
+                <mat-tab id="tab1" label="Self Leads" >
+                  <div class="card_section">
+                    <div class="card"  *ngFor="let item of leadCardDetails">
+                    <div class="header">
+                      <img class="image_1" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile-bg.svg?v=1677155902412"/>
+                      <img class="image_2" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile.svg?v=1677155902412"/>
+                    </div>
+                    <div class="primary">
+                      <h2>{{item.first_name}} {{item.middle_name}}  {{item.last_name}}</h2>
+                      <p>Lead Status: New Status</p>
+                      <p>Lead id:{{item.leadId}}</p>
+                      <p>Created on {{item.createdAt}}</p>
+                    </div>
+                    <div class="secondary">           
+                      <p class="secondary_phone">
+                        <fa-icon [icon]="faPhone"></fa-icon>
+                       {{item.mobile}}
+                      </p>
+                      <p>
+                        <fa-icon [icon]="faEnvelope"></fa-icon>
+                        {{item.email}}
+                      </p>   
+                    </div>  
+                    
+                    <div class="view_edit_button">
+                    <button class="btn btn-primary" (click)="onViewDetails(item)">View Details</button>
+                    <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                    </div>
+                    
+                   </div>
+        
+                   <!-- <div class="card">
+                    <div class="header">
+                      <img class="image_1" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile-bg.svg?v=1677155902412"/>
+                      <img class="image_2" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile.svg?v=1677155902412"/>
+                    </div>
+                    <div class="primary">
+                      <h2>Lead Name</h2>
+                      <p>Lead Status: New Status</p>
+                      <p>Lead ID: 5993323137605</p>
+                      <p>Created on 23 February 2023</p>
+                    </div>
+                    <div class="secondary">           
+                      <p class="secondary_phone">
+                        <fa-icon [icon]="faPhone"></fa-icon>
+                       8888888888
+                      </p>
+                      <p>
+                        <fa-icon [icon]="faEnvelope"></fa-icon>
+                        abc@gmail.com
+                      </p>   
+                    </div>  
+                    
+                    <div class="view_edit_button">
+                    <button class="btn btn-primary">View Details</button>
+                    <button class="btn btn-primary">Edit</button>
+                    </div>
+                    
+                   </div>
+        
+                   <div class="card">
+                    <div class="header">
+                      <img class="image_1" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile-bg.svg?v=1677155902412"/>
+                      <img class="image_2" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile.svg?v=1677155902412"/>
+                    </div>
+                    <div class="primary">
+                      <h2>Lead Name</h2>
+                      <p>Lead Status: New Status</p>
+                      <p>Lead ID: 5993323137605</p>
+                      <p>Created on 23 February 2023</p>
+                    </div>
+                    <div class="secondary">           
+                      <p class="secondary_phone">
+                        <fa-icon [icon]="faPhone"></fa-icon>
+                       8888888888
+                      </p>
+                      <p>
+                        <fa-icon [icon]="faEnvelope"></fa-icon>
+                        abc@gmail.com
+                      </p>   
+                    </div>  
+                    
+                    <div class="view_edit_button">
+                    <button class="btn btn-primary">View Details</button>
+                    <button class="btn btn-primary">Edit</button>
+                    </div>
+                    
+                   </div> -->
+                  </div> 
+                  
+                  </mat-tab>
+                <!-- <mat-tab id="tab2" label="New Leads(VYMO)">
+                  <div class="card_section">
+                    <div class="card">
+                      <div class="header">
+                        <img class="image_1" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile-bg.svg?v=1677155902412"/>
+                        <img class="image_2" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile.svg?v=1677155902412"/>
+                      </div>
+                      <div class="primary">
+                        <h2>Lead Name</h2>
+                        <p>Lead Status: New Status</p>
+                        <p>Lead ID: 5993323137605</p>
+                        <p>Created on 23 February 2023</p>
+                      </div>
+                      <div class="secondary">           
+                        <p class="secondary_phone">
+                          <fa-icon [icon]="faPhone"></fa-icon>
+                         8888888888
+                        </p>
+                        <p>
+                          <fa-icon [icon]="faEnvelope"></fa-icon>
+                          abc@gmail.com
+                        </p>   
+                      </div>  
+                      
+                      <div class="view_edit_button">
+                      <button class="btn btn-primary">View Details</button>
+                      <button class="btn btn-primary">Edit</button>
+                      </div>
+                      
+                     </div>
+        
+                     <div class="card">
+                      <div class="header">
+                        <img class="image_1" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile-bg.svg?v=1677155902412"/>
+                        <img class="image_2" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile.svg?v=1677155902412"/>
+                      </div>
+                      <div class="primary">
+                        <h2>Lead Name</h2>
+                        <p>Lead Status: New Status</p>
+                        <p>Lead ID: 5993323137605</p>
+                        <p>Created on 23 February 2023</p>
+                      </div>
+                      <div class="secondary">           
+                        <p class="secondary_phone">
+                          <fa-icon [icon]="faPhone"></fa-icon>
+                         8888888888
+                        </p>
+                        <p>
+                          <fa-icon [icon]="faEnvelope"></fa-icon>
+                          abc@gmail.com
+                        </p>   
+                      </div>  
+                      
+                      <div class="view_edit_button">
+                      <button class="btn btn-primary">View Details</button>
+                      <button class="btn btn-primary">Edit</button>
+                      </div>
+                      
+                     </div>
+        
+                     <div class="card">
+                      <div class="header">
+                        <img class="image_1" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile-bg.svg?v=1677155902412"/>
+                        <img class="image_2" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile.svg?v=1677155902412"/>
+                      </div>
+                      <div class="primary">
+                        <h2>Lead Name</h2>
+                        <p>Lead Status: New Status</p>
+                        <p>Lead ID: 5993323137605</p>
+                        <p>Created on 23 February 2023</p>
+                      </div>
+                      <div class="secondary">           
+                        <p class="secondary_phone">
+                          <fa-icon [icon]="faPhone"></fa-icon>
+                         8888888888
+                        </p>
+                        <p>
+                          <fa-icon [icon]="faEnvelope"></fa-icon>
+                          abc@gmail.com
+                        </p>   
+                      </div>  
+                      
+                      <div class="view_edit_button">
+                      <button class="btn btn-primary">View Details</button>
+                      <button class="btn btn-primary">Edit</button>
+                      </div>
+                      
+                     </div>
+                  </div>
+                </mat-tab> -->
+              </mat-tab-group>
+          
+          </div>
+           <!-- start end -->
+
+  </div>
+</div>
+

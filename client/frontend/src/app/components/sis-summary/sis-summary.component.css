@@ -1,0 +1,314 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  font-family: Helvetica, sans-serif;
+}
+
+.container{
+  border-top: 1px solid gray;
+  margin-top: 25px;
+}
+
+
+.main_section{
+  margin-left: 150px;
+  padding: 20px;
+}
+
+.product_lead_sis{
+  display: flex;
+  /* margin-left: 20px; */
+}
+
+.product_name{
+  color:#D62049 ;
+}
+
+.product_uin,.product_lead_id,.product_sis_id{
+  margin-left: 20px;
+  padding-top: 5px;
+  color: #8C8C8C;
+}
+
+.line_symbol{
+  padding: 3px;
+  padding-left: 16px;
+  color: #8C8C8C;
+}
+
+.policy_calculation_summary{
+  background-color: #F5F7FA;
+  height: 140vh;
+  padding: 20px;
+}
+
+.policy_all_text{
+
+}
+
+.policy_plan_text{
+  margin-top: 15px;
+  text-align: center;
+
+}
+
+.policy_plan_text h4{
+ font-size: 25px;
+ color: #3B3B3B;
+}
+
+.back_steps{
+  display: flex;
+    margin-left: 120px;
+    justify-content: space-between;
+    width: 590px;
+}
+
+.few_more_steps p {
+ font-size: 14px;
+ color: #545454;
+}
+
+.back_contents a{
+text-decoration: none;
+color:#8C8C8C ;
+font-size: 16px;
+margin-left: 10px;
+cursor: pointer;
+}
+
+.plan_premimum_quote{
+  display: flex;
+}
+
+.plan_investment_rider{
+  margin-top: 20px;
+  margin-left: 76px;
+  background: #1877D5;
+  width: 42%;
+}
+
+.plan_name{
+  padding-left: 30px;
+  padding-top: 36px;
+  line-height: 0rem;
+  color: #FFFFFF;
+}
+
+.plan_name p {
+ font-size: 12px;
+ font-weight: bold;
+
+}
+
+.plan_name h5{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.invest_policy_term{
+  display: grid;
+  grid-template-columns:auto auto;
+
+}
+.grid-item{
+  background-color: #1C86F0;
+  border: 1px solid #399CFF;
+  padding-left: 32px;
+  padding-top: 7px;
+  color: #FFFFFF;
+}
+
+.grid-item p{
+ font-size: 12px;
+}
+
+.grid-item h3{
+  font-size: 16px;
+  margin-top: -13px;
+}
+
+.receive_term{
+  margin-left: 28px;
+  margin-top: 14px;
+  color: #ffffff;
+}
+
+.receive_details{
+  position: relative;
+
+}
+
+.receive_details p{
+  font-size: 12px;
+  color: #FFFFFF;
+}
+
+.receive_details h6{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.receive_amount{
+margin-top: -13px;
+}
+.receive_guaranteed{
+  margin-top: -12px;
+}
+
+.congo_details{
+  display: flex;
+  padding: 24px;
+  background: #FFFFFF;
+  /* position: relative; */
+}
+
+.congo_image img{
+  height: 40px;
+  width: 40px;
+}
+
+.congo_text{
+  margin-left: 20px;
+}
+
+.congo_text p{
+  font-size: 13px;
+  color: #54565B;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.vitality_wellness{
+  position: absolute;
+  background: #27AC09;
+  border: 1px solid gray;
+  border-radius: 9px;
+  /* top: 150%; */
+  left: 24%;
+  height: 25px;
+  padding: 15px 5px 5px 5px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vitality_wellness p{
+  font-size: 12px;
+}
+
+.rider_all_name{
+  padding: 20px;
+  color: #FFFFFF;
+  line-height: 17px;
+}
+.only_rider_name h3{
+  font-size: 12px;
+}
+
+.remove_list{
+  list-style: none;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.premimum_quote_details{
+  margin-top: 90px;
+  background-color: #FFFFFF;
+  height: 440px;
+  width: 42%;
+  text-align: center;
+
+}
+
+.premimum_heading{
+  margin-top: 40px;
+}
+
+.premimum_heading h4{
+  color: #54565B;
+  font-size: 18px;
+}
+
+.premimum_heading span{
+  color: #0073bb;
+  font-size: 45px;
+}
+
+.premimum_heading span sup{
+  font-size: 20px;
+ }
+
+ .premimum_heading  p{
+  color: #54565B;
+  font-size: 14px;
+ }
+
+ .premimum_calculation{
+  margin-left: 90px;
+ }
+
+ .premimum_list li{
+  font-size: 14px;
+  color: #54565B;
+ }
+
+ .edit_procced{
+  margin-top: 10px;
+  margin-left: 30px;
+ }
+
+ .edit_procced .btn{
+  color: #FFFFFF;
+  font-size: 14px;
+  padding: 8px;
+ }
+
+
+ .procced_to_buy{
+    height: 59px;
+    margin-left: 10px;
+ }
+
+
+.refund_save_hon{
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.thirty_days,.save_tax,.honoured img{
+  width: 55px;
+  height: 50px;
+}
+
+.thirty_days,.save_tax,.honoured p{
+  color: #54565B;
+  font-size: 14px;
+}
+
+.quote_text_include{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.quote_text_include p{
+  font-size: 14px;
+  color: #54565B;
+}
+
+.disclaimer{
+  margin-top: 10px;
+  color: #54565B;
+  font-size: 10px;
+}
+
+.disclaimer p{
+  margin-left: 95px;
+}
+
+.disclaimer_list{
+ margin-left: 122px;
+ line-height: 13px;
+}

@@ -1,0 +1,339 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  font-family: Helvetica, sans-serif;
+}
+
+.container{
+  border-top: 1px solid gray;
+  margin-top: 25px;
+}
+
+
+.main_section{
+  margin-left: 150px;
+  padding: 20px;
+}
+
+.product_lead_sis{
+  display: flex;
+  /* margin-left: 20px; */
+}
+
+.product_name{
+  color:#D62049 ;
+}
+
+.product_uin,.product_lead_id,.product_sis_id{
+  margin-left: 20px;
+  padding-top: 5px;
+  color: #8C8C8C;
+}
+
+.line_symbol{
+  padding: 3px;
+  padding-left: 16px;
+  color: #8C8C8C;
+}
+
+.sub_section{
+  margin-left: 40px;
+}
+
+.vitality_yes_no{
+  display: flex;
+}
+
+.vitality_wellness{
+  line-height: 1.2rem;
+}
+
+.vitality_wellness h2{ 
+  font-size: 16px;
+  color: #2f2f2f;
+  margin-bottom: 4px;
+}
+
+.vitality_wellness p{
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.tabacco_radio{
+  font-size: 16px;
+  color: #8C8C8C;
+  margin-left: 25px;
+}
+
+.select_rider_text{
+  margin-bottom: 20px;
+}
+
+.select_rider_text h1{
+ font-size: 22px;
+ color: #1C86F0;
+ font-weight: bold;
+}
+
+/*slider radio part*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*slider radio part*/
+
+
+/* annual radio button */
+.radio_container{
+  display: block;
+  position: relative;
+  padding: 3px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 125px;
+
+}
+
+
+.radio_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 125px;
+  background-color: #fff;
+  /* border-radius:4px; */
+  color: #1C86F0;
+  border: 2px solid #1C86F0;
+}
+
+.radio_container input:checked ~ .checkmark {
+  background-color: #2196F3;
+  color:#fff;
+  
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio_container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.radio_container input:checked ~ .checkmark + .checkmark_one{
+  color:#fff;
+  }
+
+.checkmark_one{
+    position:relative;
+    z-index:1;
+    color:blue;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px;
+    }
+  
+/* annual radio button */
+.rider_selection_option{
+  background: #e4f2ff;
+  padding: 10px;
+  height: 125px;
+  display: flex;
+}
+
+.radio_extra{
+  
+}
+
+.rider_radio_heading{
+  display: flex;
+}
+
+.rider_extra{
+  /* width: 50%; */
+}
+.protect_text{
+  font-size: 12px;
+  color: #8C8C8C;
+}
+
+.rider_rop_part{
+  display: flex;
+  margin-left: 310px;
+}
+
+.future_protect {
+  text-align: center;
+  width: 170px;
+}
+
+.rider_partner_name{
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 700;
+  color: #1C86F0;
+  margin-bottom: 2px;
+}
+
+.rider_text_partner{
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #8C8C8C;
+
+}
+
+.with_without_rop{
+  margin-top: -8px;
+  color: #000000;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+.criti_selected{
+  display: flex;
+  justify-content: space-between;
+  width: 563px;
+  border-bottom: 1px solid gray;
+}
+
+.care_selected{
+  margin-left: 352px;
+}
+
+.all_riders_name{
+  background: #f2f2f2;
+}
+
+.each_riders{
+  margin-left: 24px;
+}
+
+.criticare_each_li{
+  width: 125px;
+  /* display: inline-block; */
+  white-space: nowrap;
+}
+
+.rider_plus_rop{
+  display: flex;
+}
+
+.sign_center{
+  padding: 12px;
+  border-bottom: 1px solid gray;
+  width: 698px;
+}
+
+.disclaimer{
+  margin-top: 10px;
+  color: #54565B;
+  font-size: 10px;
+}
+
+.disclaimer p{
+  margin-left: 95px;
+}
+
+.disclaimer_list{
+ margin-left: 122px;
+ line-height: 13px;
+}
+
+.continue_skip {
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #FFFFFF;
+  color: white;
+  text-align: center;
+  z-index: 10;
+  padding: 20px 40px;
+}
+
+.pos_button{
+  margin-left: 50px;
+  display: flex;
+  margin-left: 120px;
+}
+
+.pos_button .btn{
+padding: 10px;
+}
+
+.btn_skip{
+  margin-left: 10px;
+}

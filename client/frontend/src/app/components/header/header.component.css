@@ -1,0 +1,86 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: "HelveticaBold", sans-serif;
+  }
+  
+  .heading_section{
+    margin-top: 57px;
+    margin-left: 170px;
+    display: flex;
+  }
+  .tata_logo{
+    flex: 0.7;
+  }
+  .all_tata_details{
+    display: flex;
+  }
+  .all_social{
+    display: flex;
+    padding: 10px;
+    margin-left: 10px;
+  }
+  .help_email ul li{
+    list-style: none;
+    color: #8C8C8C;
+    font-size: 14px;
+  } 
+  .social_platform{
+    margin-right: 10px;
+  }
+
+  .all_links{
+    margin-top: 20px;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    margin-left: 300px;
+  }
+
+  .nav-link {
+    margin-right: 20px;
+  }
+
+  .nav-link a{
+    text-decoration: none;
+    transition: color 0.5s linear;
+    word-break: break-word;
+    cursor: pointer;
+  }
+
+  .all_links nav a{
+    color: #8C8C8C!important;
+    font-size: 15px !important;
+  }
+
+  .all_links nav a:hover{
+  color: #1C86F0!important;
+  }
+
+  .logout{
+    display: flex;
+    flex-direction: row;
+    margin-left: 1189px;
+    margin-top: -10px;
+  }
+
+  .logout img{
+    cursor: pointer;
+  }
+
+  .pre_medical_fixation{
+    margin-left: 437px;
+    margin-top: -10px;
+  }
+
+  .pre_medical_fixation nav a{
+    color: #8C8C8C!important;
+    font-size: 15px !important; 
+  }
+
+  .pre_medical_fixation nav a:hover{
+    color: #1C86F0!important;
+  }

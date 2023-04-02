@@ -1,0 +1,74 @@
+<!-- <div class="header">
+  <h2>TATA AIA </h2>
+  <p>LIFE INSURANCE</p>
+</div> -->
+<!-- <mat-tab-group>
+  <mat-tab label="First" *ngFor="let tab of tabs;" [aria-label]="tab.bgColorClass"> {{tab.content}} </mat-tab>
+</mat-tab-group> -->
+<app-header></app-header>
+
+<div class="main_content">
+  <div class="slider">
+  <ngb-carousel>
+    <ng-template ngbSlide *ngFor="let image of images">
+      <div class="wrapper">
+        <img [src]="image.src" style="width: 100%;" alt="Random first slide">
+      </div>
+      <div class="carousel-caption">
+        <div class="col-lg-3">
+          <h1 class="slider_header">Protecting those who care
+            unconditionally</h1>
+        </div>
+        <h3>{{ image.title }}</h3>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  </div>
+
+  <div class="section_tabs">
+  <mat-tab-group mat-stretch-tabs animationDuration="0ms">
+    <mat-tab label="Protection Solutions">
+       <div class="life_ins_plans">
+        <h2>LIFE INSURANCE PLANS</h2>
+       </div>
+       <div class="product_details">
+        <div class="product_details_image">
+          <span>
+        <img  class="product_logo" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/296.png?v=1677243441005"/>
+          </span>
+          <img class="product_img" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/defaultbg.jpg?v=1677243441005"/>
+        </div>
+        <div class="product_details_descr">
+          <h4>Tata AIA Life Insurance Saral Jeevan Bima</h4>
+          <p>Non-Linked Non-Participating Individual Life Insurance Pure Risk Plan</p>
+          <h4>Key Benefits</h4>
+          <ul class="key_benefits">
+            <li>Simple and affordable pure protection plan</li>
+            <li>Flexibility to choose Policy Term and Premium Paying Term</li>
+            <li>Lower premium rate for Female lives</li>
+            <li>Enhance your protection with Optional Riders<sup>1</sup></li>
+            <li>Tax benefits<sup>2</sup>,as per the applicable Income Tax laws</li>
+          </ul>
+          <div class="common_button">
+            <button class="btn btn-primary">Know More</button>
+            <button class="btn btn-primary" (click)="onBuyNow()">Buy Now</button>
+            <a href="">Download Brochure</a>
+          </div>
+        </div>
+    
+       </div>
+      
+      
+      </mat-tab>
+    <mat-tab label="Savings Solutions"> Savings Solutions </mat-tab>
+    <mat-tab label="Wealth Solutions"> Wealth Solutions </mat-tab>
+    <mat-tab label="Retirement Solutions"> Retirement Solutions </mat-tab>
+    <mat-tab label="Health Solutions"> Health Solutions </mat-tab>
+    <mat-tab label="Smart Solutions"> Smart Solutions</mat-tab>
+  </mat-tab-group>
+</div>
+
+
+</div>
+
+

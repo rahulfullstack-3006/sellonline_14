@@ -3,11 +3,12 @@ const app=express();
 const config=require('./config.json');
 let portcheck=config.port
 const bodyParser=require('body-parser');
-// const baseRouter=require('./routers/route');
+const baseRouter=require('./routers/route');
 const cors=require('cors');
 const path=require('path');
 const db=require('./database/db');
 const mongodb=require('./database/mongodb');
+
 
 
 //LDAP SETUP//
@@ -135,7 +136,7 @@ app.use(cors({
 }))
 
 app.use(bodyParser.json({limit:"50mb"}));
-// app.use('/api/base',baseRouter);    
+app.use('/api/base',baseRouter);    
 
 app.listen(portcheck,()=>{
   console.log("Server is listening on port",portcheck);

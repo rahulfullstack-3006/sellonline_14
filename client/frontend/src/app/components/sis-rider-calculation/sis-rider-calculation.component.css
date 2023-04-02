@@ -1,0 +1,569 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  font-family: Helvetica, sans-serif;
+}
+
+.container{
+  border-top: 1px solid gray;
+  margin-top: 25px;
+}
+
+
+.main_section{
+  margin-left: 60px;
+  padding: 20px;
+}
+
+.product_lead_sis{
+  display: flex;
+}
+
+.product_name{
+  color:#D62049 ;
+}
+
+.product_uin,.product_lead_id,.product_sis_id{
+  margin-left: 20px;
+  padding-top: 5px;
+  color: #8C8C8C;
+}
+
+.line_symbol{
+  padding: 3px;
+  padding-left: 16px;
+  color: #8C8C8C;
+}
+
+.riders_section{
+  width: 65%;
+}
+
+.rider_product_name{
+  margin-left: 36px;
+}
+
+.rider_product_name h2{
+  font-size: 22px;
+  color: #1c86f0;
+  margin-top: -20px;
+}
+
+.riders_tab{
+  margin-left: 36px;
+}
+
+::ng-deep mat-tab {
+  background: #e4f2ff;
+  width: 200px;
+}
+
+::ng-deep mat-tab-label {
+  font-weight: bold;
+}
+
+::ng-deep .mat-tab-label {
+  display: flex;
+  align-items: center;
+  color: #1c86f0;
+}
+
+::ng-deep .mat-tab-label .mat-icon {
+  margin-right: 20px;
+}
+
+.buy_rider_text{
+  margin-top: 30px;
+}
+
+.buy_rider_text h2{
+  color: #2f2f2f;
+  font-size: 16px;
+}
+
+.buying_rider{
+  border: 2px solid #1c86f0;
+  height: 143px;
+  width: 180px;
+  padding: 9px;
+  border-radius: 10px;
+}
+
+.lead_name{
+  font-weight: 700;
+  font-size: 14px;
+  color: #2f80ed;
+  margin-bottom: 10px;
+}
+
+.gender_dob{
+  display: flex;
+  margin-bottom: 10px;   
+  border-bottom: 1px solid #dadada;
+}
+
+.dob{
+  margin-left: 10px;
+}
+
+/* .gender.gen_male{
+  font-size: 14px;
+  color: #2f2f2f;
+} */
+
+
+.gender p{
+  font-size: 12px;
+  color: #8C8C8C;
+}
+.gender h3 {
+  font-size: 14px;
+  color: #2f2f2f;
+}
+.dob p{
+  font-size: 12px;
+  color: #8C8C8C; 
+} 
+
+.dob h3{
+  font-size: 14px;
+  color: #2f2f2f;
+}
+
+/* .gender_dob{
+  margin-bottom: 10px;
+} */
+
+.edit_delete{
+  display: flex;
+}
+
+.edit fa-icon{
+  width: 16px;
+  height: 16px;
+}
+
+.delete fa-icon{
+  margin-left: 125px;
+  width: 16px;
+  height: 16px;
+}
+.lumpsum_heading{
+  margin-top: 25px;
+  border-bottom: 2px solid #1c86f0;
+}
+.lumpsum_heading h2{
+  font-size: 16px;
+  color: #1c86f0;
+}
+.subsection_lump_sum{
+  display: flex;
+  margin-top: 22px;
+}
+
+.get_lumpsum_text h2{
+ font-size: 16px;
+ color: #2f2f2f;
+}
+
+.tabacco_radio{
+  font-size: 16px;
+  color: #8C8C8C;
+  margin-left: 25px;
+}
+
+.choose_benefit_payout{
+  display: flex;
+}
+
+/* .choose_sum h2{
+ font-size: 16px;
+ color: #2f2f2f;
+}
+.choose_sum p{
+  font-size: 12px;
+  color: #8C8C8C;
+  margin: 0;
+} */
+
+/* .choose_sum .choose_ben{
+  font-size: 16px;
+  color: #2f2f2f;
+}
+
+.choose_sum.choose_tex{
+  font-size: 12px;
+  color: #8C8C8C;
+  margin: 0;
+} */
+
+.amount_radio{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 70px;
+  padding: 10px;
+}
+
+.lumpsum_sum_assured{
+  margin-left: 80px;
+}
+.lumpsum_input{
+  display: flex;
+  border: 1px solid gray;
+  padding: 8px;
+  width: 150px;
+}
+.grid-item{
+  width: 85%;
+}
+.grid-item input{
+  border: 0;
+  margin-left: 10px;
+  border-left: 1px solid #dadada;
+  outline: 0;
+  width: 100%;
+  padding-left: 10px;
+}
+.sum_amount_individual{
+  display: flex;
+  margin-top: 30px;
+}
+.assured_text h2{
+  font-size: 16px;
+  color: #2f2f2f;
+}
+.assured_amount{
+  padding: 8px;
+  margin-left: 5px;
+  color: #1C86F0;
+  font-size: 16px;
+}
+.rop_switch{
+  display: flex;
+}
+.rider_years{
+  display: flex;
+} 
+.rider_amount_icon{
+  display: flex;
+  border: 1px solid gray;
+  padding: 8px;
+  width: 150px;
+}
+.lumpsum_input_rider{
+  display: flex;
+  border: 1px solid gray;
+  padding: 8px;
+  width: 108px;
+  height: 38px;
+  border-radius: 3px;
+  margin-left: 20px;
+}
+.grid_item_rider{
+  width: 85%;
+}
+
+.grid_item_rider input{
+  border: 0;
+  outline: 0;
+  width: 100%;
+  padding-left: 8px;
+  color: #1C86F0;
+}
+.grid_image_rider{
+ border-left: 1px solid #dadada;
+ font-size: 16px;
+ color: #8c8c8c;
+ padding-left: 8px;
+}
+.rider_duration_payment{
+  display: flex;
+  margin-top: 10px;
+}
+.rider_payment_terms{
+  display: flex;
+  margin-left: 80px;
+}
+.rider_prem_vitality{
+  display: flex;
+  margin-top: 12px;
+  background: #e4f2ff;
+  width: 100%;
+    padding: 15px;
+}
+.rider_prem_gst{
+  margin-right: 56px;
+  border-right: 1px solid gray;
+  width: 50%;
+}
+.rider_prem_gst span{
+  margin: 20px;
+}
+.wellness_with_logo{
+display: flex;
+}
+.discount_wellness{
+  display: flex;
+  flex-direction: column;
+  width: 44%;
+}
+.amount_button{
+  display: flex;
+  justify-content: space-between;
+}
+.update_changes .btn{
+padding: 5px;
+}
+.main_rider_premium{
+  display: flex;
+}
+.total_premimum{
+  margin-left: 45px;
+  background: aliceblue;
+  width: 35%;
+  height: 620px;
+  padding: 10px 18px;
+}
+.base_premium{
+  display: flex;
+  border-bottom: 1px solid #dadada;
+
+}
+.base_text{
+  font-size: 12px;
+  color: #8C8C8C;
+}
+.my_total_premium{
+  color: #2F80ED;
+  font-weight: 500;
+  border-bottom: 1px solid #dadada;
+  padding: 5px;
+}
+.base_amount{
+  margin-left: 200px;
+  padding: 5px;
+}
+.base_amount p fa-icon{
+  font-size: 16px;
+  color: #8C8C8C;
+}
+.riders_head{
+  font-size: 10px;
+  color: #8c8c8c;
+  text-decoration: underline;
+}
+.rider_each{
+  display: flex;
+}
+.rider_each li{
+  font-size: 12px;
+  color: #8C8C8C;
+  margin-left: 30px;
+}
+.rider_each p{
+  font-size: 12px;
+  color: #8C8C8C;
+  margin-left: 177px;
+}
+.rider_tag{
+font-size: 14px;
+color: #8C8C8C;
+}
+.total_all_text{
+  border-bottom: 1px solid #dadada;
+}
+.final_premium{
+  display: flex;
+  border-bottom: 1px dotted #dadada;
+  justify-content: space-between;
+}
+.final_amount{
+  font-size: 12px;
+  color: #8C8C8C;
+  margin-left: 177px;
+}
+.final_text{
+  color: #8C8C8C;
+  font-size: 16px;
+  padding: 5px;
+}
+.final_exclude p{
+  font-size: 12px;
+  color: #8C8C8C;
+}
+.removed_rider p{
+  font-size: 10px;
+  color: #8C8C8C;
+  text-decoration: underline;
+}
+.disclaimer{
+  margin-top: 50px;
+  color: #54565B;
+  font-size: 10px;
+  margin-left: 70px;
+}
+
+.disclaimer p{
+  margin-left: 95px;
+}
+
+.disclaimer_list{
+ margin-left: 122px;
+ line-height: 13px;
+}
+.continue_skip {
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #FFFFFF;
+  color: white;
+  text-align: center;
+  z-index: 10;
+  padding: 20px 40px;
+}
+
+.pos_button{
+  margin-left: 50px;
+  display: flex;
+  margin-left: 120px;
+}
+
+.pos_button .btn{
+padding: 10px;
+}
+
+
+
+
+
+/*slider radio part*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*slider radio part*/
+
+
+/* annual radio button */
+.radio_container{
+  display: block;
+  position: relative;
+  padding: 3px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 125px;
+
+}
+
+
+.radio_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 125px;
+  background-color: #fff;
+  /* border-radius:4px; */
+  color: #1C86F0;
+  border: 2px solid #1C86F0;
+}
+
+.radio_container input:checked ~ .checkmark {
+  background-color: #2196F3;
+  color:#fff;
+  
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio_container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.radio_container input:checked ~ .checkmark + .checkmark_one{
+  color:#fff;
+  }
+
+.checkmark_one{
+    position:relative;
+    z-index:1;
+    color:blue;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px;
+    }
+  
+/* annual radio button */

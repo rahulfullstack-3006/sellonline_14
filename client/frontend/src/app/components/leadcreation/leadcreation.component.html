@@ -1,0 +1,119 @@
+<!-- <div class="heading_section">
+  <div class="tata_logo">
+   <img src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/logo.svg?v=1677856610137"/>
+  </div>
+
+   <div class="all_tata_details">
+    <div class="help_email">
+   <ul>
+    <li>Call our Helpline no.
+      <span>1-860-266-9966 (Local Charges Apply)</span>
+    </li>
+    <li>Contact us on EMAIL:
+      <span>sellonlinesalessupport@tataaia.com</span>
+    </li>
+   </ul>
+  </div>
+  <div class="all_social">
+   <div class="social_link">
+    <img class="social_platform" src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/facebook.svg?v=1677856610137"/>
+    <img class="social_platform" src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/youtube.svg?v=1677856610137"/>
+    <img class="social_platform" src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/linkedin.svg?v=1677856610137"/>
+    <img class="social_platform" src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/twitter.svg?v=1677856610137"/>
+   </div>
+  </div> 
+   </div>   
+</div>
+
+<div class="all_links">
+  <nav>
+    <a routerLink="/home" class="nav-link">Home</a>
+    <a routerLink="/financial" class="nav-link">Financial Calculator</a>
+    <a routerLink="/solutions" class="nav-link">Solutions</a>
+    <a routerLink="/app_tracker" class="nav-link">App Tracker</a>
+    <a routerLink="/policy_tracker" class="nav-link">Policy Tracker</a>
+    <a routerLink="/leadDashboard" class="nav-link">Leads</a>
+  </nav>
+</div>
+
+<div class="logout">
+  <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/hd-icon-3.svg?v=1680266567504" (click)="showLogoutButton = true"/>
+
+  <div *ngIf="showLogoutButton">
+  <button class="btn btn-primary" (click)="onLogout()">Logout</button>
+</div>
+</div> -->
+
+<app-header></app-header>
+
+<div class="container">
+  <div class="main">
+    <form [formGroup]="leadForm" (ngSubmit)="onSubmit()">
+    <div class="lead_heading">
+     <h2>New Lead Form</h2>
+    </div>
+
+    <div class="type_insurance">
+      <label for="insurance">Type of Insurance </label><br>
+      <input type="radio"  id="individual" value="individual"  formControlName="insurance_type"/>Individual
+      <input type="radio"  id="individual" value="non-individual"  formControlName="insurance_type"/>Non-Individual
+    </div>
+
+    <div class="personal_details">
+      <h2>Personal Details</h2>
+    </div>
+
+    <div class="form_fields"> 
+      <div class="user_details">
+      <div class="user_inputs">
+        <label for="first_name">Firstname</label><br>
+        <input type="text"  id="first_name"  formControlName="first_name"/>
+      </div>
+      <div class="user_inputs">
+        <label for="middle_name">MiddleName</label><br>
+        <input type="text"  id="middle_name" formControlName="middle_name"/>
+      </div>
+      <div class="user_inputs">
+        <label for="last_name">LastName</label><br>
+        <input type="text"  id="last_name" formControlName="last_name"/>
+      </div>
+      </div>
+
+      <div class="user_details">
+        <div class="user_inputs">
+          <label for="dob">Date of Birth</label><br>
+          <input type="date"  id="dob"  formControlName="dob"/>
+        </div>
+        <div class="user_inputs">
+          <label for="email">Email</label><br>
+          <input type="email"  id="email" formControlName="email"/>
+        </div>
+        <div class="user_inputs">
+          <label for="mobile">Mobile</label><br>
+          <input type="text"  id="mobile" formControlName="mobile"/>
+        </div>
+        </div>
+
+        <div class="user_details">
+          <div class="user_inputs">
+            <label for="address">Address</label><br>
+            <input type="text"  id="address" formControlName="address"/> 
+          </div>
+          <div class="user_inputs">
+            <label for="state">State</label><br>
+            <input type="text"  id="state" formControlName="state"/>
+          </div>
+          <div class="user_inputs">
+            <label for="city">City</label><br>
+            <input type="text"  id="city" formControlName="city"/>
+          </div>
+        </div>
+        
+        </div>
+
+    <div class="save_procced">
+      <button class="btn btn-primary" >Save & Procced</button>
+    </div>
+  </form>
+  </div>
+</div>

@@ -1,0 +1,317 @@
+<!-- <div class="heading">
+  <h1>TATA AIA </h1>
+  <p>LIFE INSURANCE</p>
+</div> -->
+
+<app-header></app-header>
+
+<div class="container">
+  <div class="main_section">
+    <div class="product_lead_sis">
+      <div class="product_name">
+        <h3>Tata AIA Life Insurance Fortune Guarantee Plus</h3>
+      </div>
+      <div class="product_uin">
+       <p>UIN: 110N158V09</p>
+      </div>
+      <div class="line_symbol">
+        |
+      </div>
+      <div class="product_lead_id">
+        <p>LEAD ID: 6105121135166</p>
+       </div>
+       <div class="line_symbol">
+        |
+      </div>
+      <div class="product_sis_id">
+        <p>SIS ID: 3065626158924</p>
+       </div>
+    </div>
+  </div>
+
+  <div class="sub_section">
+   <div class="rider_product_name">
+    <h2>Tata AIA Life Insurance Fortune Guarantee Plus</h2>
+   </div>
+   <div class="main_rider_premium">
+   <div class="riders_section">
+   <div class="riders_tab">
+    <mat-tab-group animationDuration="0ms">
+      <mat-tab *ngFor="let tab of tabs">
+        <ng-template mat-tab-label>
+          <mat-icon><img src="{{tab.icon}}"></mat-icon>
+          {{ tab.label }}
+        </ng-template>
+        <form>
+        <div class="buy_rider_text">
+          <h2>Buying the rider of</h2>
+        </div>
+        <div class="buying_rider">
+          <h4 class="lead_name">MARCH FOUR</h4>
+          <div class="gender_dob">
+            <div class="gender">
+              <p>Gender</p>
+              <p style="font-size: 14px;color: #2f2f2f;">Male</p>
+            </div>
+            <div class="dob">
+            <p>Date of Birth</p>
+            <p style="font-size: 14px;color: #2f2f2f;">01-01-1983</p>
+            </div>
+          </div>
+          <div class="edit_delete">
+            <div class="edit">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </div>
+            <div class="delete">
+              <fa-icon [icon]="faTrash"></fa-icon> 
+            </div>
+            </div>
+        </div>
+        <div class="lumpsum_heading">
+          <h2>Lumpsum and Income</h2>
+        </div>
+        <div class="lumpsum_income_main">
+          <div class="subsection_lump_sum">
+          <div class="get_lumpsum_text">
+            <h2>Get Lumpsum and/or Income for future needs</h2>
+          </div>
+          <div class="get_lumsum_radio">
+            <div class="tabacco_radio">
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="choose_benefit_payout">
+          <div class="choose_sum">
+        <p style="font-size: 16px;color: #2f2f2f;">Choose a Benefit Payout</p>
+        <p style=" font-size: 12px;color: #8C8C8C;margin: 0;">How would you like to get the Sum Assured?</p>
+      </div>
+      <div class="income_mode_radio">
+        <div class="amount_radio">
+          <label class="radio_container">
+            <input type="radio" name="benefit_radio" value="">
+            <span class="checkmark"></span>
+              <div class="checkmark_one">
+                Lumpsum
+              </div>
+          </label>
+          <label class="radio_container">
+            <input type="radio" name="benefit_radio" value="">
+            <span class="checkmark"></span>
+              <div class="checkmark_one">
+                Income
+              </div>
+          </label>
+          <label class="radio_container">
+            <input type="radio" name="benefit_radio" value="">
+            <span class="checkmark"></span>
+              <div class="checkmark_one">
+                Lumpsum
+              </div>
+          </label>
+      </div>
+      <div class="lumpsum_sum_assured">
+        <p>Lumpsum Amount</p>
+        <div class="lumpsum_input">
+          <div class="grid-image">
+          <fa-icon [icon]="faIndianRupee"></fa-icon> 
+          </div>
+          <div class="grid-item">
+            <input type="text"/>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="sum_amount_individual">
+        <div class="assured_text">
+          <h2>Sum Assured</h2>
+        </div>
+        <div class="assured_amount">
+          <p><fa-icon [icon]="faIndianRupee"></fa-icon>27600</p>
+        </div>
+      </div>
+      <div class="rop_switch">
+        <div class="return_text">
+          <p>Return of Premium Option</p>
+          <p>Would you like to avail return of premium</p> 
+        </div>
+        <div class="tabacco_radio">
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+        <div class="rider_duration_payment">
+        <div class="rider_years">
+        <div class="rider_dur">
+         <p>Rider Duration</p>
+         <p>Duration for availing benefits</p>
+        </div>
+        <div class="lumpsum_input_rider">
+          <div class="grid_item_rider">
+            <input type="text" value="5"/>
+          </div>
+          <div class="grid_image_rider">
+            years
+          </div>
+        </div>
+        </div>
+
+        <div class="rider_payment_terms">
+          <div class="rider_dur">
+           <p>Rider Payment Term</p>
+           <p>Pay premium for</p>
+          </div>
+          <div class="lumpsum_input_rider">
+            <div class="grid_item_rider">
+              <input type="text" value="5"/>
+            </div>
+            <div class="grid_image_rider">
+              years
+            </div>
+          </div>
+          </div>
+        </div>
+     
+        <div class="rider_prem_vitality">
+          <div class="rider_prem_gst">
+            <h2>
+              Rider premimum
+              <small>(excluding GST)</small>&nbsp;&nbsp;
+              <span>
+                <fa-icon [icon]="faIndianRupee"></fa-icon>
+                900
+              </span>
+            </h2>
+          </div>
+          <div class="discount_wellness">
+          <div class="wellness_with_logo">
+          <div class="image_vitality">
+            <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/DiscountIcon.svg?v=1677931786189"/> 
+          </div>
+          <div class="vitality_text">
+            <p>Tata AIA Vitality Wellness Program Discount</p>
+          </div>
+        </div>
+        <div class="amount_button">
+          <div class="rupee_icon">
+            <span>
+              <fa-icon [icon]="faIndianRupee"></fa-icon>90
+            </span>
+          </div>
+          <div class="update_changes">
+            <button class="btn btn-primary">Update Changes</button>
+          </div>
+        </div>
+        </div>
+        </div>
+
+        </div>
+
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+   </div>
+  </div>
+  <div class="total_premimum">
+    <div class="total_all_text">
+    <h3 class="my_total_premium">My Total Premium</h3>
+   <div class="base_premium">
+    <div class="base_text">
+      <p>Base Premimum</p>
+    </div>
+    <div class="base_amount">
+      <p><fa-icon [icon]="faIndianRupee"></fa-icon>&nbsp;24,000</p>
+    </div>
+  </div>
+  <p class="riders_head">Riders</p>
+  <div class="riders_name_amount">
+   <ul>
+    <p class="rider_tag">HospiCare</p>
+    <div class="rider_each">
+    <li>Lumpsum and Income</li>
+    <p><fa-icon [icon]="faIndianRupee"></fa-icon>&nbsp;875
+      <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/premium-cross.svg?v=1677931786189"/>
+    </p>
+  </div>
+
+  <p class="rider_tag">Accidental Death (AD)</p>
+  <div class="rider_each">
+  <li>Lumpsum and Income</li>
+  <p><fa-icon [icon]="faIndianRupee"></fa-icon>&nbsp;118
+    <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/premium-cross.svg?v=1677931786189"/>
+  </p>
+</div>
+
+<p class="rider_tag">Criticare Plus (CCP)</p>
+<div class="rider_each">
+<li>Lumpsum and Income</li>
+<p><fa-icon [icon]="faIndianRupee"></fa-icon>&nbsp;810
+  <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/premium-cross.svg?v=1677931786189"/>
+</p>
+</div>
+
+<p class="rider_tag">Term Booster (TB)</p>
+<div class="rider_each">
+<li>Lumpsum and Income</li>
+<p><fa-icon [icon]="faIndianRupee"></fa-icon>&nbsp;440
+  <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/premium-cross.svg?v=1677931786189"/>
+</p>
+</div>
+
+<p class="rider_tag">Accidental Total & Permanen...</p>
+<div class="rider_each">
+<li>Lumpsum and Income</li>
+<p><fa-icon [icon]="faIndianRupee"></fa-icon>&nbsp;71
+  <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/premium-cross.svg?v=1677931786189"/>
+</p>
+</div>
+
+   </ul>
+  </div>
+  
+
+
+
+
+  </div>
+  <p class="final_text">Final Premium</p>
+  <div class="final_premium">
+    <div class="final_exclude">
+      <p>(excluding GST, Including Tata AIA Vitality Wellness<br>
+         Program Discount)</p>
+    </div>
+    <div class="final_amount">
+      <p><fa-icon [icon]="faIndianRupee"></fa-icon>26,314</p>
+    </div>
+  </div>
+  <div class="removed_rider">
+    <p>Removed</p>
+  </div>
+   </div>
+</div>
+  </div>
+
+    <div class="disclaimer">
+      <p>Disclaimer: For complete disclaimers please click here, before concluding the sale.</p>
+      <ul class="disclaimer_list">
+        <li>Registered with Insurance Regulatory & Development Authority of India (IRDAI) under the following Address and Registration Number: Tata AIA Life Insurance Company Ltd. (IRDAI Regn. No. 110) Issued On: 12th February 2001 Category: Life Insurance</li>
+        <li>Registered & Corporate Office Address: 14th Floor, Tower A, Peninsula Business Park, Senapati Bapat Marg, Lower Parel, Mumbai 400013.</li>
+        <li>Tata AIA Life Insurance Company Limited (Tata AIA Life) is a joint venture company, formed by Tata Sons and AIA Group Limited (AIA). CIN: U66010MH2000PLC128403</li>
+        <li>Trade logo displayed above belongs to Tata Sons Ltd and AIA Group Ltd. and is used by Tata AIA Life Insurance Company Ltd under a license.</li>
+        <li>For any information including cancellation, claims and complaints, please contact our Insurance Advisor / Intermediary or visit Tata AIA Life’s nearest branch office or call 1-860-266-9966 (local charges apply) or write to us at customercare@tataaia.com. Visit us at: www.tataaia.com or SMS 'Life’ to 58888.</li>
+      </ul>
+    </div>
+
+      <div class="continue_skip">
+        <div class="pos_button">
+          <button class="btn btn-primary" (click)="onContinue()">Continue to the Next Step</button>
+        </div>
+      </div>
+ 
+</div>

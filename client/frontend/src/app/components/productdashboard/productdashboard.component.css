@@ -1,0 +1,157 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  font-family: "HelveticaBold", sans-serif;
+  }
+
+  .main_content{
+    margin-top: 25px;
+  }
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  box-shadow: 0px 0px 10px 0px rgb(59 59 59 / 30%);
+  transition: all 0.1s ease;
+  transform: scale(1.1);
+  position: relative;
+  z-index: 1;
+  background: #1C86F0;
+  border: 0px;
+  border-bottom: 5px solid #D62049;
+  color: #FFFFFF;
+  font-size: 17px;
+}
+
+.section_tabs{
+  background-color: rgb(205, 205, 205);
+  height: 100vh;
+}
+
+ /* mat-tab{
+  height: 90px;
+  background-color: #D62049;
+  height: 100px;
+} */
+
+.protection_heading{
+ margin: 40px 0px;
+}
+
+.life_ins_plans{
+  margin-top: 40px;
+}
+
+.life_ins_plans h2{
+  margin-left: 170px;
+  color: #1C86F0;
+  font-size: 22px;
+}
+
+.product_details{
+width: 70%;
+margin-top: 70px;
+margin-left: 180px;
+display: flex;
+}
+
+.product_img{
+  width: 433px;
+  height: 446px;
+}
+
+.product_logo{
+  position: absolute;
+  height: 163px;
+  width: 350px;
+  margin-top: 250px;
+  margin-left: -10px;
+}
+
+.product_details_descr{
+  background-color: #FFFFFF;
+  padding: 40px;
+  height: 480px;
+  width:850px ;
+}
+
+.product_details_descr h4{
+  font-size: 18px;
+  color: #474747;
+  font-weight:bold;
+  padding: 0;
+}
+
+.product_details_descr p{
+  color: #8C8C8C;
+  font-size: 15px;
+}
+
+.key_benefits{
+ margin-left: 16px;
+ color: #8C8C8C;
+ font-size: 16px;
+ line-height: 37px;
+}
+
+.common_button{
+  margin-top: 8px;
+  padding: 20px;
+}
+
+.common_button .btn{
+  padding: 6px;
+  width: 118px;
+  height: 43px;
+  margin-right: 20px;
+}
+
+
+@media (max-width:767px) {
+
+  .life_ins_plans h2{
+    display: flex;
+    justify-content: center;
+    color: #1C86F0;
+    font-size: 22px;
+    margin-left: 0px;
+  }
+  .product_details{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 70px;
+    padding: 20px;
+    margin-left: 0px;
+  }
+  .product_logo{
+    position: absolute;
+    height: 125px;
+    width: 246px;
+    /* margin-top: 250px;
+    margin-left: -10px; */
+    top: 310px;
+    left: 12px;
+  }
+  .product_img{
+    width: 320px;
+    height: 300px;
+  }
+  .product_details_descr{
+    background-color: #FFFFFF;
+    padding: 30px;
+    height: 439px;
+    width: 320px;
+  }
+  .common_button{
+    margin-top: 8px;
+    padding: 20px;
+    display: flex;
+    width: 118px;
+    height: 55px;
+  }
+  .key_benefits{
+    margin-left: 16px;
+    color: #8C8C8C;
+    font-size: 16px;
+    line-height: 22px;
+   }
+}

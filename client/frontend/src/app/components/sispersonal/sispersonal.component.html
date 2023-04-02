@@ -1,0 +1,165 @@
+<!-- <div class="heading">
+  <h1>TATA AIA</h1>
+  <p>LIFE INSURANCE</p>
+</div> -->
+<app-header></app-header>
+<div class="container">
+  <div class="main_section">
+    <div class="product_heading">
+      <div class="product_name">
+        <h3>{{leadwithProduct.productName}}</h3>
+        </div>
+        <div class="uin">
+          <p>{{leadwithProduct.UIN}}</p>
+          </div>
+          <div class="line_symbol">
+            |
+          </div>
+          <div class="lead_id">
+          <p>LEAD ID: {{leadwithProduct.leadId}}</p>
+        </div>
+        </div>
+        <div>
+          <form [formGroup]="sisPersonalForm" (ngSubmit)="onSubmit()">
+            <div class="lead_name_heading">
+              <h3>Hello <b>Mr. {{leadwithProduct.first_name}} {{leadwithProduct.middle_name}}  {{leadwithProduct.lasst_name}}</b>, Welcome to Tata AIA!</h3>
+            </div>
+            <div class="lead_dynamic">
+              <p>Based on the information shared by your Financial Advisor, We understand that you were born on <span> {{leadwithProduct.dob | date: 'dd/MM/yyyy' }}</span>  and currently reside in 
+                <span>{{leadwithProduct.address}}, {{leadwithProduct.state}}, {{leadwithProduct.city}}.</span> You can be reached at <span>+91 {{leadwithProduct.mobile}} </span> and <span>{{leadwithProduct.email}}.</span> 
+              </p>
+            </div>
+            <div class="process_simpler">
+              Now, to make the process simpler, we have assumed that you are and <span>you are buying policy for Self</span>. Feel free to edit it if you like<a href=""><fa-icon [icon]="faPencil"></fa-icon>Edit</a>
+            </div>
+            <div class="self_drop_down">
+              <span>You are buying the policy for</span>
+              <select class="self_child" formControlName="buying_for">
+                <option value="self" selected>Self</option>
+                <option>Spouse</option>
+                <option>Child(major)</option>
+                <option>Child(minor)</option>
+              </select>
+            </div>
+
+            <div class="occupation_dropdown">
+              <span>Your occupation is</span>
+              <select formControlName="occupation">
+                <option value="" disabled></option>
+                <option>Agriculturist/Farmer</option>
+                <option>Business Owner</option>
+                <option>Housewife</option>
+                <option>NPS Retiree</option>
+                <option>Retired</option>
+                <option>Salaried</option>
+                <option>Self Employed</option>
+              </select>
+            </div>
+
+            <div class="best_quote">
+              <h4>You’re just a few more details away from getting the best quote.</h4>
+            </div>
+
+            <div class="proof_select">
+              <label for="">Age Proof for {{leadwithProduct.first_name}} {{leadwithProduct.middle_name}}  {{leadwithProduct.lasst_name}}</label><br>
+              <select formControlName="age_proof">
+                <option value="" selected></option>
+                <option>Aadhar ID Card - Non Standard</option>
+                <option>Aadhar ID Card - Standard</option>
+                <option>Others</option>
+                <option>PAN Card</option>
+                <option>Hosiptal Discharge Card less than age 5 years</option>
+              </select>
+            </div>
+            <div class="education_personal_proof">
+              <div class="user_inputs">
+                <label>Highest Education Qualification</label><br>
+                <select formControlName="education_qualification">
+                  <option value="" selected></option>
+                  <option>Below SSC</option>
+                  <option>10th</option>
+                  <option>12th</option>
+                  <option>Graduate</option>
+                </select>
+              </div>
+              <div class="user_inputs">
+                <label for="annual">Annual Income of {{leadwithProduct.first_name}} {{leadwithProduct.middle_name}}  {{leadwithProduct.lasst_name}}</label><br>
+                <input type="text"  id="annual" formControlName="annual_income"/><br>
+                <p>Annual Income declared should be part of Earned Income only.</p>
+              </div>
+              <div class="user_inputs">
+                <label for="pan_number">Pan Number of {{leadwithProduct.first_name}} {{leadwithProduct.middle_name}}  {{leadwithProduct.lasst_name}}</label><br>
+                <input type="text"  id="pan_number" formControlName="pan_number"/>
+              </div>
+            </div>
+            <div class="tabacco_radio">
+              <label>Do you consume tobacco?</label><br>
+              <label class="switch">
+                <input type="checkbox" formControlName="tobacco_radio">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="nominee_name_real">
+              <div class="user_inputs">
+                <label for="nominee">Nominee Name</label><br>
+                <input type="text"  id="nominee" formControlName="nominee_name"/><br>
+              </div>
+              <div class="user_inputs">
+                <label>Nominee relationship with Life Assured</label><br>
+                <select formControlName="nominee_relationship">
+                  <option value="" selected></option>
+                  <option>Brother</option>
+                  <option>Cousin</option>
+                  <option>Nephew</option>
+                  <option>Nice</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="gst_number">
+              <div class="gst_check">
+                <input type="checkbox" formControlName="gst_check"/>
+              </div>
+              <div class="gst_text">
+              <h4>I have a GST number</h4>
+            </div>
+            </div>
+
+            <div class="other_life_insur">
+              <div class="existing_check">
+                <input type="checkbox" formControlName="existing_check"/>
+              </div>
+              <div class="existing_text">
+              <h4> I have an existing life insurance policy/or have applied any simultaneous applications with Other Life Insurance Company</h4>
+            </div>
+            </div>
+
+            <div class="add_provide">
+              <h4>Don't add/provide Tata AIA Life Insurance Policies</h4>
+            </div>
+
+            <div class="note_policy">
+              <h4>Please note that, by providing your details, you agree to receive a SMS/Call by a Tata AIA life insurance Co. Ltd or its representative with reference to this solicited inquiry even though 
+                you may be registered on the DND list.</h4>
+            </div>
+
+            <div class="let_do_this">
+              <button class="btn btn-primary">LET'S DO THIS</button>
+            </div>
+          </form>
+
+          <div class="disclaimer">
+            <p>Disclaimer: For complete disclaimers please click here, before concluding the sale.</p>
+            <ul class="disclaimer_list">
+              <li>Registered with Insurance Regulatory & Development Authority of India (IRDAI) under the following Address and Registration Number: Tata AIA Life Insurance Company Ltd. (IRDAI Regn. No. 110) Issued On: 12th February 2001 Category: Life Insurance</li>
+              <li>Registered & Corporate Office Address: 14th Floor, Tower A, Peninsula Business Park, Senapati Bapat Marg, Lower Parel, Mumbai 400013.</li>
+              <li>Tata AIA Life Insurance Company Limited (Tata AIA Life) is a joint venture company, formed by Tata Sons and AIA Group Limited (AIA). CIN: U66010MH2000PLC128403</li>
+              <li>Trade logo displayed above belongs to Tata Sons Ltd and AIA Group Ltd. and is used by Tata AIA Life Insurance Company Ltd under a license.</li>
+              <li>For any information including cancellation, claims and complaints, please contact our Insurance Advisor / Intermediary or visit Tata AIA Life’s nearest branch office or call 1-860-266-9966 (local charges apply) or write to us at customercare@tataaia.com. Visit us at: www.tataaia.com or SMS 'Life’ to 58888.</li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  
