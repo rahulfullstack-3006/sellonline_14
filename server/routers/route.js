@@ -1,12 +1,15 @@
 var express=require('express');
 var router=express.Router();
-
+const MongoClient=require('mongodb').MongoClient;
 const controller=require('../controllers/loginController');
 const registerLdap=require('../controllers/ldapRegisterController');
 const modelLogin=require('../models/loginModel');
 const leadDashboard=require('../controllers/leadDashboardController');
 const BasicDetails=require('../models/basicDetailsSchema');
 const checkAuth=require('../middleware/checkAuth');
+const Country=require('country-state-city').Country;
+const State=require('country-state-city').State;
+const City=require('country-state-city').City;
 router.post('/register',controller.registerController)
 // router.post('/register',modelLogin.registerModel)
 router.post('/login',controller.loginController);
@@ -22,6 +25,7 @@ router.put('/updateLead/:id',leadDashboard.updateLeadDashboardController);
 router.delete('/deleteLead/:id',leadDashboard.deleteLeadDashboardController);
 router.get('/getEachLeadDetails/:id',leadDashboard.getEachLeadDetailController);
 router.get('/search/:key',leadDashboard.searchLeadDashboardController);
+// router.get('/bulkCountryStateCity',leadDashboard.bulkCountryStateCityController)
 
               /***register and login using mongo **/
 router.post('/registerusingMongo',registerLdap.registerusingMongoControll);
@@ -94,10 +98,10 @@ router.post('/loginusingMongo',registerLdap.loginusingMongoControll);
 //     }
 //   })
 //   .then(response=>{
-//    res.json({
-//       message:'Employee Added Successfully',
-//       updateData:response
-//    })
+  //  res.json({
+  //     message:'Employee Added Successfully',
+  //     updateData:response
+  //  })
 //   })
 //   .catch(err=>{
 //     res.json({
@@ -105,6 +109,44 @@ router.post('/loginusingMongo',registerLdap.loginusingMongoControll);
 //     })
 //   })
 // })
+
+
+//country state city dropdown
+
+// router.get('/countrystatecity',(req,res)=>{
+//   const Country=require('country-state-city').Country;
+//   const State=require('country-state-city').State;
+//   const City=require('country-state-city').City;
+  
+  
+//   console.log("MongoClient",MongoClient);
+//   console.log("dbbb");
+//   let url='mongodb://localhost:27017/'
+//   MongoClient.connect(url,function(err,db){
+//     console.log("dbbbbbbbbbbbbbb",db);
+//     if(err) throw err;
+//   console.log("countrystatecity");
+
+  
+//     var dbo=db.db('insurance');
+//     var countriesBulk=dbo.collection('countries').initializeOrderedBulkOp();
+  
+//     var countries=Country.getAllCountries();
+  
+//     countries.forEach(country=>{
+//       countriesBulk.insert({name:country.name,short_name:country.isoCode});
+//     });
+  
+//     countriesBulk.execute();
+//     console.log("Countries inserted",countries);
+//     res.json({
+//       message:'Employee Added Successfully',
+//       updateData:countries
+//    })
+//   })
+// })
+
+
 
 
 module.exports=router;

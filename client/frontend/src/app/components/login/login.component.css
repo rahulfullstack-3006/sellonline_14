@@ -6,34 +6,60 @@
 
 .container{
   height: 100vh;
-  /* background: #0d6efd; */
-  background-image: url('https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/login-bg.jpg?v=1676061431207');
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url('https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/login-bg.jpg?v=1676061431207');
+
 }
 
 .login{
   width: 360px;
   background: #ffffff;
-  padding: 36px;
-  margin-bottom: 25px;
+  padding: 25px;
   border-radius: 12px;
 }
 
 .login h1{
-font-size: 36px;
-margin-bottom: 12px;
+  margin-bottom: 25px;
+  font-size: 36px;
+  color: #68236f;
+  font-weight: bold;
+  font-size: 45px;
+  line-height: 35px;
 }
 
 .login form{
   margin-bottom: 12px;
 }
 
-.login form .form-group{
-  font-size: 20px;
+
+.input-container{
+position: relative;
+/* border: #d7d7d7 1px solid; */
 }
 
-.login form input[type="submit"]{
-  margin-bottom: -25px;
+.input-container i{
+  position:absolute;
+  left: 10px;
+  top: 32%;
+  transform: translateY(-50%);
+}
+
+.input-container input {
+  padding-left: 50px;
+  width: 310px;
+  height: 38px;
+  margin-bottom: 28px;
+  border-radius: 5px;
+} 
+
+.login_button{
+  margin-bottom: -20px;
+  padding: 10px;
+  background: #68236f;
+  color: #ffff;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
 }

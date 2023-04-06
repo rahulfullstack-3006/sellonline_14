@@ -30,6 +30,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxUiLoaderModule,NgxUiLoaderHttpModule } from "ngx-ui-loader";
 import { HeaderComponent } from './components/header/header.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { HeaderComponent } from './components/header/header.component';
     // NgxSpinnerModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule,
+    Ng2SearchPipeModule,
     NgxUiLoaderHttpModule.forRoot({ showForeground: true })
   ],
   providers: [

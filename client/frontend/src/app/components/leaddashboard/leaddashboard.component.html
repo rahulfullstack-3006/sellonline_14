@@ -12,8 +12,10 @@
        <h2>Lead</h2>
       </div>
       <div class="lead_search_create">
-        <input type="text" id="search" placeholder="Searh here." (input)="onSearch()" [(ngModel)]="searchText">
-        <fa-icon [icon]="faSearch"></fa-icon>
+        <input type="text" id="search" placeholder="Searh here." [(ngModel)]="searchText" #myText>
+        <!-- <fa-icon [icon]="faSearch" (click)="onSearch()"></fa-icon> -->
+        <fa-icon [icon]="faSearch" *ngIf="!searchText"  (click)="this.search = !this.search"></fa-icon>
+        <!-- <fa-icon [icon]="faWindowClose" *ngIf="searchText"  (click)="clearText($event,myText)"></fa-icon> -->
         <button class="btn btn-primary" (click)="createNewLead()">+ Create New Lead</button>
         <button class="btn btn-primary">Generate Link</button>
       </div>
@@ -25,7 +27,8 @@
             <mat-tab-group id="linkLabel" mat-stretch-tabs animationDuration="0ms">
                 <mat-tab id="tab1" label="Self Leads" >
                   <div class="card_section">
-                    <div class="card"  *ngFor="let item of leadCardDetails">
+                    <div class="card"  *ngFor="let item of leadCardDetails | filter:searchText">
+                    <!-- <div class="card"  *ngFor="let item of leadCardDetails"> -->
                     <div class="header">
                       <img class="image_1" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile-bg.svg?v=1677155902412"/>
                       <img class="image_2" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/profile.svg?v=1677155902412"/>
@@ -51,7 +54,6 @@
                     <button class="btn btn-primary" (click)="onViewDetails(item)">View Details</button>
                     <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
                     </div>
-                    
                    </div>
         
                    <!-- <div class="card">
@@ -111,8 +113,7 @@
                     </div>
                     
                    </div> -->
-                  </div> 
-                  
+                  </div>                 
                   </mat-tab>
                 <!-- <mat-tab id="tab2" label="New Leads(VYMO)">
                   <div class="card_section">
@@ -204,7 +205,12 @@
                      </div>
                   </div>
                 </mat-tab> -->
+              
               </mat-tab-group>
+              <div *ngIf="(leadCardDetails | filter: searchText).length === 0">
+                <h1 class="text-center">No results found....</h1>
+              </div>
+
           
           </div>
            <!-- start end -->

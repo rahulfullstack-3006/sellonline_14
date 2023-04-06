@@ -1,25 +1,19 @@
-<app-login *ngIf="loading"></app-login>
-
-<div class="container">
+ <div class="container">
   <div class="login">
-    <h1 class="text-center">Login</h1>
+    <h1 class="text-center">Welcome</h1>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="username" id="username" formControlName="username"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" formControlName="password"/>
-      </div>
-      <!-- <div class="form-group">
-        <input  type="checkbox" id="checkbox"/>
-        <label  for="checkbox">Remember me</label>      
-      </div> -->
-      <input class="btn btn-success w-100" type="submit" value="SIGN IN"/>
-    </form>
+     <div class="input-container">
+      <i class="fa fa-user"></i>
+      <input type="text" placeholder="Username" id="username" formControlName="username">
+     </div>
+
+     <div class="input-container">
+      <i class="fa fa-lock"></i>
+      <input type="password" placeholder="Password" id="password" formControlName="password">
+     </div>
+
+     <button class="login_button" type="submit">Login</button>
+    </form> 
   </div>
 </div>
 
-
-<!-- <ngx-spinner bdColor="rgba(51,51,51,01)" size="medium" color="#fff" type="ball-scale-multiple"></ngx-spinner> -->

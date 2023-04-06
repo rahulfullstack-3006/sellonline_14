@@ -67,22 +67,22 @@
       <div class="user_details">
       <div class="user_inputs">
         <label for="first_name">Firstname</label><br>
-        <input type="text"  id="first_name"  formControlName="first_name"/>
+        <input type="text"  id="first_name"  formControlName="first_name" placeholder="Name should match with the name as per ID proof submitted"/>
       </div>
       <div class="user_inputs">
         <label for="middle_name">MiddleName</label><br>
-        <input type="text"  id="middle_name" formControlName="middle_name"/>
+        <input type="text"  id="middle_name" formControlName="middle_name" placeholder="Name should match with the name as per ID proof submitted"/>
       </div>
       <div class="user_inputs">
         <label for="last_name">LastName</label><br>
-        <input type="text"  id="last_name" formControlName="last_name"/>
+        <input type="text"  id="last_name" formControlName="last_name" placeholder="Name should match with the name as per ID proof submitted"/>
       </div>
       </div>
 
       <div class="user_details">
         <div class="user_inputs">
           <label for="dob">Date of Birth</label><br>
-          <input type="date"  id="dob"  formControlName="dob"/>
+          <input type="date"  id="dob"  formControlName="dob" placeholder="DD-MM-YYYY"/>
         </div>
         <div class="user_inputs">
           <label for="email">Email</label><br>
@@ -96,18 +96,61 @@
 
         <div class="user_details">
           <div class="user_inputs">
+            <label for="country">Country</label><br>
+            <!-- <input type="text"  id="address" formControlName="address"/>  -->
+            <select id="country" formControlName="country">
+              <option>INDIA</option>
+              <option>NEWZELAND</option>
+              <option>ENGLAND</option>
+
+            </select>
+          </div>
+          <!-- <div class="user_inputs">
+            <label for="state">State</label><br>
+            <input type="text"  id="state" formControlName="state"/>
+          </div> -->
+
+          <div class="user_inputs">
+            <label for="state">State</label><br>
+            <select id="country" formControlName="state">
+              <option>INDIA</option>
+              <option>NEWZELAND</option>
+              <option>ENGLAND</option>
+
+            </select>
+          </div>
+
+          <!-- <div class="user_inputs">
+            <label for="city">City</label><br>
+            <input type="text"  id="city" formControlName="city"/>
+          </div> -->
+
+          <div class="user_inputs">
+            <label for="city">City</label><br>
+            <select id="country" formControlName="city">
+              <option>INDIA</option>
+              <option>NEWZELAND</option>
+              <option>ENGLAND</option>
+
+            </select>
+          </div> 
+        </div>
+
+        <div class="user_details">
+          <div class="user_inputs">
             <label for="address">Address</label><br>
             <input type="text"  id="address" formControlName="address"/> 
           </div>
-          <div class="user_inputs">
+          <!-- <div class="user_inputs">
             <label for="state">State</label><br>
             <input type="text"  id="state" formControlName="state"/>
-          </div>
-          <div class="user_inputs">
+          </div> -->
+          <!-- <div class="user_inputs">
             <label for="city">City</label><br>
             <input type="text"  id="city" formControlName="city"/>
-          </div>
+          </div> -->
         </div>
+
         
         </div>
 

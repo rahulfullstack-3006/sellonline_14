@@ -224,6 +224,11 @@ font-weight:bold ;
   margin-top:4px
 }
 
+.pay_text h2{
+  font-size: 16px;
+  color: #8C8C8C;
+}
+
 .ppt_select{
   margin-left: 139px;
   padding: 10px;

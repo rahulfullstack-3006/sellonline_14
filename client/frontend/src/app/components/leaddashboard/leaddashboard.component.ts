@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faEnvelope, faPhone, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faPhone, faSearch, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { MainService } from 'src/app/services/main.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class LeaddashboardComponent implements OnInit {
   faEnvelope=faEnvelope;
   faPhone=faPhone;
   faSearch=faSearch;
+  faWindowClose=faWindowClose;
   allLeadCardDetails:any;
   eachItemId:any
   searchText:any=''
@@ -29,6 +30,9 @@ export class LeaddashboardComponent implements OnInit {
 
   // ];
   leadCardDetails:any={}
+  backtoSearchIcon: boolean=false;
+  searchtoBackIcon:boolean=true;
+  search:boolean=false
   constructor(private router:Router,private mainService:MainService) { }
 
   ngOnInit(): void {
@@ -80,6 +84,34 @@ export class LeaddashboardComponent implements OnInit {
     
     this.router.navigate(['/productDashboard'])
 
+  }
+
+  clearText(event:MouseEvent,myText:HTMLInputElement){
+  console.log("event",myText.value);
+  myText.value='';
+    this.mainService.leadDashboard().subscribe({
+      next:(result:any)=>{
+        console.log("result",result.data);
+        this.leadCardDetails=result.data
+        console.log("data for leadDashborad",this.leadCardDetails);  
+
+      },
+      error:(error)=>{
+        console.log("error while fetching leadDashboard",error);
+        
+      }
+    })
+  
+  this.backtoSearchIcon=true
+  
+  }
+
+  searchIcon(){
+  this.backtoSearchIcon=true
+  }
+
+  closeIcon(){
+ this.searchtoBackIcon=false
   }
 
 

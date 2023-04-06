@@ -89,4 +89,22 @@ module.exports.searchLeadDashboardController=async function(req,resp){
   resp.json({status:'false',message:'Error in Lead search',data});
 
   }
+  
+}
+
+
+module.exports.bulkCountryStateCityController=async function(req,resp){
+  try{
+    let data=await leadDashboard.bulkCountryStateCityModel(req);
+    console.log("data",data);
+   //  resp.send(data)
+   resp.json({status:'true',message:'Lead Search Successfully',data});
+ 
+   }
+   catch(err){
+     // resp.send(err)
+   resp.json({status:'false',message:'Error in Lead search',data});
+ 
+   }
+
 }

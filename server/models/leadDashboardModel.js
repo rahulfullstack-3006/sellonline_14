@@ -1,5 +1,12 @@
 var BasicDetails=require('../models/basicDetailsSchema');
 var moment=require('moment');
+const Country=require('country-state-city').Country;
+const State=require('country-state-city').State;
+const City=require('country-state-city').City;
+const dbMongodb=require('../database/mongodb');
+const CountryModel=require('../models/countryModel');
+
+// console.log(State.getAllStates());
 
 
 module.exports.getLeadDashboardModel=async function(req,resp){
@@ -127,6 +134,105 @@ module.exports.searchLeadDashboardModel=async function(req,resp){
     return data;
   }
   catch(err){
+    return err
+  }
+
+}
+
+
+module.exports.bulkCountryStateCityModel=async function(req,resp){
+
+  try{
+    // var dbo=dbMongodb.db('insurance');
+    // var countriesBulk=dbo.collection('countries').initializeOrderedBulkOp();
+    // var countries=Country.getAllCountries();
+
+    // countries.forEach(country=>{
+    //   countriesBulk.insert({name:country.name,short_name:country.isoCode})
+    // })
+    // countriesBulk.execute();
+    // return countriesBulk;
+    // var objCountry;
+    // var countries=Country.getAllCountries();
+    //   countries.forEach(country=>{
+    //     // const bulkWriteOperation = {
+    //     //   insertMany: {
+    //     //     documents: country,
+    //     //   },
+    //     // };
+    //     objCountry=country;
+    // }
+    // )
+  
+    //       var bulkWriteOperation = {
+    //       insertMany: {
+    //         documents: objCountry,
+    //       },
+    //     };
+
+
+    // CountryModel.bulkWrite([bulkWriteOperation])
+
+    // const Country=require('country-state-city').Country;
+    // const State=require('country-state-city').State;
+    // const City=require('country-state-city').City;
+    
+    
+    // const MongoClient=require('mongodb').MongoClient;
+    
+    // MongoClient.connect('mongodb://localhost:27017/insurance',function(err,db){
+    //   if(err) throw err;
+    
+    //   var dbo=db.db('insurance');
+    //   var countriesBulk=dbo.collection('countries').initializeOrderedBulkOp();
+    
+    //   var countries=Country.getAllCountries();
+    
+    //   countries.forEach(country=>{
+    //     countriesBulk.insert({name:country.name,short_name:country.isoCode});
+    //   });
+    
+    //   countriesBulk.execute();
+    //   console.log("Countries inserted",countries);
+    // })
+    // return countries;
+
+    // Get a list of all countries
+    const countries = Country.getAllCountries();
+
+    // Create an array of documents to insert
+    const documents = countries.map(country => {
+    return {
+    name: country.name,
+    code: country.isoCode
+  };
+  });
+
+  // Define an array of operations to perform
+  const operations = documents.map(document => {
+  return {
+    insertOne: {
+      document: document
+    }
+  };
+});
+
+
+// Perform the bulk operation
+// CountryModel.bulkWrite(operations)
+//   .then(result => {
+//     console.log('Bulk operation completed successfully:', result);
+//   })
+//   .catch(error => {
+//     console.error('Bulk operation failed:', error);
+//   });
+
+let results=await CountryModel.bulkWrite(operations);
+return results
+  
+  }
+  catch(err){
+    console.log("error in catch",err);
     return err
   }
 

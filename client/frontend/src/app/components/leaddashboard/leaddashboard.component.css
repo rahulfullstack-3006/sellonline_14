@@ -38,13 +38,13 @@
     padding-left: 20px;
     height: 40px;
     border: 1px solid gray;
-    width: 150px;
+    width: 170px;
     position: relative;
   }
   
   .lead_search_create fa-icon{
     position: absolute;
-    margin-left: 115px;
+    margin-left: 135px;
     margin-top: 10px;
     color: #1C86F0;
   }
