@@ -10,6 +10,10 @@ const stateSchema=new Schema({
   country_short_name:{
     type:String,
     required:true
+  },
+  state_name:{
+    type:String,
+    required:true
   }
 })
 

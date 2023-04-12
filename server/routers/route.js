@@ -25,7 +25,15 @@ router.put('/updateLead/:id',leadDashboard.updateLeadDashboardController);
 router.delete('/deleteLead/:id',leadDashboard.deleteLeadDashboardController);
 router.get('/getEachLeadDetails/:id',leadDashboard.getEachLeadDetailController);
 router.get('/search/:key',leadDashboard.searchLeadDashboardController);
-// router.get('/bulkCountryStateCity',leadDashboard.bulkCountryStateCityController)
+router.get('/getCountrydropDown',leadDashboard.getCountrydropDownController);
+// router.post('/getStatedropDown',leadDashboard.getStatedropDownController);
+router.get('/getStatedropDown/:country_code',leadDashboard.getStatedropDownController);
+// router.get('/getCitydropDown',leadDashboard.getCitydropDownController)
+router.get('/getCitydropDown/:state_name',leadDashboard.getCitydropDownController);
+router.get('/india/getIndiaStateOnlyDrop',leadDashboard.getAgentStateController);
+
+
+
 
               /***register and login using mongo **/
 router.post('/registerusingMongo',registerLdap.registerusingMongoControll);
@@ -109,44 +117,6 @@ router.post('/loginusingMongo',registerLdap.loginusingMongoControll);
 //     })
 //   })
 // })
-
-
-//country state city dropdown
-
-// router.get('/countrystatecity',(req,res)=>{
-//   const Country=require('country-state-city').Country;
-//   const State=require('country-state-city').State;
-//   const City=require('country-state-city').City;
-  
-  
-//   console.log("MongoClient",MongoClient);
-//   console.log("dbbb");
-//   let url='mongodb://localhost:27017/'
-//   MongoClient.connect(url,function(err,db){
-//     console.log("dbbbbbbbbbbbbbb",db);
-//     if(err) throw err;
-//   console.log("countrystatecity");
-
-  
-//     var dbo=db.db('insurance');
-//     var countriesBulk=dbo.collection('countries').initializeOrderedBulkOp();
-  
-//     var countries=Country.getAllCountries();
-  
-//     countries.forEach(country=>{
-//       countriesBulk.insert({name:country.name,short_name:country.isoCode});
-//     });
-  
-//     countriesBulk.execute();
-//     console.log("Countries inserted",countries);
-//     res.json({
-//       message:'Employee Added Successfully',
-//       updateData:countries
-//    })
-//   })
-// })
-
-
 
 
 module.exports=router;

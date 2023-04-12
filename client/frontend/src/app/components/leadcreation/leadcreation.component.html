@@ -65,93 +65,279 @@
 
     <div class="form_fields"> 
       <div class="user_details">
-      <div class="user_inputs">
-        <label for="first_name">Firstname</label><br>
-        <input type="text"  id="first_name"  formControlName="first_name" placeholder="Name should match with the name as per ID proof submitted"/>
-      </div>
+        <!-- <div class="user_inputs" [ngClass]="{'has-error': hasFirstNameMiddleNameError(), 'has-success': !hasFirstNameMiddleNameError()}">
+          <label for="first_name">Firstname</label><br>
+          <input type="text"  id="first_name"  formControlName="first_name" placeholder="Name should match with the name as per ID proof submitted"
+          />
+          <div *ngIf="submitted && f['first_name'].errors" class="invalid-feedback">
+            <div *ngIf="f['first_name'].errors['required']">First name cannot be empty.</div>
+          </div>
+          <div *ngIf="hasFirstNameMiddleNameError()">
+            First Name and Middle Name can not be same
+          </div>
+        </div> -->
+        <div class="user_inputs">
+          <label for="first_name">Firstname</label><br>
+          <input type="text"  id="first_name"  formControlName="first_name" placeholder="Name should match with the name as per ID proof submitted"
+          [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }"/>
+          <div *ngIf="submitted && f['first_name'].errors" class="invalid-feedback">
+            <div *ngIf="f['first_name'].errors['required']">First name cannot be empty.</div>
+            <div *ngIf="f['first_name'].errors['maxLength']">Maximum 20 char only.</div>
+            <!-- <div *ngIf="leadForm.get('first_name').errors.maxlength">Maximum 20 char only.</div> -->
+            <!-- <div *ngIf="leadForm.get('first_name').errors.pattern  && leadForm.get('first_name').touched">Please use text and ' or - only..</div> -->
+            <div *ngIf="f['first_name'].errors['pattern']  && f['first_name'].touched">Please use text and ' or - only..</div>
+
+          </div>
+        </div>
       <div class="user_inputs">
         <label for="middle_name">MiddleName</label><br>
-        <input type="text"  id="middle_name" formControlName="middle_name" placeholder="Name should match with the name as per ID proof submitted"/>
+        <input type="text"  id="middle_name" formControlName="middle_name" placeholder="Name should match with the name as per ID proof submitted"
+        [ngClass]="{ 'is-invalid': submitted && f['middle_name'].errors }"/>
+        <div *ngIf="submitted && f['middle_name'].errors" class="invalid-feedback">
+        <div *ngIf="f['middle_name'].errors['pattern']  && f['middle_name'].touched">Please use text and ' or - only..</div>
+      </div>
+
+
       </div>
       <div class="user_inputs">
         <label for="last_name">LastName</label><br>
-        <input type="text"  id="last_name" formControlName="last_name" placeholder="Name should match with the name as per ID proof submitted"/>
+        <input type="text"  id="last_name" formControlName="last_name" placeholder="Name should match with the name as per ID proof submitted"
+        [ngClass]="{ 'is-invalid': submitted && f['last_name'].errors }"/>
+        <div *ngIf="submitted && f['last_name'].errors" class="invalid-feedback">
+          <div *ngIf="f['last_name'].errors['required']">LastName name cannot be empty.</div>
+        <div *ngIf="f['last_name'].errors['pattern']  && f['last_name'].touched">Please use text and ' or - only..</div>
+
+        </div>
       </div>
       </div>
 
+
       <div class="user_details">
+        <div class="user_inputs_radio">
+          <label for="gender">Gender</label><br>
+          <div class="amount_radio">
+            <label class="radio_container">
+              <input type="radio"  value="male" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }">
+              <span class="checkmark"></span>
+                <div class="checkmark_one">
+                  Male
+                </div>
+            </label>
+            <label class="radio_container">
+              <input type="radio"  value="female" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }">
+              <span class="checkmark"></span>
+                <div class="checkmark_one">
+                  Female
+                </div>
+            </label>
+            <label class="radio_container">
+              <input type="radio"  value="transgender" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }">
+              <span class="checkmark"></span>
+                <div class="checkmark_one">
+                  Transgender
+                </div>
+            </label>
+          </div>
+           <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+              <p>Please select a gender.</p>
+           </div>
+        </div>
         <div class="user_inputs">
           <label for="dob">Date of Birth</label><br>
-          <input type="date"  id="dob"  formControlName="dob" placeholder="DD-MM-YYYY"/>
-        </div>
-        <div class="user_inputs">
-          <label for="email">Email</label><br>
-          <input type="email"  id="email" formControlName="email"/>
-        </div>
-        <div class="user_inputs">
-          <label for="mobile">Mobile</label><br>
-          <input type="text"  id="mobile" formControlName="mobile"/>
+          <input type="text"
+          class="form-control"
+          placeholder="DD-MM-YYYY"
+          bsDatepicker
+          [bsConfig]="datePickerConfig"  formControlName="dob" [ngClass]="{ 'is-invalid': submitted && f['dob'].errors }">
+          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+            <p>Please select a date.</p>
+         </div>
         </div>
         </div>
 
         <div class="user_details">
-          <div class="user_inputs">
-            <label for="country">Country</label><br>
-            <!-- <input type="text"  id="address" formControlName="address"/>  -->
-            <select id="country" formControlName="country">
-              <option>INDIA</option>
-              <option>NEWZELAND</option>
-              <option>ENGLAND</option>
+          <div class="user_inputs_radio">
+            <label for="marital_status">Marital Status</label><br>
+            <div class="amount_radio">
+              <label class="radio_container">
+                <input type="radio"  value="single" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }">
+                <span class="checkmark"></span>
+                  <div class="checkmark_one">
+                    Single
+                  </div>
+              </label>
+              <label class="radio_container">
+                <input type="radio"  value="married" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }">
+                <span class="checkmark"></span>
+                  <div class="checkmark_one">
+                    Married
+                  </div>
+              </label>
+              <label class="radio_container">
+                <input type="radio"  value="divorced" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }"> 
+                <span class="checkmark"></span>
+                  <div class="checkmark_one">
+                    Divorced
+                  </div>
+              </label>
+              <label class="radio_container">
+                <input type="radio"  value="widowed" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }">
+                <span class="checkmark"></span>
+                  <div class="checkmark_one">
+                    Widowed
+                  </div>
+              </label>
+              <label class="radio_container">
+                <input type="radio"  value="unmarried" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }">
+                <span class="checkmark"></span>
+                  <div class="checkmark_one">
+                    Unmarried
+                  </div>
+              </label>
+          </div>
+          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+            <p>Please select a Marital Status.</p>
+         </div>
+          </div>
+          </div>
 
+
+        <div class="user_details">
+          <div class="user_inputs">
+            <label for="resident_status">Resident Status</label><br>
+            <select  formControlName="resident_status">
+              <option value="resident_indian" selected>Resident Indian</option>
+              <option value="non_resident_indian" >Non Resident Indian</option>
+              <option value="overseas_citizen_india" >Overseas Citizen of India</option>
+              <option value="person_of_indian_origin" >Person of India Origin</option>
             </select>
           </div>
-          <!-- <div class="user_inputs">
-            <label for="state">State</label><br>
-            <input type="text"  id="state" formControlName="state"/>
-          </div> -->
+        </div>
 
+        <div class="lead_after_resident">
+          <h2>Lead Details</h2>
+        </div>
+
+        <div class="user_details">
           <div class="user_inputs">
-            <label for="state">State</label><br>
-            <select id="country" formControlName="state">
-              <option>INDIA</option>
-              <option>NEWZELAND</option>
-              <option>ENGLAND</option>
-
+            <label for="disposition">Disposition</label><br>
+            <select  formControlName="disposition">
+              <option value="follow_up">Follow-UP</option>
+              <option value="negative_closure" >Negative Closure</option>
+              <option value="invalid" >Invalid</option>
+              <option value="hibernate" >Hibernate</option>
+              <option value="new_status_dispsition" selected>New Status</option>
             </select>
           </div>
 
-          <!-- <div class="user_inputs">
-            <label for="city">City</label><br>
-            <input type="text"  id="city" formControlName="city"/>
-          </div> -->
-
           <div class="user_inputs">
-            <label for="city">City</label><br>
-            <select id="country" formControlName="city">
-              <option>INDIA</option>
-              <option>NEWZELAND</option>
-              <option>ENGLAND</option>
-
+            <label for="sub_disposition">Sub-Disposition</label><br>
+            <select  formControlName="sub_disposition">
+              <option value="new_status_sub_disposition" selected>New Status</option>
             </select>
-          </div> 
+          </div>
+        </div>
+
+        <div class="lead_after_resident">
+          <h2>Communication Details</h2>
         </div>
 
         <div class="user_details">
           <div class="user_inputs">
             <label for="address">Address</label><br>
-            <input type="text"  id="address" formControlName="address"/> 
+            <input type="text"  id="address" formControlName="address"  [ngClass]="{ 'is-invalid': submitted && f['address'].errors }"/> 
+            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+              <p>Address Line cannot be empty.</p>
+           </div>
           </div>
-          <!-- <div class="user_inputs">
+
+          <div class="user_inputs">
+            <label for="landmark">Landmark</label><br>
+            <input type="text"  id="landmark" formControlName="landmark" [ngClass]="{ 'is-invalid': submitted && f['landmark'].errors }"/> 
+            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+              <p>Landmark cannot be empty.</p>
+           </div>
+          </div>
+
+          <div class="user_inputs">
+            <label for="country">Country</label><br>
+            <select  (change)="onCountryChange($event)" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f['country'].errors }">
+              <option value="" disabled  selected></option>
+              <option  [value]="countryData.name" [id]="countryData.short_name" *ngFor="let countryData of countryDropDownData">{{countryData.name}}</option>
+            </select>
+            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+              <p>Please select a country.</p>
+           </div>
+          </div>
+
+
+        </div>
+        <div class="user_details">
+          <div class="user_inputs">
             <label for="state">State</label><br>
-            <input type="text"  id="state" formControlName="state"/>
-          </div> -->
-          <!-- <div class="user_inputs">
+            <select   (change)="onStateChange($event)" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f['state'].errors }">
+              <option value="" disabled  selected></option>
+              <!-- <option [value]="stateData.name" [id]="stateData.country_short_name" *ngFor="let stateData of stateDataFromCountry">{{stateData.name}}</option> -->
+              <option [value]="stateData.name" [id]="stateData.state_name" *ngFor="let stateData of stateDataFromCountry">{{stateData.name}}</option>
+            </select>
+            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+              <p>Please select a state.</p>
+           </div>
+
+          </div>
+
+          <div class="user_inputs">
             <label for="city">City</label><br>
-            <input type="text"  id="city" formControlName="city"/>
-          </div> -->
+            <select formControlName="city"  [ngClass]="{ 'is-invalid': submitted && f['city'].errors }">
+              <option value="" disabled  selected></option>
+              <option [value]="cityData.name" *ngFor="let cityData of cityDataFromState">{{cityData.name}}</option>
+            </select>
+            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+              <p>Please select a city.</p>
+           </div>
+          </div> 
         </div>
 
+        <div class="user_inputs">
+          <label for="pincode">Pincode</label><br>
+          <input type="text"  id="pincode" formControlName="pincode"  [ngClass]="{ 'is-invalid': submitted && f['pincode'].errors }"/> 
+          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+            <p>Please enter a Pin Code.</p>
+         </div>
+        </div>  
         
+        <div class="user_details">
+        <div class="user_inputs">
+          <label for="email">Email</label><br>
+          <input type="email"  id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"/>
+          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+            <p>Email-id cannot be empty.</p>
+         </div>
+        </div>
+        <div class="user_inputs">
+          <label for="mobile">Mobile</label><br>
+          <input type="text"  id="mobile" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f['mobile'].errors }"/>
+          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+            <p>Mobile number cannot be empty.</p>
+         </div>
+        </div>
+      </div>
+
+      <div class="lead_after_resident">
+        <h2>Other Details</h2>
+      </div>
+
+      <div class="user_inputs">
+        <label for="agent_state">Agent Servicing State</label><br>
+        <select  formControlName="agent_servicing_state" (change)="onStateChange($event)" [ngClass]="{ 'is-invalid': submitted && f['agent_servicing_state'].errors }">
+          <option value="" disabled  selected></option>
+          <option [value]="stateIndiaDataOnly.name" [id]="stateIndiaDataOnly.state_name" *ngFor="let stateIndiaDataOnly of getStatesDropFromIndia">{{stateIndiaDataOnly.name}}</option>
+        </select>
+        <div *ngIf="submitted && leadForm.invalid"  class="validationError">
+          <p>Please select a state.</p>
+       </div>
+      </div>
+
         </div>
 
     <div class="save_procced">

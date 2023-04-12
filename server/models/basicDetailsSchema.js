@@ -1,18 +1,50 @@
 const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
 const basicDetailsSchema = new Schema({
-  id:Number,
-  address:String,
-  city:String,
-  dob:Date,
-  email:String,
-  first_name: String,
+  // id:Number,
+  // address:String,
+  // city:String,
+  // dob:Date,
+  // email:String,
+  // first_name: String,
+  // insurance_type: String,
+  // last_name: String,
+  // middle_name: String,
+  // mobile: Number,
+  // state:String,
+  // leadId:String,
+  // country:String,
+  // gender:String,
+  // marital_status:String,
+  // resident_status:String,
+  // disposition:String,
+  // sub_disposition:String,
+  // landmark:String,
+  // pincode:Number,
+  // agent_servicing_state:String
+
   insurance_type: String,
-  last_name: String,
+  first_name: String,
   middle_name: String,
-  mobile: Number,
+  last_name: String,
+  gender:String,
+  dob:Date,
+  marital_status:String,
+  resident_status:String,
+  disposition:String,
+  sub_disposition:String,
+  address:String,
+  landmark:String,
+  country:String,
   state:String,
-  leadId:String
+  city:String,
+  pincode:Number,
+  email:String,
+  mobile: Number,
+  agent_servicing_state:String,
+  leadId:String,
+
+
   
 });
 

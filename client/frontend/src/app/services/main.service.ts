@@ -15,6 +15,10 @@ export class MainService {
   eachLeadDetailsURL='/getEachLeadDetails';
   updateLeadURL='/updateLead';
   searchURL='/search';
+  countryURL='/getCountrydropDown';
+  stateURL='/getStatedropDown';
+  cityURL='/getCitydropDown';
+  getStateOnly='/india/getIndiaStateOnlyDrop'
 
 
   // headers=header || {};
@@ -63,6 +67,25 @@ export class MainService {
     return this.http.get(this.APIURL + this.searchURL + '/' +key,{headers:this.headerObj()});
   }
 
+  public getCountrydropDown(){
+    return this.http.get(this.APIURL + this.countryURL,{headers:this.headerObj()});
+  }
+
+  public getStatedropDown(key:any){
+    return this.http.get(this.APIURL + this.stateURL + '/' +key,{headers:this.headerObj()});
+  }
+
+  // public getStatedropDown(body:any){
+  //   return this.http.post(this.APIURL + this.stateURL ,body,{headers:this.headerObj()});
+  // }
+
+  public getCitydropDown(key:any){
+    return this.http.get(this.APIURL + this.cityURL + '/' +key,{headers:this.headerObj()});
+  }
+
+  public getIndiaStates(){ 
+    return this.http.get(this.APIURL + this.getStateOnly,{headers:this.headerObj()});
+  }
   // public login(url:any,body:any,header:any){
   // var headers=header || {};
   // return this.http.post(this.APIURL + url,body,{headers:headers});

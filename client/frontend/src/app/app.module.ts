@@ -27,10 +27,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxUiLoaderModule,NgxUiLoaderHttpModule } from "ngx-ui-loader";
 import { HeaderComponent } from './components/header/header.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -58,6 +62,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ReactiveFormsModule,
     MatTabsModule,
     MatIconModule,
+    // MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
     FontAwesomeModule,
     NgbModule,
     BrowserAnimationsModule,
@@ -65,6 +72,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule,
     Ng2SearchPipeModule,
+    BsDatepickerModule.forRoot(),
     NgxUiLoaderHttpModule.forRoot({ showForeground: true })
   ],
   providers: [

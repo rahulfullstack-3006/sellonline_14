@@ -93,17 +93,59 @@ module.exports.searchLeadDashboardController=async function(req,resp){
 }
 
 
-module.exports.bulkCountryStateCityController=async function(req,resp){
+module.exports.getCountrydropDownController=async function(req,resp){
   try{
-    let data=await leadDashboard.bulkCountryStateCityModel(req);
-    console.log("data",data);
-   //  resp.send(data)
-   resp.json({status:'true',message:'Lead Search Successfully',data});
+    let data=await leadDashboard.getCountrydropDownModel(req);
+    // console.log("data",data);
+   resp.json({status:'true',message:'Fetch Country dropdown successfully',data});
  
    }
    catch(err){
-     // resp.send(err)
-   resp.json({status:'false',message:'Error in Lead search',data});
+   resp.json({status:'false',message:'Error in Country fetching dropdown',data});
+ 
+   }
+
+}
+
+module.exports.getStatedropDownController=async function(req,resp){
+  try{
+    let data=await leadDashboard.getStatedropDownModel(req);
+    console.log("data",data);
+   resp.json({status:'true',message:'Fetch State dropdown successfully',data});
+ 
+   }
+   catch(err){
+   resp.json({status:'false',message:'Error in State fetching dropdown',data});
+ 
+   }
+
+}
+
+
+module.exports.getCitydropDownController=async function(req,resp){
+  try{
+    let data=await leadDashboard.getCitydropDownModel(req);
+    console.log("data",data);
+   resp.json({status:'true',message:'Fetch City dropdown successfully',data});
+ 
+   }
+   catch(err){
+   resp.json({status:'false',message:'Error in City fetching dropdown',data});
+ 
+   }
+
+}
+
+
+module.exports.getAgentStateController=async function(req,resp){
+  try{
+    let data=await leadDashboard.getAgentStateModel(req);
+    console.log("data",data);
+   resp.json({status:'true',message:'Fetch State dropdown successfully',data});
+ 
+   }
+   catch(err){
+   resp.json({status:'false',message:'Error in State fetching dropdown',data});
  
    }
 

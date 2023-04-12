@@ -1,10 +1,12 @@
 var BasicDetails=require('../models/basicDetailsSchema');
-var moment=require('moment');
-const Country=require('country-state-city').Country;
+// var moment=require('moment');
+// const Country=require('country-state-city').Country;
 const State=require('country-state-city').State;
-const City=require('country-state-city').City;
-const dbMongodb=require('../database/mongodb');
+// const City=require('country-state-city').City;
+// const dbMongodb=require('../database/mongodb');
 const CountryModel=require('../models/countryModel');
+const StateModel=require('../models/statesModel');
+const CityModel=require('../models/cityModel');
 
 // console.log(State.getAllStates());
 
@@ -43,7 +45,6 @@ module.exports.createLeadDashboardModel=async function(req,resp){
   console.log("leadId",typeof(leadId));
   let basicDetails=new BasicDetails({
     address:req.body.address,
-    // password:req.body.password,
     state:req.body.state,
     city:req.body.city,
     dob:dobObj,
@@ -53,7 +54,16 @@ module.exports.createLeadDashboardModel=async function(req,resp){
     last_name:req.body.last_name,
     insurance_type:req.body.first_name,
     mobile:req.body.mobile,
-    leadId:leadId
+    leadId:leadId,
+    country:req.body.country,
+    gender:req.body.gender,
+    marital_status:req.body.marital_status,
+    resident_status:req.body.resident_status,
+    disposition:req.body.disposition,
+    sub_disposition:req.body.sub_disposition,
+    landmark:req.body.landmark,
+    pincode:req.body.pincode,
+    agent_servicing_state:req.body.agent_servicing_state
   })
   console.log("basicDetails",basicDetails);
   try{
@@ -140,96 +150,12 @@ module.exports.searchLeadDashboardModel=async function(req,resp){
 }
 
 
-module.exports.bulkCountryStateCityModel=async function(req,resp){
+module.exports.getCountrydropDownModel=async function(req,resp){
 
   try{
-    // var dbo=dbMongodb.db('insurance');
-    // var countriesBulk=dbo.collection('countries').initializeOrderedBulkOp();
-    // var countries=Country.getAllCountries();
-
-    // countries.forEach(country=>{
-    //   countriesBulk.insert({name:country.name,short_name:country.isoCode})
-    // })
-    // countriesBulk.execute();
-    // return countriesBulk;
-    // var objCountry;
-    // var countries=Country.getAllCountries();
-    //   countries.forEach(country=>{
-    //     // const bulkWriteOperation = {
-    //     //   insertMany: {
-    //     //     documents: country,
-    //     //   },
-    //     // };
-    //     objCountry=country;
-    // }
-    // )
-  
-    //       var bulkWriteOperation = {
-    //       insertMany: {
-    //         documents: objCountry,
-    //       },
-    //     };
-
-
-    // CountryModel.bulkWrite([bulkWriteOperation])
-
-    // const Country=require('country-state-city').Country;
-    // const State=require('country-state-city').State;
-    // const City=require('country-state-city').City;
-    
-    
-    // const MongoClient=require('mongodb').MongoClient;
-    
-    // MongoClient.connect('mongodb://localhost:27017/insurance',function(err,db){
-    //   if(err) throw err;
-    
-    //   var dbo=db.db('insurance');
-    //   var countriesBulk=dbo.collection('countries').initializeOrderedBulkOp();
-    
-    //   var countries=Country.getAllCountries();
-    
-    //   countries.forEach(country=>{
-    //     countriesBulk.insert({name:country.name,short_name:country.isoCode});
-    //   });
-    
-    //   countriesBulk.execute();
-    //   console.log("Countries inserted",countries);
-    // })
-    // return countries;
-
-    // Get a list of all countries
-    const countries = Country.getAllCountries();
-
-    // Create an array of documents to insert
-    const documents = countries.map(country => {
-    return {
-    name: country.name,
-    code: country.isoCode
-  };
-  });
-
-  // Define an array of operations to perform
-  const operations = documents.map(document => {
-  return {
-    insertOne: {
-      document: document
-    }
-  };
-});
-
-
-// Perform the bulk operation
-// CountryModel.bulkWrite(operations)
-//   .then(result => {
-//     console.log('Bulk operation completed successfully:', result);
-//   })
-//   .catch(error => {
-//     console.error('Bulk operation failed:', error);
-//   });
-
-let results=await CountryModel.bulkWrite(operations);
-return results
-  
+  let countries=await CountryModel.find({})  
+  // console.log("data for countries",countries);
+  return countries;
   }
   catch(err){
     console.log("error in catch",err);
@@ -238,3 +164,74 @@ return results
 
 }
 
+
+module.exports.getStatedropDownModel=async function(req,resp){
+  console.log("req.params.country_code",req.params.country_code);
+    try{
+    let states=await StateModel.find({country_short_name:req.params.country_code})  
+    console.log("data for states",states);
+    return states;
+    }
+    catch(err){
+      console.log("error in catch",err);
+      return err
+    }
+  
+  }
+
+  // module.exports.getStatedropDownModel=async function(req,resp){
+  //   console.log("req.body.country_short_name",req.body.country_short_name);
+  //     try{
+  //       // let states=await StateModel.find({})
+  //     // let states=await StateModel.find({country_short_name:req.body.country_short_name,name:req.body.name})  
+  //     let states=await StateModel.find({country_short_name:req.body.country_short_name})  
+  //     console.log("data for states",states);
+  //     return states;
+  //     }
+  //     catch(err){
+  //       console.log("error in catch",err);
+  //       return err
+  //     }
+    
+  //   }
+
+// module.exports.getCitydropDownModel=async function(req,resp){
+// console.log("req.body.state_name",req.body.state_name);
+//   try{
+//   let cities=await CityModel.find({state_name:req.body.state_name})  
+//   console.log("data for cities",cities);
+//   return cities;
+//   }
+//   catch(err){
+//     console.log("error in catch",err);
+//     return err
+//   }
+
+// }
+
+module.exports.getCitydropDownModel=async function(req,resp){
+  console.log("req.params.state_name",req.params.state_name);
+    try{
+    let cities=await CityModel.find({state_name:req.params.state_name})  
+    console.log("data for cities",cities);
+    return cities;
+    }
+    catch(err){
+      console.log("error in catch",err);
+      return err
+    }
+  
+  }
+
+  module.exports.getAgentStateModel=async function(req,resp){
+      try{
+      let states=await State.getStatesOfCountry('IN')
+      console.log("data for states",states);
+      return states;
+      }
+      catch(err){
+        console.log("error in catch",err);
+        return err
+      }
+    
+    }
