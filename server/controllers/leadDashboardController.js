@@ -16,6 +16,7 @@ module.exports.getLeadDashboardController=async function(req,resp){
 }
 
 module.exports.getEachLeadDetailController=async function(req,resp){
+  console.log("getEachLeadDetailController",req.params.id)
   try{
    let data=await leadDashboard.getEachLeadDetailModel(req);
   //  console.log("data",data);

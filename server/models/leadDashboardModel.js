@@ -7,6 +7,7 @@ const State=require('country-state-city').State;
 const CountryModel=require('../models/countryModel');
 const StateModel=require('../models/statesModel');
 const CityModel=require('../models/cityModel');
+const mongoose=require('mongoose');
 
 // console.log(State.getAllStates());
 
@@ -26,7 +27,7 @@ module.exports.getLeadDashboardModel=async function(req,resp){
 
 module.exports.getEachLeadDetailModel=async function(req,resp){
   try{
-    let data =await BasicDetails.findOne({_id:req.params.id});
+    let data =await BasicDetails.findOne({leadId:req.params.id});
     console.log("data for try",data);
     return data;
   }
@@ -42,28 +43,28 @@ module.exports.createLeadDashboardModel=async function(req,resp){
   // let leadDate=dobObj.moment().format("MMM DO YY");
   // console.log("leadDate",leadDate);
   var leadId = String(Math.floor(Math.random() * 9000000000000) + 1000000000000);
-  console.log("leadId",typeof(leadId));
+  console.log("leadId check",leadId);
   let basicDetails=new BasicDetails({
-    address:req.body.address,
-    state:req.body.state,
-    city:req.body.city,
-    dob:dobObj,
-    email:req.body.email,
+    insurance_type:req.body.insurance_type,
     first_name:req.body.first_name,
     middle_name:req.body.middle_name,
     last_name:req.body.last_name,
-    insurance_type:req.body.first_name,
-    mobile:req.body.mobile,
-    leadId:leadId,
-    country:req.body.country,
     gender:req.body.gender,
+    dob:dobObj,
     marital_status:req.body.marital_status,
     resident_status:req.body.resident_status,
     disposition:req.body.disposition,
     sub_disposition:req.body.sub_disposition,
+    address:req.body.address,
     landmark:req.body.landmark,
+    country:req.body.country,
+    state:req.body.state,
+    city:req.body.city,
     pincode:req.body.pincode,
-    agent_servicing_state:req.body.agent_servicing_state
+    email:req.body.email,
+    mobile:req.body.mobile,
+    agent_servicing_state:req.body.agent_servicing_state,
+    leadId:leadId
   })
   console.log("basicDetails",basicDetails);
   try{
@@ -80,20 +81,44 @@ module.exports.createLeadDashboardModel=async function(req,resp){
 
 
 module.exports.updateLeadDashboardModel=async function(req,resp){
-  console.log("id",req.params.id);
+  console.log("updateid",req.params.id);
+  let idLead=parseInt(req.params.id);
+  console.log("idLead",idLead);
+  console.log("updateid",typeof(idLead));
+
   try{
-    let data=await BasicDetails.findOneAndUpdate({_id:req.params.id},{
+    let data=await BasicDetails.findOneAndUpdate({leadId:idLead},{
       $set:{
-        address:req.body.address,
-        state:req.body.state,
-        city:req.body.city,
-        dob:req.body.dob,
-        email:req.body.email,
+        // address:req.body.address,
+        // state:req.body.state,
+        // city:req.body.city,
+        // dob:req.body.dob,
+        // email:req.body.email,
+        // first_name:req.body.first_name,
+        // middle_name:req.body.middle_name,
+        // last_name:req.body.last_name,
+        // insurance_type:req.body.first_name,
+        // mobile:req.body.mobile
+        insurance_type:req.body.insurance_type,
         first_name:req.body.first_name,
         middle_name:req.body.middle_name,
         last_name:req.body.last_name,
-        insurance_type:req.body.first_name,
-        mobile:req.body.mobile
+        gender:req.body.gender,
+        dob:req.body.dob,
+        marital_status:req.body.marital_status,
+        resident_status:req.body.resident_status,
+        disposition:req.body.disposition,
+        sub_disposition:req.body.sub_disposition,
+        address:req.body.address,
+        landmark:req.body.landmark,
+        country:req.body.country,
+        state:req.body.state,
+        city:req.body.city,
+        pincode:req.body.pincode,
+        email:req.body.email,
+        mobile:req.body.mobile,
+        agent_servicing_state:req.body.agent_servicing_state,
+        // leadId:leadId
       }
     },{
       new:true,
@@ -153,7 +178,8 @@ module.exports.searchLeadDashboardModel=async function(req,resp){
 module.exports.getCountrydropDownModel=async function(req,resp){
 
   try{
-  let countries=await CountryModel.find({})  
+  // let countries=await CountryModel.find({})  
+  let countries=await CountryModel.find({short_name:'IN'})  
   // console.log("data for countries",countries);
   return countries;
   }

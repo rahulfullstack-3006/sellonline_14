@@ -71,6 +71,10 @@ display: flex;
 .process_simpler span{
   color: #1C86F0;
 }
+.editIcon{
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 .self_drop_down{
   margin-top: 30px;

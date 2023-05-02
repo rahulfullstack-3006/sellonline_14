@@ -1,48 +1,3 @@
-<!-- <div class="heading_section">
-  <div class="tata_logo">
-   <img src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/logo.svg?v=1677856610137"/>
-  </div>
-
-   <div class="all_tata_details">
-    <div class="help_email">
-   <ul>
-    <li>Call our Helpline no.
-      <span>1-860-266-9966 (Local Charges Apply)</span>
-    </li>
-    <li>Contact us on EMAIL:
-      <span>sellonlinesalessupport@tataaia.com</span>
-    </li>
-   </ul>
-  </div>
-  <div class="all_social">
-   <div class="social_link">
-    <img class="social_platform" src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/facebook.svg?v=1677856610137"/>
-    <img class="social_platform" src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/youtube.svg?v=1677856610137"/>
-    <img class="social_platform" src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/linkedin.svg?v=1677856610137"/>
-    <img class="social_platform" src="https://sellonline.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/twitter.svg?v=1677856610137"/>
-   </div>
-  </div> 
-   </div>   
-</div>
-
-<div class="all_links">
-  <nav>
-    <a routerLink="/home" class="nav-link">Home</a>
-    <a routerLink="/financial" class="nav-link">Financial Calculator</a>
-    <a routerLink="/solutions" class="nav-link">Solutions</a>
-    <a routerLink="/app_tracker" class="nav-link">App Tracker</a>
-    <a routerLink="/policy_tracker" class="nav-link">Policy Tracker</a>
-    <a routerLink="/leadDashboard" class="nav-link">Leads</a>
-  </nav>
-</div>
-
-<div class="logout">
-  <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/revamp/svg/hd-icon-3.svg?v=1680266567504" (click)="showLogoutButton = true"/>
-
-  <div *ngIf="showLogoutButton">
-  <button class="btn btn-primary" (click)="onLogout()">Logout</button>
-</div>
-</div> -->
 
 <app-header></app-header>
 
@@ -56,7 +11,7 @@
     <div class="type_insurance">
       <label for="insurance">Type of Insurance </label><br>
       <input type="radio"  id="individual" value="individual"  formControlName="insurance_type"/>Individual
-      <input type="radio"  id="individual" value="non-individual"  formControlName="insurance_type"/>Non-Individual
+      <input type="radio"  id="non-individual" value="non-individual"  formControlName="insurance_type"/>Non-Individual
     </div>
 
     <div class="personal_details">
@@ -65,48 +20,51 @@
 
     <div class="form_fields"> 
       <div class="user_details">
-        <!-- <div class="user_inputs" [ngClass]="{'has-error': hasFirstNameMiddleNameError(), 'has-success': !hasFirstNameMiddleNameError()}">
-          <label for="first_name">Firstname</label><br>
-          <input type="text"  id="first_name"  formControlName="first_name" placeholder="Name should match with the name as per ID proof submitted"
-          />
-          <div *ngIf="submitted && f['first_name'].errors" class="invalid-feedback">
-            <div *ngIf="f['first_name'].errors['required']">First name cannot be empty.</div>
-          </div>
-          <div *ngIf="hasFirstNameMiddleNameError()">
-            First Name and Middle Name can not be same
-          </div>
-        </div> -->
         <div class="user_inputs">
           <label for="first_name">Firstname</label><br>
-          <input type="text"  id="first_name"  formControlName="first_name" placeholder="Name should match with the name as per ID proof submitted"
-          [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }"/>
-          <div *ngIf="submitted && f['first_name'].errors" class="invalid-feedback">
-            <div *ngIf="f['first_name'].errors['required']">First name cannot be empty.</div>
-            <div *ngIf="f['first_name'].errors['maxLength']">Maximum 20 char only.</div>
-            <!-- <div *ngIf="leadForm.get('first_name').errors.maxlength">Maximum 20 char only.</div> -->
-            <!-- <div *ngIf="leadForm.get('first_name').errors.pattern  && leadForm.get('first_name').touched">Please use text and ' or - only..</div> -->
-            <div *ngIf="f['first_name'].errors['pattern']  && f['first_name'].touched">Please use text and ' or - only..</div>
-
+          <input type="text"  id="first_name"  formControlName="first_name" placeholder="Name should match with the name as per ID proof submitted" />
+           <div *ngIf="leadForm.controls['first_name'].dirty  && leadForm.hasError('required','first_name')" class="validationError">
+            First name cannot be empty.
+          </div>
+          <div *ngIf="leadForm.controls['first_name'].dirty  && leadForm.hasError('pattern','first_name') && !firstNameMiddleNameDuplicate && !firstNameLastNameDuplicate" class="validationError">
+            Please use text and ' or - only.
+          </div>
+          <div *ngIf="firstNameMiddleNameDuplicate" class="validationError">
+            First name and Middle name can not be same.
+          </div>
+          <div *ngIf="firstNameLastNameDuplicate" class="validationError">
+            First name and Last name can not be same.
           </div>
         </div>
       <div class="user_inputs">
         <label for="middle_name">MiddleName</label><br>
         <input type="text"  id="middle_name" formControlName="middle_name" placeholder="Name should match with the name as per ID proof submitted"
-        [ngClass]="{ 'is-invalid': submitted && f['middle_name'].errors }"/>
-        <div *ngIf="submitted && f['middle_name'].errors" class="invalid-feedback">
-        <div *ngIf="f['middle_name'].errors['pattern']  && f['middle_name'].touched">Please use text and ' or - only..</div>
-      </div>
-
+        />
+        <div *ngIf="leadForm.controls['middle_name'].dirty  && leadForm.hasError('pattern','middle_name') && !firstNameMiddleNameDuplicate && !middleLastNameDuplicate" class="validationError">
+          Please use text and ' or - only.
+        </div>
+        <div *ngIf="firstNameMiddleNameDuplicate" class="validationError">
+          First name and Middle name can not be same.
+        </div>
+        <div *ngIf="middleLastNameDuplicate" class="validationError">
+          Middle name and Last name should not be the same.
+        </div>
 
       </div>
       <div class="user_inputs">
         <label for="last_name">LastName</label><br>
-        <input type="text"  id="last_name" formControlName="last_name" placeholder="Name should match with the name as per ID proof submitted"
-        [ngClass]="{ 'is-invalid': submitted && f['last_name'].errors }"/>
-        <div *ngIf="submitted && f['last_name'].errors" class="invalid-feedback">
-          <div *ngIf="f['last_name'].errors['required']">LastName name cannot be empty.</div>
-        <div *ngIf="f['last_name'].errors['pattern']  && f['last_name'].touched">Please use text and ' or - only..</div>
-
+        <input type="text"  id="last_name" formControlName="last_name" placeholder="Name should match with the name as per ID proof submitted"/>
+         <div *ngIf="leadForm.controls['last_name'].dirty  && leadForm.hasError('required','last_name')" class="validationError">
+          Last name cannot be empty.
+        </div>
+        <div *ngIf="leadForm.controls['last_name'].dirty  && leadForm.hasError('pattern','last_name') && !firstNameLastNameDuplicate && !middleLastNameDuplicate" class="validationError">
+          Please use text and ' or - only.
+        </div>
+        <div *ngIf="firstNameLastNameDuplicate" class="validationError">
+          First name and Last name can not be same.
+        </div>
+        <div *ngIf="middleLastNameDuplicate" class="validationError">
+          Last name and Middle name can not be same.
         </div>
       </div>
       </div>
@@ -117,30 +75,30 @@
           <label for="gender">Gender</label><br>
           <div class="amount_radio">
             <label class="radio_container">
-              <input type="radio"  value="male" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }">
+              <input type="radio"  value="male" formControlName="gender" >
               <span class="checkmark"></span>
                 <div class="checkmark_one">
                   Male
                 </div>
             </label>
             <label class="radio_container">
-              <input type="radio"  value="female" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }">
+              <input type="radio"  value="female" formControlName="gender" >
               <span class="checkmark"></span>
                 <div class="checkmark_one">
                   Female
                 </div>
             </label>
             <label class="radio_container">
-              <input type="radio"  value="transgender" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }">
+              <input type="radio"  value="transgender" formControlName="gender" >
               <span class="checkmark"></span>
                 <div class="checkmark_one">
                   Transgender
                 </div>
             </label>
           </div>
-           <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-              <p>Please select a gender.</p>
-           </div>
+           <div *ngIf="leadForm.controls['gender'].dirty  && leadForm.hasError('required','gender')" class="validationError">
+            Please select a gender.
+          </div>
         </div>
         <div class="user_inputs">
           <label for="dob">Date of Birth</label><br>
@@ -148,10 +106,10 @@
           class="form-control"
           placeholder="DD-MM-YYYY"
           bsDatepicker
-          [bsConfig]="datePickerConfig"  formControlName="dob" [ngClass]="{ 'is-invalid': submitted && f['dob'].errors }">
-          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-            <p>Please select a date.</p>
-         </div>
+          [bsConfig]="datePickerConfig"  formControlName="dob" >
+          <div *ngIf="leadForm.controls['dob'].dirty  && leadForm.hasError('required','dob')" class="validationError">
+            Please select a date.
+          </div>
         </div>
         </div>
 
@@ -160,44 +118,44 @@
             <label for="marital_status">Marital Status</label><br>
             <div class="amount_radio">
               <label class="radio_container">
-                <input type="radio"  value="single" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }">
+                <input type="radio"  value="single" formControlName="marital_status" >
                 <span class="checkmark"></span>
                   <div class="checkmark_one">
                     Single
                   </div>
               </label>
               <label class="radio_container">
-                <input type="radio"  value="married" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }">
+                <input type="radio"  value="married" formControlName="marital_status" >
                 <span class="checkmark"></span>
                   <div class="checkmark_one">
                     Married
                   </div>
               </label>
               <label class="radio_container">
-                <input type="radio"  value="divorced" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }"> 
+                <input type="radio"  value="divorced" formControlName="marital_status" > 
                 <span class="checkmark"></span>
                   <div class="checkmark_one">
                     Divorced
                   </div>
               </label>
               <label class="radio_container">
-                <input type="radio"  value="widowed" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }">
+                <input type="radio"  value="widowed" formControlName="marital_status" >
                 <span class="checkmark"></span>
                   <div class="checkmark_one">
                     Widowed
                   </div>
               </label>
               <label class="radio_container">
-                <input type="radio"  value="unmarried" formControlName="marital_status" [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }">
+                <input type="radio"  value="unmarried" formControlName="marital_status" >
                 <span class="checkmark"></span>
                   <div class="checkmark_one">
                     Unmarried
                   </div>
               </label>
           </div>
-          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-            <p>Please select a Marital Status.</p>
-         </div>
+          <div *ngIf="leadForm.controls['marital_status'].dirty  && leadForm.hasError('required','marital_status')" class="validationError">
+            Please select a Marital Status.
+          </div>
           </div>
           </div>
 
@@ -245,29 +203,33 @@
         <div class="user_details">
           <div class="user_inputs">
             <label for="address">Address</label><br>
-            <input type="text"  id="address" formControlName="address"  [ngClass]="{ 'is-invalid': submitted && f['address'].errors }"/> 
-            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-              <p>Address Line cannot be empty.</p>
-           </div>
+            <input type="text"  id="address" formControlName="address"  /> 
+            <div *ngIf="leadForm.controls['address'].dirty  && leadForm.hasError('required','address')" class="validationError">
+              Address Line cannot be empty.
+            </div>
           </div>
 
           <div class="user_inputs">
             <label for="landmark">Landmark</label><br>
-            <input type="text"  id="landmark" formControlName="landmark" [ngClass]="{ 'is-invalid': submitted && f['landmark'].errors }"/> 
-            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-              <p>Landmark cannot be empty.</p>
-           </div>
+            <input type="text"  id="landmark" formControlName="landmark" /> 
+            <div *ngIf="leadForm.controls['landmark'].dirty  && leadForm.hasError('required','landmark')" class="validationError">
+              Landmark cannot be empty.
+            </div>
           </div>
 
           <div class="user_inputs">
             <label for="country">Country</label><br>
-            <select  (change)="onCountryChange($event)" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f['country'].errors }">
+            <input type="text" value="India"  formControlName="country" readonly/>
+            <!-- <select   (change)="onCountryChange($event)" formControlName="country" 
+              [(ngModel)]="country" >
               <option value="" disabled  selected></option>
-              <option  [value]="countryData.name" [id]="countryData.short_name" *ngFor="let countryData of countryDropDownData">{{countryData.name}}</option>
-            </select>
-            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-              <p>Please select a country.</p>
-           </div>
+              <option  [value]="countryData.short_name"  *ngFor="let countryData of countryDropDownData" selected>{{countryData.name}}</option>
+            </select> -->
+            <!-- <div *ngIf="submitted && leadForm.invalid"  class="validationError">Please select a country.</div> -->
+            <!-- <div *ngIf="leadForm.controls['landmark'].dirty  && leadForm.hasError('required','landmark')" class="validationError">
+              Please select a country.
+            </div> -->
+            
           </div>
 
 
@@ -275,51 +237,59 @@
         <div class="user_details">
           <div class="user_inputs">
             <label for="state">State</label><br>
-            <select   (change)="onStateChange($event)" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f['state'].errors }">
+            <select   (change)="onStateChange($event)" formControlName="state" [disabled]="!leadForm.country"
+            [(ngModel)]="state" >
               <option value="" disabled  selected></option>
               <!-- <option [value]="stateData.name" [id]="stateData.country_short_name" *ngFor="let stateData of stateDataFromCountry">{{stateData.name}}</option> -->
-              <option [value]="stateData.name" [id]="stateData.state_name" *ngFor="let stateData of stateDataFromCountry">{{stateData.name}}</option>
+              <option [value]="stateData.state_name"  *ngFor="let stateData of stateDataFromCountry">{{stateData.name}}</option>
             </select>
-            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-              <p>Please select a state.</p>
-           </div>
-
+            <!-- <div *ngIf="submitted && leadForm.invalid"  class="validationError">Please select a state.</div> -->
+            <div *ngIf="leadForm.controls['state'].dirty  && leadForm.hasError('required','state')" class="validationError">
+              Please select a state.
+            </div>
           </div>
 
           <div class="user_inputs">
             <label for="city">City</label><br>
-            <select formControlName="city"  [ngClass]="{ 'is-invalid': submitted && f['city'].errors }">
+            <select formControlName="city"  [(ngModel)]="city" >
               <option value="" disabled  selected></option>
               <option [value]="cityData.name" *ngFor="let cityData of cityDataFromState">{{cityData.name}}</option>
             </select>
-            <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-              <p>Please select a city.</p>
-           </div>
+            <div *ngIf="leadForm.controls['city'].dirty  && leadForm.hasError('required','city')" class="validationError">
+              Please select a city.
+            </div>
           </div> 
         </div>
 
+        <div class="user_details">
         <div class="user_inputs">
           <label for="pincode">Pincode</label><br>
-          <input type="text"  id="pincode" formControlName="pincode"  [ngClass]="{ 'is-invalid': submitted && f['pincode'].errors }"/> 
-          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-            <p>Please enter a Pin Code.</p>
-         </div>
+          <input type="text"  id="pincode" formControlName="pincode"  /> 
+          <div *ngIf="leadForm.controls['pincode'].dirty  && leadForm.hasError('required','pincode')" class="validationError">
+            Please enter a Pin Code.
+          </div>
         </div>  
+        </div>
         
         <div class="user_details">
         <div class="user_inputs">
           <label for="email">Email</label><br>
-          <input type="email"  id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"/>
-          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-            <p>Email-id cannot be empty.</p>
-         </div>
+          <input type="email"  id="email" formControlName="email" />
+          <div *ngIf="leadForm.controls['email'].dirty  && leadForm.hasError('required','email')" class="validationError">
+            Email cannot be empty.
+          </div>
+          <div *ngIf="leadForm.controls.email.touched && leadForm.controls.email.errors?.pattern" class="validationError">
+            Please enter a valid email-id.</div>
         </div>
         <div class="user_inputs">
           <label for="mobile">Mobile</label><br>
-          <input type="text"  id="mobile" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f['mobile'].errors }"/>
-          <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-            <p>Mobile number cannot be empty.</p>
-         </div>
+          <input type="text"  id="mobile" formControlName="mobile" 
+           maxlength="10"  />
+           <div *ngIf="leadForm.controls['mobile'].dirty  && leadForm.hasError('required','mobile')" class="validationError">
+            Mobile number cannot be empty.
+          </div>
+          <div *ngIf="leadForm.controls.mobile.touched && leadForm.controls.mobile.errors?.pattern" class="validationError">
+            Please enter a ten digit mobile number starting with 6, 7, 8 or 9.</div>
         </div>
       </div>
 
@@ -329,19 +299,18 @@
 
       <div class="user_inputs">
         <label for="agent_state">Agent Servicing State</label><br>
-        <select  formControlName="agent_servicing_state" (change)="onStateChange($event)" [ngClass]="{ 'is-invalid': submitted && f['agent_servicing_state'].errors }">
+        <select  formControlName="agent_servicing_state" (change)="onStateChange($event)" >
           <option value="" disabled  selected></option>
           <option [value]="stateIndiaDataOnly.name" [id]="stateIndiaDataOnly.state_name" *ngFor="let stateIndiaDataOnly of getStatesDropFromIndia">{{stateIndiaDataOnly.name}}</option>
         </select>
-        <div *ngIf="submitted && leadForm.invalid"  class="validationError">
-          <p>Please select a state.</p>
-       </div>
+        <div *ngIf="leadForm.controls['agent_servicing_state'].dirty  && leadForm.hasError('required','agent_servicing_state')" class="validationError">
+          Please select a state.
+        </div>
       </div>
-
         </div>
 
     <div class="save_procced">
-      <button class="btn btn-primary" >Save & Procced</button>
+      <button class="btn btn-primary">Save & Procced</button>
     </div>
   </form>
   </div>

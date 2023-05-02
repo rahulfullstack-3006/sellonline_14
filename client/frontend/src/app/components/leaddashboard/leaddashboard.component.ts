@@ -72,7 +72,7 @@ export class LeaddashboardComponent implements OnInit {
 
   onEdit(item:any){
     console.log("item for edit",item);
-    this.eachItemId=item._id;
+    this.eachItemId=item.leadId;
     console.log("this.eachItemId",this.eachItemId);   
     this.router.navigate(['/updateLead',this.eachItemId])
   }

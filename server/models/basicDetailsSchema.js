@@ -42,7 +42,7 @@ const basicDetailsSchema = new Schema({
   email:String,
   mobile: Number,
   agent_servicing_state:String,
-  leadId:String,
+  leadId:Number
 
 
   

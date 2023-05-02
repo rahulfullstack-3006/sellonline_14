@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators,AbstractControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators,AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faFacebook,faLinkedin,faTwitter,faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { MainService } from 'src/app/services/main.service';
@@ -10,6 +10,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
   templateUrl: './leadcreation.component.html',
   styleUrls: ['./leadcreation.component.css']
 })
+
 export class LeadcreationComponent implements OnInit {
   leadForm:any=FormGroup;
   faFacebook=faFacebook;
@@ -30,19 +31,34 @@ export class LeadcreationComponent implements OnInit {
   };
   getStatesDropFromIndia:any=[];
   submitted = false;
-  constructor(private fb:FormBuilder,private router:Router,private mainService:MainService,private ngxService: NgxUiLoaderService) {
-    // this.minDate = new Date();
-    // this.maxDate = new Date();
-    // this.minDate.setDate(this.minDate.getDate() - 4);
-    // this.maxDate.setDate(this.maxDate.getDate() + 10);
-   }
+  country='';
+  state='';
+  city='';
+  isDisabled:boolean=true;
+  firstNameMiddleNameDuplicate:boolean=false;
+  firstNameLastNameDuplicate:boolean=false;
+  middleLastNameDuplicate:boolean=false;
+
+
+  constructor(private fb:FormBuilder,private router:Router,private mainService:MainService,private ngxService: NgxUiLoaderService) { }
+  firstNameLastNameNotSame(control: AbstractControl): {[key: string]: boolean} | null {
+    const firstName = control.get('firstName')?.value;
+    console.log("firstName-->firstNameLastNameNotSame",firstName);
+    
+    const lastName = control.get('lastName')?.value;
+    console.log("firstNameLastNameNotSame",firstName,lastName);
+    
+    if (firstName && lastName && firstName === lastName) {
+      return { firstNameLastNameNotSame: true };
+    }
+    return null;
+  }
 
   ngOnInit(): void {
     this.leadForm=this.fb.group({
       insurance_type: ['individual'],
-      // first_name: ['',Validators.required],
       first_name:['',[Validators.required,Validators.maxLength(20),Validators.pattern(/^([a-zA-Z]){1}([a-zA-Z&/ '-]*)$/)]],
-      middle_name: ['',Validators.pattern(/^([a-zA-Z]){1}([a-zA-Z&/ '-]*)$/)],
+      middle_name: ['',[Validators.pattern(/^([a-zA-Z]){1}([a-zA-Z&/ '-]*)$/)]],
       last_name: ['',[Validators.required,Validators.maxLength(20),Validators.pattern(/^([a-zA-Z]){1}([a-zA-Z&/ '-]*)$/)]],
       gender:['',Validators.required],
       dob:['',Validators.required],
@@ -52,61 +68,57 @@ export class LeadcreationComponent implements OnInit {
       sub_disposition:['new_status_sub_disposition'],
       address:['',[Validators.required]],
       landmark:['',[Validators.required]],
-      country:['',[Validators.required]],
+      country:['India'],
+      // country:[{ value: 'India', disabled: true }],
       state:['',[Validators.required]],
       city:['',[Validators.required]],
       pincode:['',[Validators.required]],
-      email:['',[Validators.required,Validators.email]],
-      mobile: ['',[Validators.required]],
+      email:['',[Validators.required,Validators.email,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')]],
+      mobile: ['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+      // mobile: ['',[Validators.required,this.mobileNumberValidator]],
       agent_servicing_state:['',[Validators.required]],
      })
-  
-     this.createForm()
-
+    this.createForm()
     this.getCountryDropDown();
     this.getAgentServicingState();
+    this.getStateDropDownField('IN');
+    this.firstMiddleLastNameDuplicateCheck();
   }
 
-  // checkNameValidity(group: FormGroup) {
-  //   const firstName=group.get('first_name')?.value
-  //   const middleName = group.get('middle_name')?.value;
-  //   const lastName = group.get('last_name')?.value;
+  firstMiddleLastNameDuplicateCheck(){
+    this.leadForm.valueChanges.subscribe((values:any)=>{
+      const first_name=values.first_name;
+      const middle_name=values.middle_name;
+      const last_name=values.last_name;
+      console.log("valueChanges",first_name,middle_name,last_name);
+        if(first_name === last_name && first_name !== '' && last_name !== '' ){
+        console.log("first_name === last_name",first_name === last_name,middle_name === last_name);
+        this.firstNameLastNameDuplicate=true;
+      } else {
+        this.firstNameLastNameDuplicate=false;
+      }
 
-  //   if (!firstName) {
-  //     group.get('first_name')?.setErrors({ 'required': true });
-  //   }
-  //   if (!middleName) {
-  //     group.get('middle_name')?.setErrors({ 'required': true });
-  //   }
-  
-  //   if (!lastName) {
-  //     group.get('last_name')?.setErrors({ 'required': true });
-  //   }
+      if(first_name === middle_name && first_name !== '' && middle_name !== '' ){
+        console.log("first_name === middle_name",first_name === middle_name);
+        this.firstNameMiddleNameDuplicate=true;
+      } else {
+        this.firstNameMiddleNameDuplicate=false;
+      }
 
-  //   if (firstName && middleName && firstName === middleName) {
-  //     group.get('middle_name')?.setErrors({ 'sameName': true });
-  //   }
-
-  //   if (firstName && lastName && firstName === lastName) {
-  //     group.get('last_name')?.setErrors({ 'sameName': true });
-  //   }
-  // }
-  
-  // hasFirstNameMiddleNameError() {
-  //   const middleNameControl = this.leadForm.get('middle_name');
-  //   const firstNameControl=this.leadForm.get('first_name')
-  //   return middleNameControl.hasError('sameName') ||  (firstNameControl.hasError('required') && (firstNameControl.touched && middleNameControl.touched));
-  // }
-
-  // hasFirstNameLastNameError() {
-  //   const lastNameControl = this.leadForm.get('last_name');
-  //   return lastNameControl.hasError('sameName') && lastNameControl.touched;
-  // }
+      if(middle_name === last_name && middle_name !== '' && last_name !== '' ){
+        console.log("middle_name === last_name",middle_name === last_name);
+        this.middleLastNameDuplicate=true;
+      } else {
+        this.middleLastNameDuplicate=false;
+      } 
+    })
+  }
 
 
   createForm() {
     this.leadForm.controls['first_name'].valueChanges.subscribe((value:any) => {
-    this.leadForm.controls['first_name'].setValue(value.toUpperCase(), { emitEvent: false });
+      console.log("value",value);
+      this.leadForm.controls['first_name'].setValue(value.toUpperCase(), { emitEvent: false });
     });
 
     this.leadForm.controls['middle_name'].valueChanges.subscribe((value:any) => {
@@ -118,7 +130,7 @@ export class LeadcreationComponent implements OnInit {
         });
   }
 
-  getAgentServicingState(){
+   getAgentServicingState(){
     this.mainService.getIndiaStates().subscribe({
       next:(resultStateOnly:any)=>{
     console.log("resultStateOnly",resultStateOnly);
@@ -141,23 +153,25 @@ export class LeadcreationComponent implements OnInit {
   }
 
   onCountryChange(event:any){
-    console.log("idddd",event.target);
+    console.log("idddd",event.target.value);
     const selectedId = event.target.options[event.target.selectedIndex].id;
     console.log("selectedId",selectedId);
     this.countryChangeData=event.target.value
     console.log("this.countryChangeData",this.countryChangeData);
-  //  this.getStateDropDownField(selectedId,this.countryChangeData) 
-  this.getStateDropDownField(selectedId) 
+    // this.getStateDropDownField(this.countryChangeData);
+    // this.getStateDropDownField('IN');
+
 
     
     }
 
   onStateChange(event:any){
     // console.log("event for states",event.target.value);
-    // this.stateChangeData=event.target.value;
-    const selectedStateId = event.target.options[event.target.selectedIndex].id;
-    console.log("selectedStateId",selectedStateId);
-    this.getCityDropDown(selectedStateId)
+    this.stateChangeData=event.target.value;
+    console.log("this.stateChangeData",this.stateChangeData); 
+    // const selectedStateId = event.target.options[event.target.selectedIndex].id;
+    // console.log("selectedStateId",selectedStateId);
+    this.getCityDropDown(this.stateChangeData)
     
     // const statId=this.leadCreateForm.get('state').value;
     // this.getStateDropDown(statId)
@@ -202,29 +216,60 @@ export class LeadcreationComponent implements OnInit {
   }
 
 
-  onSubmit(){
-    this.submitted = true;
-    if (this.leadForm.invalid) {
-      return;
-    }
-      console.log("leadCreation",this.leadForm.value);
-      this.mainService.leadCreate(this.leadForm.value).subscribe({
-        next:(result)=>{
-          console.log("result",result);
-          alert('Lead save successfully');
-          this.router.navigate(['/leadDashboard']);
+  // onSubmit(){
+  //   this.submitted = true;
+  //   if (this.leadForm.invalid) {
+  //     console.log("invalid form",this.submitted,this.leadForm.invalid); 
+  //     return;
+  //   }else{
+  //     console.log("leadCreation",this.leadForm.value);
+  //     this.mainService.leadCreate(this.leadForm.value).subscribe({
+  //       next:(result)=>{
+  //         console.log("result",result);
+  //         alert('Lead save successfully');
+  //         this.router.navigate(['/leadDashboard']);
           
-        },
-        error:(error)=>{
-          console.log("error",error);
+  //       },
+  //       error:(error)=>{
+  //         console.log("error",error);
           
-        }
+  //       }
   
-      })
- 
+  //     })
+  //   }  
+  // }
 
-    
-    
+  onSubmit(){
+  if(this.leadForm.valid){
+    console.log("this.leadForm.valid",this.leadForm.valid);
+    console.log("leadCreation",this.leadForm.value);
+    this.mainService.leadCreate(this.leadForm.value).subscribe({
+      next:(result)=>{
+        console.log("result",result);
+        alert('Lead save successfully');
+        this.router.navigate(['/leadDashboard']);
+       },
+      error:(error)=>{
+        console.log("error",error)    
+      }
+    })   
+  }else{
+    console.log("Form is not valid");
+    this.validateAllFormFields(this.leadForm);
+    // alert('Please fill all the fields with valid data.');
+  }  
+  }
+
+  private validateAllFormFields(formGroup:FormGroup){
+  Object.keys(formGroup.controls).forEach(field=>{
+    const control=formGroup.get(field);
+    if(control instanceof FormControl){
+      control.markAsDirty({onlySelf:true});
+    }else if(control instanceof FormGroup){
+      this.validateAllFormFields(control)
+    }
+  })
+
   }
 
   onLogout(){

@@ -30,11 +30,22 @@
               </p>
             </div>
             <div class="process_simpler">
-              Now, to make the process simpler, we have assumed that you are and <span>you are buying policy for Self</span>. Feel free to edit it if you like<a href=""><fa-icon [icon]="faPencil"></fa-icon>Edit</a>
+              Now, to make the process simpler, we have assumed that you are <span>{{occupChangeValue}}</span> and you are <span>buying policy for {{selfChangeValue}}</span>. Feel free to edit it if you like<sup>
+                <fa-icon [icon]="faPencil"></fa-icon></sup><span class="editIcon" (click)="editIconClick()">Edit</span>
+
             </div>
+            <div *ngIf="editFlagActive">
+              <div class="self_drop_down">
+                <span>You are purchasing the policy for</span>
+                <select class="self_child" formControlName="purchasing_for" (change)="onPurchaseChange($event)">
+                  <option value="single_life" selected>Single Life</option>
+                 <option value="joint_life">Joint Life</option>
+                </select>
+              </div>
+
             <div class="self_drop_down">
               <span>You are buying the policy for</span>
-              <select class="self_child" formControlName="buying_for">
+              <select class="self_child" formControlName="buying_for" (change)="onSelfChange($event)">
                 <option value="self" selected>Self</option>
                 <option>Spouse</option>
                 <option>Child(major)</option>
@@ -44,7 +55,7 @@
 
             <div class="occupation_dropdown">
               <span>Your occupation is</span>
-              <select formControlName="occupation">
+              <select formControlName="occupation" (change)="onOccupChange($event)">
                 <option value="" disabled></option>
                 <option>Agriculturist/Farmer</option>
                 <option>Business Owner</option>
@@ -55,6 +66,7 @@
                 <option>Self Employed</option>
               </select>
             </div>
+          </div>
 
             <div class="best_quote">
               <h4>You’re just a few more details away from getting the best quote.</h4>
@@ -85,6 +97,7 @@
               <div class="user_inputs">
                 <label for="annual">Annual Income of {{leadwithProduct.first_name}} {{leadwithProduct.middle_name}}  {{leadwithProduct.lasst_name}}</label><br>
                 <input type="text"  id="annual" formControlName="annual_income"/><br>
+                <p>{{ numberInWords }}</p>
                 <p>Annual Income declared should be part of Earned Income only.</p>
               </div>
               <div class="user_inputs">

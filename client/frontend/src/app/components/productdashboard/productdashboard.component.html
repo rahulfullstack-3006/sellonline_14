@@ -1,10 +1,3 @@
-<!-- <div class="header">
-  <h2>TATA AIA </h2>
-  <p>LIFE INSURANCE</p>
-</div> -->
-<!-- <mat-tab-group>
-  <mat-tab label="First" *ngFor="let tab of tabs;" [aria-label]="tab.bgColorClass"> {{tab.content}} </mat-tab>
-</mat-tab-group> -->
 <app-header></app-header>
 
 <div class="main_content">
@@ -60,11 +53,156 @@
       
       
       </mat-tab>
-    <mat-tab label="Savings Solutions"> Savings Solutions </mat-tab>
-    <mat-tab label="Wealth Solutions"> Wealth Solutions </mat-tab>
-    <mat-tab label="Retirement Solutions"> Retirement Solutions </mat-tab>
-    <mat-tab label="Health Solutions"> Health Solutions </mat-tab>
-    <mat-tab label="Smart Solutions"> Smart Solutions</mat-tab>
+    <mat-tab label="Savings Solutions"> 
+      <div class="life_ins_plans">
+        <h2>LIFE INSURANCE PLANS</h2>
+       </div>
+       <div class="product_details">
+        <div class="product_details_image">
+          <span>
+        <img  class="product_logo" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/326.png?v=1682944294156"/>
+          </span>
+          <img class="product_img" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/defaultbg.jpg?v=1677243441005"/>
+        </div>
+        <div class="product_details_descr">
+          <h4>Tata AIA Life Insurance Fortune Guarantee</h4>
+          <p>Non Linked, Non Participating, Individual Life Insurance Savings plan</p>
+          <h4>Key Benefits</h4>
+          <ul class="key_benefits">
+            <li>Guaranteed<sup>*</sup> lump sum benefit on maturity</li>
+            <li>Life cover throughout the policy term for the financial protection of your loved ones</li>
+            <li>Flexible policy term & premium paying term</li>
+            <li>Higher Maturity benefit for female lives</li>
+          </ul>
+          <div class="common_button">
+            <button class="btn btn-primary">Know More</button>
+            <button class="btn btn-primary" (click)="onBuyNow()">Buy Now</button>
+            <a href="">Download Brochure</a>
+          </div>
+        </div>
+    
+       </div>
+    </mat-tab>
+    <mat-tab label="Wealth Solutions">
+      <div class="life_ins_plans">
+        <h2>LIFE INSURANCE PLANS</h2>
+       </div>
+       <div class="product_details">
+        <div class="product_details_image">
+          <span>
+        <img  class="product_logo" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/326.png?v=1682944294156"/>
+          </span>
+          <img class="product_img" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/defaultbg.jpg?v=1677243441005"/>
+        </div>
+        <div class="product_details_descr">
+          <h4>Tata AIA Life Insurance Smart Sampoorna Raksha</h4>
+          <p>Unit-linked, Non-participating, Individual Life Insurance Plan for Savings and Protection</p>
+          <h4>Key Benefits</h4>
+          <ul class="key_benefits">
+            <li>Flexibility to choose from range of fund options for enhanced investment opportunities</li>
+            <li>Safeguard your financial goals through Death Benefit in case of unfortunate death during the policy term</li>
+            <li>Refund of 2X Premium Allocation Charges in policy years 10, 11 and 12</li>
+            <li>Refund of 2X Mortality Charges from 11th policy year onwards.</li>
+          </ul>
+          <div class="common_button">
+            <button class="btn btn-primary">Know More</button>
+            <button class="btn btn-primary" (click)="onBuyNow()">Buy Now</button>
+            <a href="">Download Brochure</a>
+          </div>
+        </div>
+    
+       </div>
+      </mat-tab>
+    <mat-tab label="Retirement Solutions"> 
+      <div class="life_ins_plans">
+        <h2>LIFE INSURANCE PLANS</h2>
+       </div>
+       <div class="product_details">
+        <div class="product_details_image">
+          <span>
+        <img  class="product_logo" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/343.png?v=1682944294156"/>
+          </span>
+          <img class="product_img" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/defaultbg.jpg?v=1677243441005"/>
+        </div>
+        <div class="product_details_descr">
+          <h4>Tata AIA Life Insurance Fortune Guarantee Pension</h4>
+          <p>A Non-Linked Non-Participating Annuity plan</p>
+          <h4>Key Benefits</h4>
+          <ul class="key_benefits">
+            <li>Multiple annuity options to suit your needs</li>
+            <li>High purchase price benefit to encourage you to save more</li>
+            <li>Option to increase annuity through Top-up premiums</li>
+            <li>Tax benefits may be applicable on premiums paid and benefits received as per applicable tax laws<sup>1</sup></li>
+          </ul>
+          <div class="common_button">
+            <button class="btn btn-primary">Know More</button>
+            <button class="btn btn-primary" (click)="onBuyNow()">Buy Now</button>
+            <a href="">Download Brochure</a>
+          </div>
+        </div>
+    
+       </div>
+    </mat-tab>
+    <mat-tab label="Health Solutions">
+      <div class="life_ins_plans">
+        <h2>LIFE INSURANCE PLANS</h2>
+       </div>
+       <div class="product_details">
+        <div class="product_details_image">
+          <span>
+        <img  class="product_logo" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/360.png?v=1682944294156"/>
+          </span>
+          <img class="product_img" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/defaultbg.jpg?v=1677243441005"/>
+        </div>
+        <div class="product_details_descr">
+          <h4>Tata AIA Smart Health</h4>
+          <p>Unit Linked Individual Life Insurance Savings Plan</p>
+          <h4>Key Benefits</h4>
+          <ul class="key_benefits">
+            <li>Zero Premium Allocation and Policy Administration Charges</li>
+            <li>Inbuilt waiver of premium benefit with iSIP Young Genius option</li>
+            <li>Return of Mortality Charges<sup>1</sup></li>
+            <li>Smart Lady benefit: Extra Allocation with first year premiums for Females</li>
+            <li>Enhance your fund with Wealth Boosters<sup>2</sup></li>
+            <li>Create second income with three new Partial Withdrawal Strategies<sup>3</sup></li>
+          </ul>
+          <div class="common_button">
+            <button class="btn btn-primary">Know More</button>
+            <button class="btn btn-primary" (click)="onBuyNow()">Buy Now</button>
+            <a href="">Download Brochure</a>
+          </div>
+        </div>
+    
+       </div>
+      </mat-tab>
+    <mat-tab label="Smart Solutions">
+      <div class="life_ins_plans">
+        <h2>LIFE INSURANCE PLANS</h2>
+       </div>
+       <div class="product_details">
+        <div class="product_details_image">
+          <span>
+        <img  class="product_logo" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/360.png?v=1682944294156"/>
+          </span>
+          <img class="product_img" src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/images/product/defaultbg.jpg?v=1677243441005"/>
+        </div>
+        <div class="product_details_descr">
+          <h4>Secure Savings Solution</h4>
+          <h4>Key Benefits</h4>
+          <ul class="key_benefits">
+            <li>Guaranteed Income1 minimum 125% of Annualised Premium* for 12 years</li>
+            <li>Lump Sum on maturity with Bonuses<sup>3</sup></li>
+            <li>Life cover throughout policy term</li>
+          </ul>
+          <div class="common_button">
+            <button class="btn btn-primary">Know More</button>
+            <button class="btn btn-primary" (click)="onBuyNow()">Buy Now</button>
+            <a href="">Download Brochure</a>
+          </div>
+        </div>
+    
+       </div>
+      </mat-tab>
   </mat-tab-group>
 </div>
 

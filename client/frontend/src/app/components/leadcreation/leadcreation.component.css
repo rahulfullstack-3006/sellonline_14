@@ -88,7 +88,25 @@
     color:#D62049
   }
   .validationError{
-    color: #D62049 
+    color: #D62049;
+    font-size: 14px;
+  }
+  .new_validationError{
+    color: #D62049;
+    font-size: 14px;
+  }
+  .user_inputs input[type=text] {
+    color: #1C86F0;
+  }
+  .user_inputs option {
+    color: #1C86F0;
+  }
+  /* .form-control::ng-deep select:focus option:checked {
+    color: blue;
+  } */
+  .icon.disabled {
+    opacity: 0.5;
+    color: gray;
   }
 
   .lead_heading h2 {
@@ -303,6 +321,7 @@
   color: #1C86F0;
   font-size: 22px;
   font-family: "HelveticaBold", sans-serif;
+  font-weight: bold;
 }
 
   

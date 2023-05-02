@@ -1,4 +1,4 @@
-*{
+/* *{
   margin: 0%;
   padding: 0%;
   box-sizing: border-box;
@@ -73,9 +73,47 @@
     border-radius: 5px;
     margin-top: 5px;
     border: 1px lightblue;
-    /* margin-right: 30px; */
     
   }
+
+  .user_inputs_radio{
+    margin-right: 30px;
+    width: 65%;
+  }
+
+  .user_inputs_radio input{
+    width: 100%;
+    height: 38px;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px lightblue;
+    
+  }
+
+  .user_inputs select{
+    width: 100%;
+    height: 38px;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px lightblue;
+    
+  }
+
+  .user_inputs ::placeholder{
+    font-size: 12px;
+    padding-left: 15px;
+  }
+  
+  .user_inputs select option{
+    color: #1C86F0;
+  }
+
+  .lead_after_resident h2{
+    color: #1C86F0;
+    font-size: 22px;
+    font-family: "HelveticaBold", sans-serif;
+  }
+
   
   
   
@@ -91,56 +129,350 @@
     width: 170px;
   }
   
+   */
+
+
+
+   /* --------------------------EDIT LEAD STARTS--------------------- */
+   *{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: "HelveticaBold", sans-serif;
+    }
+    
+    /* .heading_section{
+      margin-top: 57px;
+      margin-left: 170px;
+      display: flex;
+    }
+    .tata_logo{
+      flex: 0.7;
+    }
+    .all_tata_details{
+      display: flex;
+    }
+    .all_social{
+      display: flex;
+      padding: 10px;
+      margin-left: 10px;
+    }
+    .help_email ul li{
+      list-style: none;
+      color: #8C8C8C;
+      font-size: 14px;
+    } 
+    .social_platform{
+      margin-right: 10px;
+    }
+  
+    .all_links{
+      margin-top: 20px;
+    }
+  
+    nav {
+      display: flex;
+      justify-content: center;
+      margin-left: 300px;
+    }
+  
+    .nav-link {
+      margin-right: 20px;
+    }
+  
+    .nav-link a{
+      text-decoration: none;
+      transition: color 0.5s linear;
+      word-break: break-word;
+      cursor: pointer;
+    }
+  
+    .all_links nav a{
+      color: #8C8C8C!important;
+      font-size: 15px !important;
+    }
+  
+    .nav-link a:hover{
+    background-color: #1C86F0;
+    }
+  
+    .logout{
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+    }
+  
+    .logout img{
+      cursor: pointer;
+    } */
+    
+    .main{
+      padding: 60px;
+      margin-left: 95px;
+    }
+    
+    
+    .container{
+      /* width: 1350px; */
+      max-width: 100%;
+      background-color: rgb(250,250,250);
+      /* height: 100vh; */
+      margin-top: 25px;
+    }
+    
+    .invalid-feedback {
+      color:#D62049
+    }
+    .validationError{
+      color: #D62049 
+    }
+    .user_inputs input[type=text] {
+      color: #1C86F0;
+    }
+    .user_inputs option {
+      color: #1C86F0;
+    }
+  
+    .lead_heading h2 {
+      font-size: 30px;
+      color: #8C8C8C;
+      font-weight: bold;
+    }
+    
+    .type_insurance{
+      margin-top: 35px;
+      word-spacing: 2px;
+    }
+    
+    .type_insurance label{
+      font-size: 16px;
+      color: #8C8C8C;
+    }
+    
+    .type_insurance  input{
+      margin:15px 5px
+    }
+    
+    .personal_details{
+      margin-top: 35px;
+    }
+    
+    .personal_details h2{
+      color: #1C86F0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    
+    
+    .form_fields{
+      font-weight: normal;
+      font-size: 16px;
+      color: #8C8C8C;
+    }
+    
+    .form_fields .user_details{
+      display: flex;
+    }
+    
+    .user_details{
+      margin: 0 30px 30px 0;
+    }
+    
+    .user_inputs{
+      margin-right: 30px;
+      width: calc(33.33% - 30px);
+    }
   
   
-  /* *{
-    box-sizing: border-box; 
-  }
+    /***radio **/
+    .user_inputs_radio{
+      margin-right: 30px;
+      /* width: calc(33.33% - 30px); */
+      width: 65%;
+    }
   
+    .user_inputs_radio input{
+      width: 100%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 5px;
+      border: 1px lightblue;
+      /* margin-right: 30px; */
+      
+    }
+    /***radio **/
+    
+    .user_inputs input{
+      width: 100%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 5px;
+      border: 1px lightblue;
+      /* margin-right: 30px; */
+      
+    }
   
-  .container{
-    margin-top: 50px;
-    background-color: rgb(250,250,250);
-    height: 100vh;
+    .user_inputs select{
+      width: 100%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 5px;
+      border: 1px lightblue;
+      /* margin-right: 30px; */
+      
+    }
   
-  }
+    .user_inputs ::placeholder{
+      font-size: 12px;
+      padding-left: 15px;
+    }
+    
+    .user_inputs select option{
+      color: #1C86F0;
+    }
   
-  .lead_creation{
-   padding:60px;
-   margin-left: 30px;
+    .custom-date-picker{
+      width: 100%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 5px;
+      border: 1px lightblue;
+    }
+    
+    
+    .save_procced{
+      display: flex;
+      justify-content: center;
+      margin: 30px;
+    
+    }
+    
+    .save_procced .btn{
+      padding: 10px;
+      width: 170px;
+    }
   
-  }
-  
-  .lead_form{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5rem; 
-    color: #8C8C8C;
+    /***********/
    
+    .amount_radio{
+      display: flex;
+      margin-top: 5px;
+      /* justify-content: space-between; */
+      /* margin-left: 70px; */
+      /* padding: 10px; */
+    }
+  
+  
+  
+    /* annual radio button */
+  .radio_container{
+    display: block;
+    position: relative;
+    padding: 3px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 158px;
+    /* border-right: 1px solid gray; */
+    height: 38px;
+  
   }
   
-  .type_insurance{
-   margin-bottom: 50px;
+  .radio_container:not(:last-child) {
+    border-right: 1px solid #ccc;
+    width: 20%;
   }
   
-  .personal_details{
-    margin-bottom: 40px;
+  .radio_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
   }
   
-  .dob_email_mobile{
-    margin-top: 30px;
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 38px;
+    /* width: 125px; */
+    width: 100%;
+    background-color: #fff;
+    /* border-radius:4px; */
+    /* color: #1C86F0; */
+    /* border: 2px solid #1C86F0; */
   }
   
-  .save_procced{
-    text-align: center;
-    margin: auto;
-    display: flex;
-    margin-top: 40px;
-    padding: 10px 40px;
-    font-size: 16px;
+  .radio_container input:checked ~ .checkmark {
+    background-color: #2196F3;
+    color:#fff;
     
   }
   
-  .disclaimer{
-    font-size: 10px;
-    margin-left: 70px;
-  } */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .radio_container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .radio_container input:checked ~ .checkmark + .checkmark_one{
+    color:#fff;
+    }
+  
+  
+  .checkmark_one{
+    font-family: "Helvetica", sans-serif;
+      position:relative;
+      z-index:1;
+      text-align: center;
+      font-size: 16px;
+      font-weight: normal;
+      padding: 6px;
+      color: #8C8C8C;
+      }
+  
+    
+  /* annual radio button */
+  
+  .lead_after_resident h2{
+    color: #1C86F0;
+    font-size: 22px;
+    font-family: "HelveticaBold", sans-serif;
+  }
+  
+    
+    @media (max-width: 767px ){
+      *{
+        margin: 0%;
+        padding: 0%;
+      }
+      .container{
+        max-width: 100%;
+        background-color: rgb(250,250,250);
+      }
+    
+      .main{
+        margin-left: 0px;
+      }
+      .user_inputs{
+        width: 100%;
+      }
+      .user_inputs input{
+        padding: 5px;
+      }
+      .user_details{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    
+      
+      
+      }

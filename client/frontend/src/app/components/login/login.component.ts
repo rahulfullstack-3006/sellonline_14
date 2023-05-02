@@ -14,7 +14,10 @@ export class LoginComponent implements OnInit {
 
   loginForm:any=FormGroup;
   loginSubmitData:any;
-  loading:boolean=false
+  loading:boolean=false;
+  type:string='password';
+  isText:boolean=false;
+  eyeIcon:string='fa-eye-slash';
   constructor(private fb:FormBuilder,private mainService:MainService,private router:Router,private spinner: NgxSpinnerService) { }
 
   
@@ -38,6 +41,12 @@ export class LoginComponent implements OnInit {
      
     // })
   }
+
+  hideShowPass(){
+    this.isText=!this.isText;
+    this.isText ? this.eyeIcon="fa-eye":this.eyeIcon="fa-eye-slash";
+    this.isText ? this.type="text":this.type="password";
+    }
 
   onSubmit(){
     console.log("this.loginForm.value",this.loginForm.value);
