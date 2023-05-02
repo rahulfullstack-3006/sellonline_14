@@ -1,4 +1,5 @@
 var BasicDetails=require('../models/basicDetailsSchema');
+var SISPersonalDetails=require('../models/sisPersonalDetailsSchema')
 // var moment=require('moment');
 // const Country=require('country-state-city').Country;
 const State=require('country-state-city').State;
@@ -89,16 +90,6 @@ module.exports.updateLeadDashboardModel=async function(req,resp){
   try{
     let data=await BasicDetails.findOneAndUpdate({leadId:idLead},{
       $set:{
-        // address:req.body.address,
-        // state:req.body.state,
-        // city:req.body.city,
-        // dob:req.body.dob,
-        // email:req.body.email,
-        // first_name:req.body.first_name,
-        // middle_name:req.body.middle_name,
-        // last_name:req.body.last_name,
-        // insurance_type:req.body.first_name,
-        // mobile:req.body.mobile
         insurance_type:req.body.insurance_type,
         first_name:req.body.first_name,
         middle_name:req.body.middle_name,
@@ -249,7 +240,7 @@ module.exports.getCitydropDownModel=async function(req,resp){
   
   }
 
-  module.exports.getAgentStateModel=async function(req,resp){
+module.exports.getAgentStateModel=async function(req,resp){
       try{
       let states=await State.getStatesOfCountry('IN')
       console.log("data for states",states);
@@ -260,4 +251,34 @@ module.exports.getCitydropDownModel=async function(req,resp){
         return err
       }
     
+    }
+
+module.exports.createSISPersonalModel=async function(req,resp){
+      var sisId = String(Math.floor(Math.random() * 9000000000000) + 1000000000000);
+      console.log("sisId check",sisId);
+      let sisPersonalDetails=new SISPersonalDetails({
+        purchasing_for:req.body.purchasing_for,
+        buying_for:req.body.buying_for,
+        occupation:req.body.occupation,
+        age_proof:req.body.age_proof,
+        education_qualification:req.body.education_qualification,
+        annual_income:req.body.annual_income,
+        pan_number:req.body.pan_number,
+        autopay:req.body.autopay,
+        nominee_name:req.body.nominee_name,
+        nominee_relationship:req.body.nominee_relationship,
+        gst_check:req.body.gst_check,
+        existing_check:req.body.existing_check,
+        sisId:sisId
+      })
+      console.log("sisPersonalDetails",sisPersonalDetails);
+      try{
+        let data =await sisPersonalDetails.save();
+        console.log("data for try",data);
+        return data;
+      }
+      catch(err){
+        console.log("error in catch",err);
+        return err
+      }
     }

@@ -18,7 +18,8 @@ export class MainService {
   countryURL='/getCountrydropDown';
   stateURL='/getStatedropDown';
   cityURL='/getCitydropDown';
-  getStateOnly='/india/getIndiaStateOnlyDrop'
+  getStateOnly='/india/getIndiaStateOnlyDrop';
+  sisPersonal='/sisPersonal'
 
 
   // headers=header || {};
@@ -75,10 +76,6 @@ export class MainService {
     return this.http.get(this.APIURL + this.stateURL + '/' +key,{headers:this.headerObj()});
   }
 
-  // public getStatedropDown(body:any){
-  //   return this.http.post(this.APIURL + this.stateURL ,body,{headers:this.headerObj()});
-  // }
-
   public getCitydropDown(key:any){
     return this.http.get(this.APIURL + this.cityURL + '/' +key,{headers:this.headerObj()});
   }
@@ -86,9 +83,9 @@ export class MainService {
   public getIndiaStates(){ 
     return this.http.get(this.APIURL + this.getStateOnly,{headers:this.headerObj()});
   }
-  // public login(url:any,body:any,header:any){
-  // var headers=header || {};
-  // return this.http.post(this.APIURL + url,body,{headers:headers});
-  // }
+
+  public createSISPersonal(body:any){ 
+    return this.http.post(this.APIURL + this.sisPersonal,body,{headers:this.headerObj()});
+  }
 
 }

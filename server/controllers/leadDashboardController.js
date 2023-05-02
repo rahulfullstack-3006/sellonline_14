@@ -151,3 +151,15 @@ module.exports.getAgentStateController=async function(req,resp){
    }
 
 }
+
+module.exports.createSISPersonalController=async function(req,resp){
+  try{
+   let data=await leadDashboard.createSISPersonalModel(req);
+   console.log("data",data);
+  resp.json({status:'true',message:'SIS Created Successfully',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in SIS Creation'});
+
+  }
+}

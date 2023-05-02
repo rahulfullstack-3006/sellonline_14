@@ -31,6 +31,8 @@ router.get('/getStatedropDown/:country_code',leadDashboard.getStatedropDownContr
 // router.get('/getCitydropDown',leadDashboard.getCitydropDownController)
 router.get('/getCitydropDown/:state_name',leadDashboard.getCitydropDownController);
 router.get('/india/getIndiaStateOnlyDrop',leadDashboard.getAgentStateController);
+router.post('/sisPersonal',leadDashboard.createSISPersonalController);
+
 
 
 

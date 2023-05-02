@@ -47,9 +47,9 @@
               <span>You are buying the policy for</span>
               <select class="self_child" formControlName="buying_for" (change)="onSelfChange($event)">
                 <option value="self" selected>Self</option>
-                <option>Spouse</option>
-                <option>Child(major)</option>
-                <option>Child(minor)</option>
+                <option value="spouse">Spouse</option>
+                <option value="major">Child(major)</option>
+                <option value="minor">Child(minor)</option>
               </select>
             </div>
 
@@ -57,13 +57,13 @@
               <span>Your occupation is</span>
               <select formControlName="occupation" (change)="onOccupChange($event)">
                 <option value="" disabled></option>
-                <option>Agriculturist/Farmer</option>
-                <option>Business Owner</option>
-                <option>Housewife</option>
-                <option>NPS Retiree</option>
-                <option>Retired</option>
-                <option>Salaried</option>
-                <option>Self Employed</option>
+                <option value="agriculture">Agriculturist/Farmer</option>
+                <option value="business_owner">Business Owner</option>
+                <option value="housewife">Housewife</option>
+                <option value="nps_retiree">NPS Retiree</option>
+                <option value="retired">Retired</option>
+                <option value="salaried">Salaried</option>
+                <option value="self">Self Employed</option>
               </select>
             </div>
           </div>
@@ -76,56 +76,69 @@
               <label for="">Age Proof for {{leadwithProduct.first_name}} {{leadwithProduct.middle_name}}  {{leadwithProduct.lasst_name}}</label><br>
               <select formControlName="age_proof">
                 <option value="" selected></option>
-                <option>Aadhar ID Card - Non Standard</option>
-                <option>Aadhar ID Card - Standard</option>
-                <option>Others</option>
-                <option>PAN Card</option>
-                <option>Hosiptal Discharge Card less than age 5 years</option>
+                <option value="aadhar_non">Aadhar ID Card - Non Standard</option>
+                <option value="aadhar_stand">Aadhar ID Card - Standard</option>
+                <option value="others">Others</option>
+                <option value="pan_card">PAN Card</option>
+                <option value="hosiptal">Hosiptal Discharge Card less than age 5 years</option>
               </select>
+              <div *ngIf="sisPersonalForm.controls['age_proof'].dirty  && sisPersonalForm.hasError('required','age_proof')" class="validationError">
+                Please select an option.
+              </div>
             </div>
             <div class="education_personal_proof">
               <div class="user_inputs">
                 <label>Highest Education Qualification</label><br>
                 <select formControlName="education_qualification">
-                  <option value="" selected></option>
-                  <option>Below SSC</option>
-                  <option>10th</option>
-                  <option>12th</option>
-                  <option>Graduate</option>
+                  <option value="SSC">Below SSC</option>
+                  <option value="10th">10th</option>
+                  <option value="12th">12th</option>
+                  <option value="graduate" selected>Graduate</option>
                 </select>
+                <div *ngIf="sisPersonalForm.controls['education_qualification'].dirty  && sisPersonalForm.hasError('required','education_qualification')" class="validationError">
+                  Please select an option.
+                </div>
               </div>
               <div class="user_inputs">
                 <label for="annual">Annual Income of {{leadwithProduct.first_name}} {{leadwithProduct.middle_name}}  {{leadwithProduct.lasst_name}}</label><br>
-                <input type="text"  id="annual" formControlName="annual_income"/><br>
-                <p>{{ numberInWords }}</p>
-                <p>Annual Income declared should be part of Earned Income only.</p>
+                <input type="text"  id="annual" formControlName="annual_income" /><br>
+                <p *ngIf="numberInWords"><fa-icon class="rupeeIcon" [icon]="faIndianRupee"></fa-icon>&nbsp;{{ numberInWords }}</p>
+                <div *ngIf="sisPersonalForm.controls['annual_income'].dirty  && sisPersonalForm.hasError('required','annual_income')" class="validationError">
+                  Please enter annual income.
+                </div>
+                <div *ngIf="sisPersonalForm.get('annual_income').errors?.maxlength" class="validationError">
+                  Annual Income cannot exceed 9 digits.
+                </div>
               </div>
               <div class="user_inputs">
                 <label for="pan_number">Pan Number of {{leadwithProduct.first_name}} {{leadwithProduct.middle_name}}  {{leadwithProduct.lasst_name}}</label><br>
                 <input type="text"  id="pan_number" formControlName="pan_number"/>
+                <div *ngIf="sisPersonalForm.controls['pan_number'].dirty  && sisPersonalForm.hasError('pattern','pan_number')" class="validationError">
+                  Please enter valid PAN Card No.
+                </div>
               </div>
             </div>
-            <div class="tabacco_radio">
-              <label>Do you consume tobacco?</label><br>
-              <label class="switch">
-                <input type="checkbox" formControlName="tobacco_radio">
-                <span class="slider round"></span>
-              </label>
-            </div>
+  
             <div class="nominee_name_real">
               <div class="user_inputs">
                 <label for="nominee">Nominee Name</label><br>
                 <input type="text"  id="nominee" formControlName="nominee_name"/><br>
+                <div *ngIf="sisPersonalForm.controls['nominee_name'].dirty  && sisPersonalForm.hasError('required','nominee_name')" class="validationError">
+                  Please enter annual income.
+                </div>
               </div>
               <div class="user_inputs">
                 <label>Nominee relationship with Life Assured</label><br>
                 <select formControlName="nominee_relationship">
                   <option value="" selected></option>
-                  <option>Brother</option>
-                  <option>Cousin</option>
-                  <option>Nephew</option>
-                  <option>Nice</option>
+                  <option value="brother">Brother</option>
+                  <option value="cousin">Cousin</option>
+                  <option value="nephew">Nephew</option>
+                  <option value="nice">Nice</option>
                 </select>
+                <div *ngIf="sisPersonalForm.controls['nominee_relationship'].dirty  && sisPersonalForm.hasError('required','nominee_relationship')" class="validationError">
+                  Please select an option.
+                </div>
               </div>
             </div>
 
@@ -136,6 +149,14 @@
               <div class="gst_text">
               <h4>I have a GST number</h4>
             </div>
+            </div>
+
+            <div class="tabacco_radio">
+              <label>Would you like to opt for Auto Debit Facility ?</label><br><br>
+              <label class="switch">
+                <input type="checkbox" formControlName="autopay">
+                <span class="slider round"></span>
+              </label>
             </div>
 
             <div class="other_life_insur">

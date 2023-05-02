@@ -16,6 +16,11 @@
   padding: 20px;
 }
 
+.validationError{
+  color: #D62049;
+  font-size: 14px;
+}
+
 
 .product_heading{
 display: flex;
@@ -76,6 +81,10 @@ display: flex;
   text-decoration: underline;
 }
 
+.rupeeIcon{
+font-size: 10px;
+}
+
 .self_drop_down{
   margin-top: 30px;
   /* margin: 10px; */
@@ -134,8 +143,10 @@ display: flex;
 }
 
 .proof_select select{
-  height: 36px;
+  height: 40px;
   width: 310px;
+  border: solid 1px rgba(59, 59, 59, 0.3) !important;
+  box-shadow: inherit;
 }
 
 .education_personal_proof{
@@ -153,7 +164,9 @@ display: flex;
 
 .user_inputs input{
 width: 100%;
-height: 38px;
+height: 40px;
+border: solid 1px rgba(59, 59, 59, 0.3) !important;
+box-shadow: inherit;
 /* border-radius: 5px;
 margin-top: 5px;
 border: 1px lightblue; */
@@ -162,7 +175,9 @@ border: 1px lightblue; */
 
 .user_inputs select{
 width: 100%;
-height: 36px;
+height: 40px;
+border: solid 1px rgba(59, 59, 59, 0.3) !important;
+box-shadow: inherit;
 
 }
 
@@ -173,6 +188,7 @@ height: 36px;
 .tabacco_radio{
   font-size: 16px;
   color: #8C8C8C;
+  margin-bottom: 10px;
 }
 
 .nominee_name_real{
