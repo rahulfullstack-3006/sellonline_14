@@ -24,6 +24,7 @@ export class SispersonalComponent implements OnInit {
   occupChangeValue:any='Salaried';
   numberInWords:any;
   faIndianRupee=faIndianRupee;
+  allSisData:any;
   constructor(private router:Router,private fb:FormBuilder,private mainService:MainService) { }
 
   ngOnInit(): void {
@@ -36,11 +37,12 @@ export class SispersonalComponent implements OnInit {
     education_qualification:['graduate'],
     annual_income:['',[Validators.required,Validators.maxLength(9)]],
     pan_number:['',[Validators.pattern(/^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/)]],
-    autopay:[''],
     nominee_name:['',[Validators.required]],
     nominee_relationship:['',[Validators.required]],
     gst_check:[false],
-    existing_check:[false]
+    autopay:[false],
+    existing_check:[false],
+
    })
 
     this.leadDetailsGet=localStorage.getItem('leadDetails');
@@ -69,28 +71,29 @@ export class SispersonalComponent implements OnInit {
 
   onSubmit(){
   if(this.sisPersonalForm.valid){
-    this.sisPersonalForm.gst_check = this.sisPersonalForm.get('gst_check').value ? 'Y' : 'N';
-    this.sisPersonalForm.existing_check = this.sisPersonalForm.get('existing_check').value ? 'Y' : 'N';
-    console.log("this.sisPersonalForm.existing_check",this.sisPersonalForm.existing_check);
-    
+    this.sisPersonalForm.value.gst_check = this.sisPersonalForm.get('gst_check').value ? 'Y' : 'N';
+    this.sisPersonalForm.value.existing_check = this.sisPersonalForm.get('existing_check').value ? 'Y' : 'N';
+    this.sisPersonalForm.value.autopay=this.sisPersonalForm.get('autopay').value ?'Y':'N';    
     this.mainService.createSISPersonal(this.sisPersonalForm.value).subscribe({
       next:(result:any)=>{
-      console.log("result to create SIS ID",result);
+      console.log("result to create SIS ID",result['data']);
+      this.allSisData=result['data'];
+      console.log("this.allSisData",this.allSisData);
+      this.leadwithProduct['valueSISPersonal']=this.allSisData;
+      console.log("this.leadwithProduct",this.leadwithProduct);
+      let sisPersonalValue=JSON.stringify(this.leadwithProduct);
+      console.log("sisPersonalValue",sisPersonalValue);
+      localStorage.setItem('leadwithSISdetails',sisPersonalValue)
+      this.router.navigate(['/sisCalculation'])
       
       },
       error:(error)=>{
-        console.log("error",error);
-        
+        console.log("error",error);   
       }
     })
-    console.log("sisPersonalForm",this.sisPersonalForm.value);
-    this.leadwithProduct['valueSISPersonal']=this.sisPersonalForm.value;
-    console.log("this.leadwithProduct",this.leadwithProduct);
-    let sisPersonalValue=JSON.stringify(this.leadwithProduct);
-    console.log("sisPersonalValue",sisPersonalValue);
-    localStorage.setItem('leadwithSISdetails',sisPersonalValue)
-    this.router.navigate(['/sisCalculation'])
+
   }else{
+    alert('Please fill all details')
     console.log("Form is not valid");
     this.validateAllFormFields(this.sisPersonalForm);
   }

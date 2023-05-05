@@ -12,22 +12,23 @@
         <h3>Tata AIA Life Insurance Fortune Guarantee Plus</h3>
       </div>
       <div class="product_uin">
-       <p>UIN: 110N158V09</p>
+       <p>UIN: {{uinNumberFromLocal}}</p>
       </div>
       <div class="line_symbol">
         |
       </div>
       <div class="product_lead_id">
-        <p>LEAD ID: 6105121135166</p>
+        <p>LEAD ID: {{leadIdFromLocal}}</p>
        </div>
        <div class="line_symbol">
         |
       </div>
       <div class="product_sis_id">
-        <p>SIS ID: 3065626158924</p>
+        <p>SIS ID: {{sisIdFromLocal}}</p>
        </div>
     </div>
-    <div class="invest_receive_mainsection">
+  <form [formGroup]="sisCalculationInvestForm" (ngSubmit)="onSubmit()">
+   <div class="invest_receive_mainsection">
       <div class="invest_section">
        <div class="invest_heading">
         <h3>INVEST</h3>
@@ -37,7 +38,7 @@
        </div>
        <div class="amount_radio">
           <label class="radio_container">
-            <input type="radio" name="radio" value="">
+            <input type="radio"  value="24000" formControlName="annual_invest_amount" (click)="radioDataChange($event);onLoadSisCalculation()">
             <span class="checkmark"></span>
               <div class="checkmark_one">
                 <fa-icon [icon]="faIndianRupee"></fa-icon>
@@ -45,7 +46,7 @@
               </div>
           </label>
           <label class="radio_container">
-            <input type="radio" name="radio" value="">
+            <input type="radio"  value="48000" formControlName="annual_invest_amount" (click)="radioDataChange($event);onLoadSisCalculation()">
             <span class="checkmark"></span>
               <div class="checkmark_one">
                 <fa-icon [icon]="faIndianRupee"></fa-icon>
@@ -53,7 +54,7 @@
               </div>
           </label>
           <label class="radio_container">
-            <input type="radio" name="radio" value="">
+            <input type="radio"  value="72000" formControlName="annual_invest_amount" (click)="radioDataChange($event);onLoadSisCalculation()">
             <span class="checkmark"></span>
               <div class="checkmark_one">
                 <fa-icon [icon]="faIndianRupee"></fa-icon>
@@ -65,13 +66,20 @@
        <h3>OR</h3>
       </div>
       <div class="invest_word_text" >
-        <input type="text" id="" value="50000"/>
+        <input  type="text"  value="{{radioInvestAmount}}" (input)="sisCalculationInvestTextAmount()" formControlName="annual_invest_text"/>
+        <div *ngIf="sisCalculationInvestForm.get('annual_invest_text').errors?.maxlength && numberInWords" class="validationError">
+          Annual Income cannot exceed 9 digits.
+        </div>
       </div>
-      <p class="amount_in_number">Rupees Fifty Thousand only</p>
+      <!-- <p class="amount_in_number">{{investAmountIntoWords}}</p>
+      <p class="amount_in_number">{{investTextIntoWords}}</p>
+      <p class="amount_in_number">{{numberInWordsForInvestText}}</p> -->
+
+
 
       <div class="option_radio">
         <div class="regular_income">
-          <input type="radio" name="regular"/>
+          <input type="radio" value="regular_option1" formControlName="regular" (click)="onLoadSisCalculation()"/>
         </div>
         <div class="option_1" >
           Option 1: Regular 
@@ -80,7 +88,7 @@
 
       <div class="option_radio">
         <div class="regular_income">
-          <input type="radio" name="regular"/>
+          <input type="radio" value="regular_option2" formControlName="regular" (click)="onLoadSisCalculation()"/>
         </div>
         <div class="option_1" >
           Option 2: Regular Income with an inbuilt Critical Illness benefit 
@@ -94,12 +102,12 @@
         <h2>Pay Every</h2>
         </div>
         <div class="pay_mode">
-        <select>
-          <option>Annual</option>
-          <option>Semi-Annual</option>
-          <option>Quaterly</option>
-          <option>Monthly</option>
-          <option>Single-Pay</option>       
+        <select formControlName="pay_mode" (change)="onLoadSisCalculation()">
+          <option value="annual">Annual</option>
+          <option value="semi_annual">Semi-Annual</option>
+          <option value="quaterly">Quaterly</option>
+          <option value="monthly">Monthly</option>
+          <option value="single_pay">Single-Pay</option>       
         </select>
         </div>
       </div>
@@ -108,22 +116,22 @@
       <div class="period_ppt">
         <div class="period_select">
           <label>For a period of</label><br>
-          <select>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>       
+          <select formControlName="period_of" (change)="onLoadSisCalculation()">
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>       
           </select>
         </div>
         <div class="ppt_select">
           <label>For (PPT)</label><br>
-        <select>
-          <option>Regular</option>
-          <option>Limited-5 years</option>
-          <option>Limited-6 years</option>      
-          <option>Limited-7 years</option>      
-          <option>Limited-8 years</option>      
+        <select formControlName="ppt_select" (change)="onLoadSisCalculation()">
+          <option value="regular">Regular</option>
+          <option value="limited_5_years">Limited-5 years</option>
+          <option value="limited_6_years">Limited-6 years</option>      
+          <option value="limited_7_years">Limited-7 years</option>      
+          <option value="limited_8_years">Limited-8 years</option>      
         </select>
         </div>
       </div>
@@ -131,18 +139,18 @@
       <div class="period_ppt">
         <div class="period_select">
           <label>For a income period of</label><br>
-          <select>
-            <option>20 Years</option>
-            <option>25 Years</option>
-            <option>30 Years</option>
-            <option>35 Years</option>      
+          <select formControlName="income_period" (change)="onLoadSisCalculation()">
+            <option value="20">20 Years</option>
+            <option value="25">25 Years</option>
+            <option value="30">30 Years</option>
+            <option value="35">35 Years</option>      
           </select>
         </div>
         <div class="ppt_select">
           <label>Income mode</label><br>
-        <select>
-          <option>Annual</option>
-          <option>Monthly</option>  
+        <select formControlName="income_mode" (change)="onLoadSisCalculation()">
+          <option value="annual">Annual</option>
+          <option value="monthly">Monthly</option>  
         </select>
         </div>
       </div>
@@ -154,7 +162,7 @@
         <div class="rider_package_radio">
         <div class="option_rider_radio">
           <div class="rider_text_radio">
-            <input type="radio" name="rider"/>
+            <input type="radio" value="base_package" formControlName="rider_package" (click)="onLoadSisCalculation()"/>
           </div>
           <div class="option_rider_one" >
            Base  
@@ -162,7 +170,7 @@
         </div>
         <div class="option_rider_radio">
           <div class="rider_text_radio">
-            <input type="radio" name="rider"/>
+            <input type="radio" value="premimum_package" formControlName="rider_package" (click)="onLoadSisCalculation()"/>
           </div>
           <div class="option_rider_one" >
             Premimum
@@ -171,14 +179,13 @@
       </div>
       <div class="elite_rider_radio">
         <div class="rider_text_radio">
-          <input type="radio" name="rider"/>
+          <input type="radio" value="elite_package" formControlName="rider_package" (click)="onLoadSisCalculation()"/>
         </div>
         <div class="option_rider_one" >
           Elite
         </div> 
       </div>
       </div>
-      
       </div>
 
       <div class="to_section">
@@ -194,11 +201,11 @@
 
          <div class="option_radio">
           <div class="receive_guaranteed">
-            <input type="radio" name=""/>
+            <input type="radio" value="receive_guaranteed"  formControlName="receive_amount"/>
           </div>
           <div class="option_1_receive_details" >
-           <span> 2,77,640 *</span>
-           <p> Rupees Two Lacs Seventy Seven Thousand Six Hundred Forty only</p>
+            <span>{{receiveGuaranteeOnLoad}} *</span>
+           <p> {{numberInWords}}</p>
            <p> As guaranteed income of  7,882 at the end of every Annual, for 20 years after policy term (i.e 5 years)</p>
           <p>* Sum of all monthly incomes</p>
           </div> 
@@ -207,11 +214,11 @@
         <div class="premimum_life_cover">
           <div class="premimum_amount">
           <h3>Premium Amount</h3>
-          <h4>24,000/Annual</h4>
+          <h4><fa-icon [icon]="faIndianRupee"></fa-icon>{{premiumAnnualDisplay}}/Annual</h4>
           </div>
           <div class="life_cover">
             <h3>You get a life cover of</h3>
-            <h4>2,76,000</h4>
+            <h4><fa-icon [icon]="faIndianRupee"></fa-icon>{{premiumAnnualDisplayIntoTen}}</h4>
           </div>
         </div>
 
@@ -219,8 +226,9 @@
     </div>
     <div class="back_next">
       <button class="btn btn-primary" (click)="onBack()">Back</button>
-      <button class="btn btn-primary" (click)="onNext()">Next</button>
+      <button class="btn btn-primary"  (click)="onNext()">Next</button>
     </div>
+  </form>
     <div class="disclaimer">
       <p>Disclaimer: For complete disclaimers please click here, before concluding the sale.</p>
       <ul class="disclaimer_list">

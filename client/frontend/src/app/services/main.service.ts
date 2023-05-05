@@ -19,7 +19,10 @@ export class MainService {
   stateURL='/getStatedropDown';
   cityURL='/getCitydropDown';
   getStateOnly='/india/getIndiaStateOnlyDrop';
-  sisPersonal='/sisPersonal'
+  sisPersonal='/sisPersonal';
+  saveSISCalculationURL='/saveSISCalculation';
+  sisCalculation='/sisCalculation';
+  sisCalculationInvestTextAmount='/sisCalculation/InvestTextAmount'
 
 
   // headers=header || {};
@@ -86,6 +89,18 @@ export class MainService {
 
   public createSISPersonal(body:any){ 
     return this.http.post(this.APIURL + this.sisPersonal,body,{headers:this.headerObj()});
+  }
+
+  public saveSISCalculation(body:any){ 
+    return this.http.post(this.APIURL + this.saveSISCalculationURL,body,{headers:this.headerObj()});
+  }
+
+  public createSISCalculation(body:any){ 
+    return this.http.post(this.APIURL + this.sisCalculation,body,{headers:this.headerObj()});
+  }
+
+    public createSISCalculationInvestTextAmount(body:any){ 
+    return this.http.post(this.APIURL + this.sisCalculationInvestTextAmount,body,{headers:this.headerObj()});
   }
 
 }

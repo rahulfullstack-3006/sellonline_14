@@ -9,6 +9,7 @@ const CountryModel=require('../models/countryModel');
 const StateModel=require('../models/statesModel');
 const CityModel=require('../models/cityModel');
 const mongoose=require('mongoose');
+const SISCalculation = require('../models/sisCalculationSchema');
 
 // console.log(State.getAllStates());
 
@@ -256,7 +257,7 @@ module.exports.getAgentStateModel=async function(req,resp){
 module.exports.createSISPersonalModel=async function(req,resp){
       var sisId = String(Math.floor(Math.random() * 9000000000000) + 1000000000000);
       console.log("sisId check",sisId);
-      let sisPersonalDetails=new SISPersonalDetails({
+      let sisCalculationDetails=new SISPersonalDetails({
         purchasing_for:req.body.purchasing_for,
         buying_for:req.body.buying_for,
         occupation:req.body.occupation,
@@ -271,11 +272,91 @@ module.exports.createSISPersonalModel=async function(req,resp){
         existing_check:req.body.existing_check,
         sisId:sisId
       })
-      console.log("sisPersonalDetails",sisPersonalDetails);
+      console.log("sisCalculationDetails",sisCalculationDetails);
       try{
-        let data =await sisPersonalDetails.save();
+        let data =await sisCalculationDetails.save();
         console.log("data for try",data);
         return data;
+      }
+      catch(err){
+        console.log("error in catch",err);
+        return err
+      }
+    }
+
+
+
+module.exports.saveSISCaluclationModel=async function(req,resp){
+      let sisCalculationDetails=new SISCalculation({
+        annual_invest_amount:req.body.annual_invest_amount,
+        annual_invest_text:req.body.annual_invest_text,
+        regular:req.body.regular,
+        pay_mode:req.body.pay_mode,
+        period_of:req.body.period_of,
+        ppt_select:req.body.ppt_select,
+        income_period:req.body.income_period,
+        income_mode:req.body.income_mode,
+        rider_package:req.body.rider_package,
+        receive_amount:req.body.receive_amount,
+      })
+      console.log("sisCalculationDetails",sisCalculationDetails);
+      try{
+        let data =await sisCalculationDetails.save();
+        console.log("data for try",data);
+        return data;
+      }
+      catch(err){
+        console.log("error in catch",err);
+        return err
+      }
+    }    
+
+module.exports.createSISCaluclationModel=async function(req,resp){
+      let sisCalculationDetails=new SISCalculation({
+        annual_invest_amount:req.body.annual_invest_amount,
+        annual_invest_text:req.body.annual_invest_text,
+        regular:req.body.regular,
+        pay_mode:req.body.pay_mode,
+        period_of:req.body.period_of,
+        ppt_select:req.body.ppt_select,
+        income_period:req.body.income_period,
+        income_mode:req.body.income_mode,
+        rider_package:req.body.rider_package,
+        receive_amount:req.body.receive_amount,
+      })
+      console.log("sisCalculationDetails",sisCalculationDetails);
+      try{
+          let calculateReceiveAmount=(req.body.annual_invest_amount + req.body.period_of+req.body.income_period) *11/100;
+          console.log("formulaa",req.body.annual_invest_amount,req.body.annual_invest_text,req.body.period_of,req.body.income_period);
+          console.log("calculateReceiveAmount",calculateReceiveAmount);
+        return Math.floor(calculateReceiveAmount)
+      }
+      catch(err){
+        console.log("error in catch",err);
+        return err
+      }
+    }
+
+
+module.exports.createSISCaluclationInvestTextModel=async function(req,resp){
+      let sisCalculationDetails=new SISCalculation({
+        annual_invest_amount:req.body.annual_invest_amount,
+        annual_invest_text:req.body.annual_invest_text,
+        regular:req.body.regular,
+        pay_mode:req.body.pay_mode,
+        period_of:req.body.period_of,
+        ppt_select:req.body.ppt_select,
+        income_period:req.body.income_period,
+        income_mode:req.body.income_mode,
+        rider_package:req.body.rider_package,
+        receive_amount:req.body.receive_amount,
+      })
+      console.log("sisCalculationDetails",sisCalculationDetails);
+      try{
+        console.log("formulaa",req.body.annual_invest_text,req.body.period_of,req.body.income_period);
+          let calculateInvestTextReceiveAmount=(req.body.annual_invest_text + req.body.period_of + req.body.income_period) *11/100;
+          console.log("calculateReceiveAmount",calculateInvestTextReceiveAmount);
+        return Math.floor(calculateInvestTextReceiveAmount)
       }
       catch(err){
         console.log("error in catch",err);

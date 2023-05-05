@@ -41,19 +41,6 @@ export class LeadcreationComponent implements OnInit {
 
 
   constructor(private fb:FormBuilder,private router:Router,private mainService:MainService,private ngxService: NgxUiLoaderService) { }
-  firstNameLastNameNotSame(control: AbstractControl): {[key: string]: boolean} | null {
-    const firstName = control.get('firstName')?.value;
-    console.log("firstName-->firstNameLastNameNotSame",firstName);
-    
-    const lastName = control.get('lastName')?.value;
-    console.log("firstNameLastNameNotSame",firstName,lastName);
-    
-    if (firstName && lastName && firstName === lastName) {
-      return { firstNameLastNameNotSame: true };
-    }
-    return null;
-  }
-
   ngOnInit(): void {
     this.leadForm=this.fb.group({
       insurance_type: ['individual'],
@@ -215,30 +202,6 @@ export class LeadcreationComponent implements OnInit {
     return this.leadForm.controls;
   }
 
-
-  // onSubmit(){
-  //   this.submitted = true;
-  //   if (this.leadForm.invalid) {
-  //     console.log("invalid form",this.submitted,this.leadForm.invalid); 
-  //     return;
-  //   }else{
-  //     console.log("leadCreation",this.leadForm.value);
-  //     this.mainService.leadCreate(this.leadForm.value).subscribe({
-  //       next:(result)=>{
-  //         console.log("result",result);
-  //         alert('Lead save successfully');
-  //         this.router.navigate(['/leadDashboard']);
-          
-  //       },
-  //       error:(error)=>{
-  //         console.log("error",error);
-          
-  //       }
-  
-  //     })
-  //   }  
-  // }
-
   onSubmit(){
   if(this.leadForm.valid){
     console.log("this.leadForm.valid",this.leadForm.valid);
@@ -256,7 +219,7 @@ export class LeadcreationComponent implements OnInit {
   }else{
     console.log("Form is not valid");
     this.validateAllFormFields(this.leadForm);
-    // alert('Please fill all the fields with valid data.');
+    alert('Please fill all the fields with valid data.');
   }  
   }
 
@@ -288,9 +251,6 @@ export class LeadcreationComponent implements OnInit {
   
   }
 
-  // onSaveProcced(){
-  //  this.router.navigate(['/leadDashboard'])
-  // }
 
 
 }

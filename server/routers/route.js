@@ -32,6 +32,11 @@ router.get('/getStatedropDown/:country_code',leadDashboard.getStatedropDownContr
 router.get('/getCitydropDown/:state_name',leadDashboard.getCitydropDownController);
 router.get('/india/getIndiaStateOnlyDrop',leadDashboard.getAgentStateController);
 router.post('/sisPersonal',leadDashboard.createSISPersonalController);
+router.post('/saveSISCalculation',leadDashboard.saveSISCalculationController);
+router.post('/sisCalculation',leadDashboard.createSISCalculationController);
+router.post('/sisCalculation/InvestTextAmount',leadDashboard.createSISCaluclationInvestTextController);
+
+
 
 
 

@@ -163,3 +163,40 @@ module.exports.createSISPersonalController=async function(req,resp){
 
   }
 }
+
+module.exports.saveSISCalculationController=async function(req,resp){
+  try{
+   let data=await leadDashboard.saveSISCaluclationModel(req);
+   console.log("data",data);
+  resp.json({status:'true',message:'SIS Save Successfully',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in SIS Creation'});
+
+  }
+}
+
+module.exports.createSISCalculationController=async function(req,resp){
+  try{
+   let data=await leadDashboard.createSISCaluclationModel(req);
+   console.log("data",data);
+  resp.json({status:'true',message:'SIS Calculate Successfully',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in SIS Calculate'});
+
+  }
+}
+
+
+module.exports.createSISCaluclationInvestTextController=async function(req,resp){
+  try{
+   let data=await leadDashboard.createSISCaluclationInvestTextModel(req);
+   console.log("data",data);
+  resp.json({status:'true',message:'SIS Calculate Successfully',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in SIS Calculate'});
+
+  }
+}
