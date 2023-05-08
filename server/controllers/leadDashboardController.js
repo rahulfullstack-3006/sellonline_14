@@ -200,3 +200,15 @@ module.exports.createSISCaluclationInvestTextController=async function(req,resp)
 
   }
 }
+
+module.exports.saveSISRiderSelectionController=async function(req,resp){
+  try{
+   let data=await leadDashboard.saveSISRiderSelectionModel(req);
+   console.log("data",data);
+  resp.json({status:'true',message:'SIS Rider Selected Successfully',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in SIS Rider Selection'});
+
+  }
+}

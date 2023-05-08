@@ -10,6 +10,7 @@ const StateModel=require('../models/statesModel');
 const CityModel=require('../models/cityModel');
 const mongoose=require('mongoose');
 const SISCalculation = require('../models/sisCalculationSchema');
+const SISRiderSelection=require('../models/sisRiderSelection');
 
 // console.log(State.getAllStates());
 
@@ -357,6 +358,29 @@ module.exports.createSISCaluclationInvestTextModel=async function(req,resp){
           let calculateInvestTextReceiveAmount=(req.body.annual_invest_text + req.body.period_of + req.body.income_period) *11/100;
           console.log("calculateReceiveAmount",calculateInvestTextReceiveAmount);
         return Math.floor(calculateInvestTextReceiveAmount)
+      }
+      catch(err){
+        console.log("error in catch",err);
+        return err
+      }
+    }
+
+    module.exports.saveSISRiderSelectionModel=async function(req,resp){
+      let sisRiderSelectionDetails=new SISRiderSelection({
+        wellnessFlag:req.body.wellnessFlag,
+        death_radio:req.body.death_radio,
+        hosiptal_radio:req.body.hosiptal_radio,
+        criticare_plus:req.body.criticare_plus,
+        atpd_rider:req.body.atpd_rider,
+        tb_rider:req.body.tb_rider,
+        ad_rider:req.body.ad_rider,
+        hospicare_rider:req.body.hospicare_rider
+      })
+      console.log("sisRiderSelectionDetails",sisRiderSelectionDetails);
+      try{
+        let data =await sisRiderSelectionDetails.save();
+        console.log("data for try",data);
+        return data;
       }
       catch(err){
         console.log("error in catch",err);

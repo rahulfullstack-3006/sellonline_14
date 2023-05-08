@@ -22,7 +22,9 @@ export class MainService {
   sisPersonal='/sisPersonal';
   saveSISCalculationURL='/saveSISCalculation';
   sisCalculation='/sisCalculation';
-  sisCalculationInvestTextAmount='/sisCalculation/InvestTextAmount'
+  sisCalculationInvestTextAmount='/sisCalculation/InvestTextAmount';
+  sisRiderSelectionUrl='/saveSISRiderSelection';
+
 
 
   // headers=header || {};
@@ -99,8 +101,12 @@ export class MainService {
     return this.http.post(this.APIURL + this.sisCalculation,body,{headers:this.headerObj()});
   }
 
-    public createSISCalculationInvestTextAmount(body:any){ 
+  public createSISCalculationInvestTextAmount(body:any){ 
     return this.http.post(this.APIURL + this.sisCalculationInvestTextAmount,body,{headers:this.headerObj()});
+  }
+
+  public saveSISRiderSelected(body:any){ 
+    return this.http.post(this.APIURL + this.sisRiderSelectionUrl,body,{headers:this.headerObj()});
   }
 
 }

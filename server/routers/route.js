@@ -35,6 +35,8 @@ router.post('/sisPersonal',leadDashboard.createSISPersonalController);
 router.post('/saveSISCalculation',leadDashboard.saveSISCalculationController);
 router.post('/sisCalculation',leadDashboard.createSISCalculationController);
 router.post('/sisCalculation/InvestTextAmount',leadDashboard.createSISCaluclationInvestTextController);
+router.post('/saveSISRiderSelection',leadDashboard.saveSISRiderSelectionController);
+
 
 
 
