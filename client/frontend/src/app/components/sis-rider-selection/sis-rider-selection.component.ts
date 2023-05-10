@@ -225,7 +225,16 @@ export class SisRiderSelectionComponent implements OnInit {
     console.log("this.sisRiderSelectionForm.value",this.sisRiderSelectionForm.value);
     this.mainService.saveSISRiderSelected(this.sisRiderSelectionForm.value).subscribe({
     next:(result:any)=>{
-      console.log("result",result);      
+      console.log("result",result['data']);  
+      const sisRiderData=JSON.stringify(result['data']);
+      console.log("sisRiderData",sisRiderData);
+      const parseSISRiderData=JSON.parse(sisRiderData)
+      this.sisIDLocalStorage['sisRiderData']=parseSISRiderData;
+      console.log("this.sisIDLocalStorage",this.sisIDLocalStorage);    
+      let sisAllRiderData=this.sisIDLocalStorage;
+      console.log("sisAllRiderData",sisAllRiderData); 
+      localStorage.setItem('sisAllRiderData',JSON.stringify(sisAllRiderData))
+         
     },
     error:(error)=>{
       console.log("Error",error);
