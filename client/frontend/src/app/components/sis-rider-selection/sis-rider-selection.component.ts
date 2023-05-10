@@ -18,19 +18,6 @@ export class SisRiderSelectionComponent implements OnInit {
   uinNumberFromLocal:any;
   leadIdFromLocal:any;
   sisIdFromLocal:any;
-  isChecked: boolean = true;
-  // isHosiptalRiderFlag:boolean=true;
-  isDeathRiderFlag:boolean=false;
-  deathChecked:boolean=true;
-  hosiptalChecked:boolean=false;
-  hospiCareRiderFlag:boolean=true;
-  uncheckCitriCareRiderOption:boolean=true;
-  uncheckATPDRiderOption:boolean=true;
-  uncheckTBRiderOption:boolean=true;
-  uncheckADRiderOption:boolean=true;
-  uncheckHospiCareRiderOption:boolean=true;
-  unShowSignFlag:boolean=false;
-  isNewCheck:any;
   selectedTab:Number=1;
   unCheckCriticareFlag:boolean=true;
   unCheckedATPDFlag:boolean=true;
@@ -57,7 +44,7 @@ export class SisRiderSelectionComponent implements OnInit {
       atpd_rider:['atpd_rider'],
       tb_rider:['tb_rider'],
       ad_rider:['ad_rider'],
-      hospicare_rider:['hospicare_rider']
+      hospicare_rider:['hospicare_rider'],
     })
     this.localSISStorage=localStorage.getItem('sisCalculationAllDetailsToken')
     this.sisIDLocalStorage=JSON.parse(this.localSISStorage);    
@@ -80,29 +67,7 @@ export class SisRiderSelectionComponent implements OnInit {
     }
   }
 
-  hospiCareChange(event:any){
-    this.sisRiderSelectionForm.controls.hospicare_rider.setValue(event.target.value);
-    console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
-
-  }
-
-  adChange(event:any){
-    this.sisRiderSelectionForm.controls.ad_rider.setValue(event.target.value);
-    console.log("this.sisRiderSelectionForm.value.ad_rider",this.sisRiderSelectionForm.value.ad_rider);
-    
-  }
-
-  termBoosterChange(event:any){
-    this.sisRiderSelectionForm.controls.term_booster_rider.setValue(event.target.value);
-    console.log("this.sisRiderSelectionForm.value.term_booster_rider",this.sisRiderSelectionForm.value.term_booster_rider);
-
-  }
-  critiCareChange(event:any){
-    this.sisRiderSelectionForm.controls.hospicare_rider.setValue(event.target.value);
-    console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
-
-  }
-
+ 
  wellnessProgramChange(event:any){
     console.log("eveeeeeeeee",event.target.checked);
     if(event.target.checked === false){
@@ -112,6 +77,11 @@ export class SisRiderSelectionComponent implements OnInit {
     this.isTBChecked=false;
     this.isADChecked=false;
     this.isHospiCareChecked=false;
+    const checkWellnesFalse=event.target.checked === false ?'N':'Y';
+    console.log("checkWellnesFalse for check",checkWellnesFalse);  
+    this.sisRiderSelectionForm.patchValue({ hospicare_rider: checkWellnesFalse }); 
+    console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
+    
     console.log("this.isWellnessChecked not checked",
     this.isWellnessChecked,this.isCriticareChecked,this.isATPDChecked,this.isTBChecked,this.isADChecked,this.isHospiCareChecked);
     }else{
@@ -120,9 +90,11 @@ export class SisRiderSelectionComponent implements OnInit {
       this.isATPDChecked=true;
       this.isTBChecked=true;
       this.isADChecked=true;
-      this.isHospiCareChecked=true;
-      console.log("this.isWellnessChecked  checked",
-      this.isWellnessChecked,this.isCriticareChecked,this.isATPDChecked,this.isTBChecked,this.isADChecked,this.isHospiCareChecked);
+      this.isHospiCareChecked=true;      
+      const checkWellnesTrue=event.target.checked === true ?'Y':'N';
+      console.log("checkWellnesTrue for check",checkWellnesTrue);  
+      this.sisRiderSelectionForm.patchValue({ hospicare_rider: checkWellnesTrue }); 
+      console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
     }
   }
 
@@ -223,9 +195,9 @@ export class SisRiderSelectionComponent implements OnInit {
     this.sisRiderSelectionForm.value.atpd_rider=this.sisRiderSelectionForm.get('atpd_rider').value === true?'Y':'N';
     this.sisRiderSelectionForm.value.tb_rider=this.sisRiderSelectionForm.get('tb_rider').value === true?'Y':'N';
     this.sisRiderSelectionForm.value.ad_rider=this.sisRiderSelectionForm.get('ad_rider').value === true ?'Y':'N';
-    this.sisRiderSelectionForm.value.hospicare_rider=this.sisRiderSelectionForm.get('hospicare_rider').value == 'hospicare_rider'?'Y':'N';  
-   console.log("this.sisRiderSelectionForm.value",this.sisRiderSelectionForm.value);
-   this.mainService.saveSISRiderSelected(this.sisRiderSelectionForm.value).subscribe({
+    this.sisRiderSelectionForm.value.hospicare_rider=this.sisRiderSelectionForm.get('hospicare_rider').value == 'hospicare_rider'?'Y':'N';
+    console.log("this.sisRiderSelectionForm.value",this.sisRiderSelectionForm.value);
+    this.mainService.saveSISRiderSelected(this.sisRiderSelectionForm.value).subscribe({
     next:(result:any)=>{
       console.log("result",result);      
     },
