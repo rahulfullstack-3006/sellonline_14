@@ -32,6 +32,7 @@ export class SisRiderSelectionComponent implements OnInit {
   isHospiCareChecked:boolean=true;
   deathOrHospital:boolean=true;
   hospitalOrDeath:boolean=false;
+  riderCount:any=5;
 
   constructor(private fb:FormBuilder,private mainService:MainService,private router:Router) { }
 
@@ -81,9 +82,10 @@ export class SisRiderSelectionComponent implements OnInit {
     console.log("checkWellnesFalse for check",checkWellnesFalse);  
     this.sisRiderSelectionForm.patchValue({ hospicare_rider: checkWellnesFalse }); 
     console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
-    
     console.log("this.isWellnessChecked not checked",
     this.isWellnessChecked,this.isCriticareChecked,this.isATPDChecked,this.isTBChecked,this.isADChecked,this.isHospiCareChecked);
+    this.riderCount=0;
+    console.log("this.riderCount",this.riderCount);
     }else{
       this.isWellnessChecked=true;
       this.isCriticareChecked=true;
@@ -95,6 +97,8 @@ export class SisRiderSelectionComponent implements OnInit {
       console.log("checkWellnesTrue for check",checkWellnesTrue);  
       this.sisRiderSelectionForm.patchValue({ hospicare_rider: checkWellnesTrue }); 
       console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
+      this.riderCount=this.riderCount + 5;
+      console.log("this.riderCount",this.riderCount);
     }
   }
 
@@ -106,12 +110,18 @@ export class SisRiderSelectionComponent implements OnInit {
       this.sisRiderSelectionForm.patchValue({ criticare_plus: uncheckCriticare });
       this.unCheckCriticareFlag=false;
       console.log("criticare plus rider",this.sisRiderSelectionForm.value.criticare_plus); 
+      this.riderCount=this.riderCount-1;
+      console.log("this.riderCount",this.riderCount);
     }else{
       const uncheckCriticare=event.target.checked === true ?'Y':'N';
       console.log("uncheckCriticare for check",uncheckCriticare);  
       this.sisRiderSelectionForm.patchValue({ criticare_plus: uncheckCriticare });
       console.log("criticare plus rider else",this.sisRiderSelectionForm.value.criticare_plus);
       this.unCheckCriticareFlag=true;
+      this.riderCount=this.riderCount+1;
+      console.log("this.riderCount",this.riderCount);
+      
+      
     }
   }
 
@@ -123,12 +133,17 @@ export class SisRiderSelectionComponent implements OnInit {
       this.sisRiderSelectionForm.patchValue({ atpd_rider: uncheckATPD });
       this.unCheckedATPDFlag=false;
       console.log("atpd  rider",this.sisRiderSelectionForm.value.atpd_rider); 
+      this.riderCount=this.riderCount-1;
+      console.log("this.riderCount",this.riderCount);
     }else{
       const uncheckATPD=event.target.checked === true ?'Y':'N';
       console.log("uncheckATPD for check",uncheckATPD);  
       this.sisRiderSelectionForm.patchValue({ atpd_rider: uncheckATPD });
       this.unCheckedATPDFlag=true;
       console.log("uncheckATPD else",this.sisRiderSelectionForm.value.atpd_rider);
+      this.riderCount=this.riderCount+1;
+      console.log("this.riderCount",this.riderCount);
+      
 
     }
   }
@@ -141,13 +156,16 @@ export class SisRiderSelectionComponent implements OnInit {
       this.sisRiderSelectionForm.patchValue({ tb_rider: uncheckTB });
       this.unCheckedTBRFlag=false;
       console.log("criticare plus rider",this.sisRiderSelectionForm.value.tb_rider); 
+      this.riderCount=this.riderCount-1;
+      console.log("this.riderCount",this.riderCount);
     }else{
       const uncheckTB=event.target.checked === true ?'Y':'N';
       console.log("uncheckTB for check",uncheckTB);  
       this.sisRiderSelectionForm.patchValue({ tb_rider: uncheckTB });
       this.unCheckedTBRFlag=true;
       console.log("criticare plus rider else",this.sisRiderSelectionForm.value.tb_rider);
-
+      this.riderCount=this.riderCount+1;
+      console.log("this.riderCount",this.riderCount);
     }
   }
 
@@ -159,12 +177,16 @@ export class SisRiderSelectionComponent implements OnInit {
       this.sisRiderSelectionForm.patchValue({ ad_rider: uncheckADR });
       this.unCheckedADRFlag=false;
       console.log("criticare plus rider",this.sisRiderSelectionForm.value.ad_rider); 
+      this.riderCount=this.riderCount-1;
+      console.log("this.riderCount",this.riderCount);
     }else{
       const uncheckADR=event.target.checked === true ?'Y':'N';
       console.log("uncheckADR for check",uncheckADR);  
       this.sisRiderSelectionForm.patchValue({ ad_rider: uncheckADR });
       this.unCheckedADRFlag=true;
       console.log("criticare plus rider else",this.sisRiderSelectionForm.value.ad_rider);
+      this.riderCount=this.riderCount+1;
+      console.log("this.riderCount",this.riderCount);
 
     }
   }
@@ -177,12 +199,16 @@ export class SisRiderSelectionComponent implements OnInit {
       this.sisRiderSelectionForm.patchValue({ hospicare_rider: uncheckHospiRider });
       this.unCheckedHospiCareFlag=false;
       console.log("criticare plus rider",this.sisRiderSelectionForm.value.hospicare_rider); 
+      this.riderCount=this.riderCount-1;
+      console.log("this.riderCount",this.riderCount);
     }else{
       const uncheckHospiRider=event.target.checked === true ?'Y':'N';
       console.log("uncheckHospiRider for check",uncheckHospiRider);  
       this.sisRiderSelectionForm.patchValue({ hospicare_rider: uncheckHospiRider });
       this.unCheckedHospiCareFlag=true;
       console.log("criticare plus rider else",this.sisRiderSelectionForm.value.hospicare_rider);
+      this.riderCount=this.riderCount+1;
+      console.log("this.riderCount",this.riderCount);
 
     }
   }
@@ -210,7 +236,7 @@ export class SisRiderSelectionComponent implements OnInit {
   }
 
   onContinue(){
-    this.router.navigate(['/sisRiderCalculation'])
+    // this.router.navigate(['/sisRiderCalculation'])
   }
 
 }

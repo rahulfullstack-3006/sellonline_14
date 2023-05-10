@@ -74,6 +74,22 @@
  color: #1C86F0;
  font-weight: bold;
 }
+.rider_count{
+  margin-left: 58px;
+  border: 1px solid gray;
+  height: 26px;
+  width: 80px;
+  padding: 3px;
+  background: #FFFFFF;
+  border-radius: 5px;
+  padding-left: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.rider_count span{
+  color: #1C86F0;
+}
 
 /*slider radio part*/
 .switch {
