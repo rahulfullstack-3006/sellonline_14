@@ -19,7 +19,7 @@ export class SisRiderSelectionComponent implements OnInit {
   leadIdFromLocal:any;
   sisIdFromLocal:any;
   isChecked: boolean = true;
-  isHosiptalRiderFlag:boolean=true;
+  // isHosiptalRiderFlag:boolean=true;
   isDeathRiderFlag:boolean=false;
   deathChecked:boolean=true;
   hosiptalChecked:boolean=false;
@@ -29,14 +29,27 @@ export class SisRiderSelectionComponent implements OnInit {
   uncheckTBRiderOption:boolean=true;
   uncheckADRiderOption:boolean=true;
   uncheckHospiCareRiderOption:boolean=true;
+  unShowSignFlag:boolean=false;
   isNewCheck:any;
+  selectedTab:Number=1;
+  unCheckCriticareFlag:boolean=true;
+  unCheckedATPDFlag:boolean=true;
+  unCheckedTBRFlag:boolean=true;
+  unCheckedADRFlag:boolean=true;
+  unCheckedHospiCareFlag:boolean=true;
+  isWellnessChecked:boolean=true;
+  isCriticareChecked:boolean=true;
+  isATPDChecked:boolean=true;
+  isTBChecked:boolean=true;
+  isADChecked:boolean=true;
+  isHospiCareChecked:boolean=true;
+  deathOrHospital:boolean=true;
+  hospitalOrDeath:boolean=false;
 
   constructor(private fb:FormBuilder,private mainService:MainService,private router:Router) { }
 
   ngOnInit(): void {
-
     this.sisRiderSelectionForm=this.fb.group({
-      // wellnessFlag:['wellnessFlag'],
       wellnessFlag:['Y'],
       death_radio:['death_radio'],
       hosiptal_radio:[''],
@@ -45,7 +58,6 @@ export class SisRiderSelectionComponent implements OnInit {
       tb_rider:['tb_rider'],
       ad_rider:['ad_rider'],
       hospicare_rider:['hospicare_rider']
-
     })
     this.localSISStorage=localStorage.getItem('sisCalculationAllDetailsToken')
     this.sisIDLocalStorage=JSON.parse(this.localSISStorage);    
@@ -54,226 +66,168 @@ export class SisRiderSelectionComponent implements OnInit {
     this.sisIdFromLocal=this.sisIDLocalStorage['valueSISPersonal']['sisId'];   
   }
 
-  wellnessProgramChange(event:any){
-    console.log("eveeeeeeeee",event);
-    
-    // this.isChecked = !this.isChecked;
-    this.hospiCareRiderFlag=true;
-    if(event === 'Y'){
-      this.isChecked=true;
-      console.log("wellness check",this.isChecked);
-      this.sisRiderSelectionForm.value.criticare_plus=this.sisRiderSelectionForm.get('criticare_plus').value == 'criticare_plus'?'Y':'N';
-      this.sisRiderSelectionForm.value.atpd_rider=this.sisRiderSelectionForm.get('atpd_rider').value == 'atpd_rider'?'Y':'N';
-      this.sisRiderSelectionForm.value.tb_rider=this.sisRiderSelectionForm.get('tb_rider').value == 'tb_rider' ?'Y':'N';
-      this.sisRiderSelectionForm.value.ad_rider=this.sisRiderSelectionForm.get('ad_rider').value == 'ad_rider' ?'Y':'N';
-      this.sisRiderSelectionForm.value.hospicare_rider=this.sisRiderSelectionForm.get('hospicare_rider').value == 'hospicare_rider'?'Y':'N';
-    console.log("all rider already selected",this.sisRiderSelectionForm.value.criticare_plus,this.sisRiderSelectionForm.value.atpd_rider,this.sisRiderSelectionForm.value.tb_rider,this.sisRiderSelectionForm.value.ad_rider,this.sisRiderSelectionForm.value.hospicare_rider);
-
+  selectTab(tab:any,event:any){
+    console.log("tabbbbbb",tab);
+    this.selectedTab=tab;
+    if(this.selectedTab === 2 && event.target.checked === true){
+       this.deathOrHospital=false;
+       this.hospitalOrDeath=true
+       console.log("death selected",this.deathOrHospital,this.hospitalOrDeath,this.selectedTab);     
     }else{
-      console.log("wellness else",this.isChecked);
-      this.isChecked=false;
-    console.log("wellness else check",this.isChecked);
-    console.log("all rider not selected",this.sisRiderSelectionForm.value.criticare_plus,this.sisRiderSelectionForm.value.atpd_rider,this.sisRiderSelectionForm.value.tb_rider,this.sisRiderSelectionForm.value.ad_rider,this.sisRiderSelectionForm.value.hospicare_rider);
-    this.sisRiderSelectionForm.value.criticare_plus=this.sisRiderSelectionForm.get('criticare_plus').value == 'criticare_plus'?'N':'Y';
-    this.sisRiderSelectionForm.value.atpd_rider=this.sisRiderSelectionForm.get('atpd_rider').value == 'atpd_rider'?'N':'Y';
-    this.sisRiderSelectionForm.value.tb_rider=this.sisRiderSelectionForm.get('tb_rider').value == 'tb_rider' ?'N':'Y';
-    this.sisRiderSelectionForm.value.ad_rider=this.sisRiderSelectionForm.get('ad_rider').value == 'ad_rider' ?'N':'Y';
-    this.sisRiderSelectionForm.value.hospicare_rider=this.sisRiderSelectionForm.get('hospicare_rider').value == 'hospicare_rider'?'N':'Y';
-    console.log("all rider",this.sisRiderSelectionForm.value.criticare_plus,this.sisRiderSelectionForm.value.atpd_rider,this.sisRiderSelectionForm.value.tb_rider,this.sisRiderSelectionForm.value.ad_rider,this.sisRiderSelectionForm.value.hospicare_rider);
-    
+      this.deathOrHospital=true;
+      this.hospitalOrDeath=false
+      console.log("death selected",this.deathOrHospital,this.hospitalOrDeath,this.selectedTab);  
     }
-
-    // if(event.target.value === 'wellnessFlag'){
-    //   console.log("wellness if");
-      
-    // this.isChecked=false;
-    // console.log("wellness check",this.isChecked);
-    
-    // }else{
-    //   console.log("wellness else");
-    //   this.isChecked=true;
-    // console.log("wellness else check",this.isChecked);
-
-    // }
-
-
-
-  // console.log("event",event.target.value);
-  // this.sisRiderSelectionForm.value.criticare_plus=this.sisRiderSelectionForm.get('criticare_plus').value?'N':'Y';
-  // console.log("this.sisRiderSelectionForm.value.criticare_plus",this.sisRiderSelectionForm.value.criticare_plus); 
   }
 
-  // onCheckboxChange(value: boolean) {
-  //   console.log("value checkbox",value); 
-  //   this.sisRiderSelectionForm.patchValue({
-  //     myCheckbox: value ? true : false,
-  //   });
-  // }
+  hospiCareChange(event:any){
+    this.sisRiderSelectionForm.controls.hospicare_rider.setValue(event.target.value);
+    console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
 
-//   checkValue(event: any){
-//     console.log("new event",event);
-//  }
+  }
 
+  adChange(event:any){
+    this.sisRiderSelectionForm.controls.ad_rider.setValue(event.target.value);
+    console.log("this.sisRiderSelectionForm.value.ad_rider",this.sisRiderSelectionForm.value.ad_rider);
+    
+  }
+
+  termBoosterChange(event:any){
+    this.sisRiderSelectionForm.controls.term_booster_rider.setValue(event.target.value);
+    console.log("this.sisRiderSelectionForm.value.term_booster_rider",this.sisRiderSelectionForm.value.term_booster_rider);
+
+  }
+  critiCareChange(event:any){
+    this.sisRiderSelectionForm.controls.hospicare_rider.setValue(event.target.value);
+    console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
+
+  }
+
+ wellnessProgramChange(event:any){
+    console.log("eveeeeeeeee",event.target.checked);
+    if(event.target.checked === false){
+    this.isWellnessChecked=false;
+    this.isCriticareChecked=false;
+    this.isATPDChecked=false;
+    this.isTBChecked=false;
+    this.isADChecked=false;
+    this.isHospiCareChecked=false;
+    console.log("this.isWellnessChecked not checked",
+    this.isWellnessChecked,this.isCriticareChecked,this.isATPDChecked,this.isTBChecked,this.isADChecked,this.isHospiCareChecked);
+    }else{
+      this.isWellnessChecked=true;
+      this.isCriticareChecked=true;
+      this.isATPDChecked=true;
+      this.isTBChecked=true;
+      this.isADChecked=true;
+      this.isHospiCareChecked=true;
+      console.log("this.isWellnessChecked  checked",
+      this.isWellnessChecked,this.isCriticareChecked,this.isATPDChecked,this.isTBChecked,this.isADChecked,this.isHospiCareChecked);
+    }
+  }
 
   unCheckedCriticarePlusRider(event:any){
-    this.uncheckCitriCareRiderOption=false;
-    // this.sisRiderSelectionForm.value.criticare_plus=this.sisRiderSelectionForm.get('criticare_plus').value?'N':'Y';
-    if(event.target.value == 'criticare_plus'){
-      this.sisRiderSelectionForm.value.criticare_plus='N';
+    console.log("event for unCheckedCriticarePlusRider",event.target.value,event.target.checked);
+    if(event.target.checked === false){
+      const uncheckCriticare=event.target.checked === false ?'N':'Y';
+      console.log("uncheckCriticare for uncheck",uncheckCriticare);  
+      this.sisRiderSelectionForm.patchValue({ criticare_plus: uncheckCriticare });
+      this.unCheckCriticareFlag=false;
+      console.log("criticare plus rider",this.sisRiderSelectionForm.value.criticare_plus); 
     }else{
-    this.sisRiderSelectionForm.value.criticare_plus='Y';
-
+      const uncheckCriticare=event.target.checked === true ?'Y':'N';
+      console.log("uncheckCriticare for check",uncheckCriticare);  
+      this.sisRiderSelectionForm.patchValue({ criticare_plus: uncheckCriticare });
+      console.log("criticare plus rider else",this.sisRiderSelectionForm.value.criticare_plus);
+      this.unCheckCriticareFlag=true;
     }
-    // this.sisRiderSelectionForm.valueChanges.subscribe((value:any) => {
-    //   console.log("value",value);
-    //   this.sisRiderSelectionForm.controls.setValue(value.criticare_plus='N', { emitEvent: false });
-    // });
-    console.log("this.sisRiderSelectionForm.value.criticare_plus",this.sisRiderSelectionForm.value.criticare_plus);
-
-    
   }
 
   unCheckedATPDRider(event:any){
-    this.uncheckATPDRiderOption=false;
-    // this.sisRiderSelectionForm.value.atpd_rider=this.sisRiderSelectionForm.get('atpd_rider').value?'N':'Y';
-    if(event.target.value == 'atpd_rider'){
-      this.sisRiderSelectionForm.value.atpd_rider='N';
+    console.log("event for unCheckedATPDRider",event.target.value,event.target.checked);
+    if(event.target.checked === false){
+      const uncheckATPD=event.target.checked === false ?'N':'Y';
+      console.log("uncheckATPD for uncheck",uncheckATPD);  
+      this.sisRiderSelectionForm.patchValue({ atpd_rider: uncheckATPD });
+      this.unCheckedATPDFlag=false;
+      console.log("atpd  rider",this.sisRiderSelectionForm.value.atpd_rider); 
     }else{
-    this.sisRiderSelectionForm.value.atpd_rider='Y';
+      const uncheckATPD=event.target.checked === true ?'Y':'N';
+      console.log("uncheckATPD for check",uncheckATPD);  
+      this.sisRiderSelectionForm.patchValue({ atpd_rider: uncheckATPD });
+      this.unCheckedATPDFlag=true;
+      console.log("uncheckATPD else",this.sisRiderSelectionForm.value.atpd_rider);
 
     }
-    // this.sisRiderSelectionForm.value.atpd_rider='N';
-    console.log("this.sisRiderSelectionForm.value.atpd_rider",this.sisRiderSelectionForm.value.atpd_rider);
-
-    
-
   }
 
   unCheckedTBRRider(event:any){
-    this.uncheckTBRiderOption=false;
-    // this.sisRiderSelectionForm.value.tb_rider=this.sisRiderSelectionForm.get('tb_rider').value?'N':'Y';
-    if(event.target.value == 'tb_rider'){
-      this.sisRiderSelectionForm.value.tb_rider='N';
+    console.log("event for unCheckedTBRRider",event.target.value,event.target.checked);
+    if(event.target.checked === false){
+      const uncheckTB=event.target.checked === false ?'N':'Y';
+      console.log("uncheckTB for uncheck",uncheckTB);  
+      this.sisRiderSelectionForm.patchValue({ tb_rider: uncheckTB });
+      this.unCheckedTBRFlag=false;
+      console.log("criticare plus rider",this.sisRiderSelectionForm.value.tb_rider); 
     }else{
-    this.sisRiderSelectionForm.value.tb_rider='Y';
+      const uncheckTB=event.target.checked === true ?'Y':'N';
+      console.log("uncheckTB for check",uncheckTB);  
+      this.sisRiderSelectionForm.patchValue({ tb_rider: uncheckTB });
+      this.unCheckedTBRFlag=true;
+      console.log("criticare plus rider else",this.sisRiderSelectionForm.value.tb_rider);
 
     }
-    // this.sisRiderSelectionForm.value.tb_rider='N';
-    console.log("this.sisRiderSelectionForm.value.tb_rider",this.sisRiderSelectionForm.value.tb_rider);
-
-
   }
 
   unCheckedADRRider(event:any){
-    this.uncheckADRiderOption=false;
-    if(event.target.value == 'ad_rider'){
-      this.sisRiderSelectionForm.value.ad_rider='N';
+    console.log("event for unCheckedADRRider",event.target.value,event.target.checked);
+    if(event.target.checked === false){
+      const uncheckADR=event.target.checked === false ?'N':'Y';
+      console.log("uncheckADR for uncheck",uncheckADR);  
+      this.sisRiderSelectionForm.patchValue({ ad_rider: uncheckADR });
+      this.unCheckedADRFlag=false;
+      console.log("criticare plus rider",this.sisRiderSelectionForm.value.ad_rider); 
     }else{
-    this.sisRiderSelectionForm.value.ad_rider='Y';
+      const uncheckADR=event.target.checked === true ?'Y':'N';
+      console.log("uncheckADR for check",uncheckADR);  
+      this.sisRiderSelectionForm.patchValue({ ad_rider: uncheckADR });
+      this.unCheckedADRFlag=true;
+      console.log("criticare plus rider else",this.sisRiderSelectionForm.value.ad_rider);
 
     }
-    // this.sisRiderSelectionForm.value.ad_rider=this.sisRiderSelectionForm.get('ad_rider').value?'N':'Y';
-    // this.sisRiderSelectionForm.value.ad_rider='N';
-    console.log("this.sisRiderSelectionForm.value.ad_rider",this.sisRiderSelectionForm.value.ad_rider);
-
-
   }
 
   unCheckedHospicareRider(event:any){
-    this.uncheckHospiCareRiderOption=false;
-    if(event.target.value == 'hospicare_rider'){
-      this.sisRiderSelectionForm.value.hospicare_rider='N';
+    console.log("event for unCheckedHospiCareRider",event.target.value,event.target.checked);
+    if(event.target.checked === false){
+      const uncheckHospiRider=event.target.checked === false ?'N':'Y';
+      console.log("uncheckHospiRider for uncheck",uncheckHospiRider);  
+      this.sisRiderSelectionForm.patchValue({ hospicare_rider: uncheckHospiRider });
+      this.unCheckedHospiCareFlag=false;
+      console.log("criticare plus rider",this.sisRiderSelectionForm.value.hospicare_rider); 
     }else{
-    this.sisRiderSelectionForm.value.hospicare_rider='Y';
+      const uncheckHospiRider=event.target.checked === true ?'Y':'N';
+      console.log("uncheckHospiRider for check",uncheckHospiRider);  
+      this.sisRiderSelectionForm.patchValue({ hospicare_rider: uncheckHospiRider });
+      this.unCheckedHospiCareFlag=true;
+      console.log("criticare plus rider else",this.sisRiderSelectionForm.value.hospicare_rider);
 
-    }
-    // this.sisRiderSelectionForm.value.hospicare_rider=this.sisRiderSelectionForm.get('hospicare_rider').value?'N':'Y';
-    // this.sisRiderSelectionForm.value.hospicare_rider='N';
-    console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
-
-
-  }
-
-
-  riderSelectionHospital(event:any){
-    this.deathChecked=false;
-    this.hosiptalChecked=true;
-    console.log("'hosiptal_radio'",event.target.value);
-    let riderCheck=event.target.value
-    if(riderCheck == 'hosiptal_radio'){
-      this.isDeathRiderFlag=true;
-      this.isHosiptalRiderFlag=false;
-      console.log("this.isDeathRiderFlag",this.isDeathRiderFlag,this.isHosiptalRiderFlag); 
-      this.sisRiderSelectionForm.value.hosiptal_radio=this.sisRiderSelectionForm.get('hosiptal_radio').value == 'hosiptal_radio'?'Y':'N';
-      console.log("this.sisRiderSelectionForm.value.hospicare_rider",this.sisRiderSelectionForm.value.hospicare_rider);
-      
-  
-    }else{
-      console.log("hosiptal is not click");   
-      this.sisRiderSelectionForm.value.hosiptal_radio=this.sisRiderSelectionForm.value.hosiptal_radio.value == ''?'N':'Y';
-      console.log("this.sisRiderSelectionForm.value.hosiptal_radio",this.sisRiderSelectionForm.value.hosiptal_radio);
-      
-    }
-  }
-
-  riderSelectionDeath(event:any){
-    this.deathChecked=true;
-    this.hosiptalChecked=false;
-    console.log("'death_radio'",event.target.value);
-    let riderCheck=event.target.value
-    if(riderCheck == 'death_radio'){
-      this.isDeathRiderFlag=false;
-      this.isHosiptalRiderFlag=true;
-      console.log("this.isDeathRiderFlag",this.isDeathRiderFlag,this.isHosiptalRiderFlag);    
     }
   }
 
   onSubmit(){
-    if(this.isChecked === false){
-      console.log("rider is selected",this.isChecked);
-      
-    console.log("all rider in form submit if",this.sisRiderSelectionForm.value.criticare_plus,this.sisRiderSelectionForm.value.atpd_rider,this.sisRiderSelectionForm.value.tb_rider,this.sisRiderSelectionForm.value.ad_rider,this.sisRiderSelectionForm.value.hospicare_rider,this.sisRiderSelectionForm.value.hospicare_rider);
-
-      this.sisRiderSelectionForm.value.wellnessFlag=this.sisRiderSelectionForm.get('wellnessFlag').value === true?'Y':'N';
-      this.sisRiderSelectionForm.value.death_radio=this.sisRiderSelectionForm.get('death_radio').value == 'death_radio'?'Y':'N';
-      this.sisRiderSelectionForm.value.hosiptal_radio=this.sisRiderSelectionForm.get('hosiptal_radio').value == 'hosiptal_radio'?'Y':'N';
-      this.sisRiderSelectionForm.value.criticare_plus=this.sisRiderSelectionForm.get('criticare_plus').value == 'criticare_plus'?'Y':'N';
-      this.sisRiderSelectionForm.value.atpd_rider=this.sisRiderSelectionForm.get('atpd_rider').value == 'atpd_rider'?'Y':'N';
-      this.sisRiderSelectionForm.value.tb_rider=this.sisRiderSelectionForm.get('tb_rider').value == 'tb_rider' ?'Y':'N';
-      this.sisRiderSelectionForm.value.ad_rider=this.sisRiderSelectionForm.get('ad_rider').value == 'ad_rider' ?'Y':'N';
-      this.sisRiderSelectionForm.value.hospicare_rider=this.sisRiderSelectionForm.get('hospicare_rider').value == 'hospicare_rider'?'Y':'N';  
-    console.log("all rider in form submit if",this.sisRiderSelectionForm.value.criticare_plus,this.sisRiderSelectionForm.value.atpd_rider,this.sisRiderSelectionForm.value.tb_rider,this.sisRiderSelectionForm.value.ad_rider,this.sisRiderSelectionForm.value.hospicare_rider,this.sisRiderSelectionForm.value.hospicare_rider);
-
-    }
-    else{
-      console.log("rider is not selected",this.isChecked);
-      // this.sisRiderSelectionForm.value.wellnessFlag=this.sisRiderSelectionForm.get('wellnessFlag').value?'Y':'N';
-      // this.sisRiderSelectionForm.value.death_radio=this.sisRiderSelectionForm.get('death_radio').value?'N':'Y';
-      // this.sisRiderSelectionForm.value.hosiptal_radio=this.sisRiderSelectionForm.get('hosiptal_radio').value == ''?'N':'Y';
-      // this.sisRiderSelectionForm.value.criticare_plus=this.sisRiderSelectionForm.get('criticare_plus').value?'N':'Y';
-      // this.sisRiderSelectionForm.value.atpd_rider=this.sisRiderSelectionForm.get('atpd_rider').value?'N':'Y';
-      // this.sisRiderSelectionForm.value.tb_rider=this.sisRiderSelectionForm.get('tb_rider').value?'N':'Y';
-      // this.sisRiderSelectionForm.value.ad_rider=this.sisRiderSelectionForm.get('ad_rider').value?'N':'Y';
-      // this.sisRiderSelectionForm.value.hospicare_rider=this.sisRiderSelectionForm.get('hospicare_rider').value?'N':'Y';
-    console.log("all rider in form submit else",this.sisRiderSelectionForm.value.criticare_plus,this.sisRiderSelectionForm.value.atpd_rider,this.sisRiderSelectionForm.value.tb_rider,this.sisRiderSelectionForm.value.ad_rider,this.sisRiderSelectionForm.value.hospicare_rider,this.sisRiderSelectionForm.value.hosiptal_radio);
-      this.sisRiderSelectionForm.value.wellnessFlag=this.sisRiderSelectionForm.get('wellnessFlag').value  =='' ?'N':'Y';
-      this.sisRiderSelectionForm.value.death_radio=this.sisRiderSelectionForm.get('death_radio').value == '' ?'N':'Y';
-      this.sisRiderSelectionForm.value.hosiptal_radio=this.sisRiderSelectionForm.get('hosiptal_radio').value == 'hosiptal_radio'?'Y':'N';
-      this.sisRiderSelectionForm.value.criticare_plus=this.sisRiderSelectionForm.get('criticare_plus').value == 'criticare_plus' ?'Y':'N';
-      this.sisRiderSelectionForm.value.atpd_rider=this.sisRiderSelectionForm.get('atpd_rider').value == 'atpd_rider' ?'Y':'N';
-      this.sisRiderSelectionForm.value.tb_rider=this.sisRiderSelectionForm.get('tb_rider').value == 'tb_rider' ?'Y':'N';
-      this.sisRiderSelectionForm.value.ad_rider=this.sisRiderSelectionForm.get('ad_rider').value == 'ad_rider' ?'Y':'N';
-      // this.sisRiderSelectionForm.value.hospicare_rider=this.sisRiderSelectionForm.get('hospicare_rider').value == 'hospicare_rider'?'Y':'N';
-    console.log("all rider in form submit else",this.sisRiderSelectionForm.value.criticare_plus,this.sisRiderSelectionForm.value.atpd_rider,this.sisRiderSelectionForm.value.tb_rider,this.sisRiderSelectionForm.value.ad_rider,this.sisRiderSelectionForm.value.hospicare_rider);
-
-
-    }
-   
+    this.sisRiderSelectionForm.value.wellnessFlag=this.sisRiderSelectionForm.get('wellnessFlag').value === true?'Y':'N';
+    this.sisRiderSelectionForm.value.death_radio=this.sisRiderSelectionForm.get('death_radio').value === true?'Y':'N';
+    this.sisRiderSelectionForm.value.hosiptal_radio=this.sisRiderSelectionForm.get('hosiptal_radio').value === true?'Y':'N';
+    this.sisRiderSelectionForm.value.criticare_plus=this.sisRiderSelectionForm.get('criticare_plus').value === true?'Y':'N';
+    this.sisRiderSelectionForm.value.atpd_rider=this.sisRiderSelectionForm.get('atpd_rider').value === true?'Y':'N';
+    this.sisRiderSelectionForm.value.tb_rider=this.sisRiderSelectionForm.get('tb_rider').value === true?'Y':'N';
+    this.sisRiderSelectionForm.value.ad_rider=this.sisRiderSelectionForm.get('ad_rider').value === true ?'Y':'N';
+    this.sisRiderSelectionForm.value.hospicare_rider=this.sisRiderSelectionForm.get('hospicare_rider').value == 'hospicare_rider'?'Y':'N';  
    console.log("this.sisRiderSelectionForm.value",this.sisRiderSelectionForm.value);
    this.mainService.saveSISRiderSelected(this.sisRiderSelectionForm.value).subscribe({
     next:(result:any)=>{
-      console.log("result",result);
-      
+      console.log("result",result);      
     },
     error:(error)=>{
       console.log("Error",error);

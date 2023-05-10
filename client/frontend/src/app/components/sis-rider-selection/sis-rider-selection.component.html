@@ -38,10 +38,7 @@
   </div>
   <div class="tabacco_radio">
     <label class="switch">
-      <input type="checkbox" value="wellnessFlag" formControlName="wellnessFlag" [(ngModel)]="isChecked" (click)="wellnessProgramChange(isChecked?'N':'Y')" >
-      <!-- <input type="checkbox" formControlName="wellnessFlag" [(ngModel)]="isNewCheck" (change)="checkValue(isNewCheck?'A':'B')" /> -->
-      <!-- <input type="checkbox"  formControlName="wellnessFlag" (change)="onCheckboxChange($event.target.checked)" > -->
-
+      <input type="checkbox" value="wellnessFlag" formControlName="wellnessFlag" [(ngModel)]="isWellnessChecked" (click)="wellnessProgramChange($event)" >
       <span class="slider round"></span>
     </label>
   </div>
@@ -55,14 +52,16 @@
     <div class="radio_extra">
     <div class="rider_radio_heading">
       <label class="radio_container">
-        <input type="radio"  value="death_radio" formControlName="death_radio" (click)="riderSelectionDeath($event)" [checked]="deathChecked">
+        <input type="checkbox"  value="death_radio" formControlName="death_radio" (click)="selectTab(1,$event)" [(ngModel)]="deathOrHospital" >
+
         <span class="checkmark"></span>
           <div class="checkmark_one">
             Death
           </div>
       </label>
       <label class="radio_container">
-        <input type="radio"  value="hosiptal_radio" formControlName="hosiptal_radio" (click)="riderSelectionHospital($event)" [checked]="hosiptalChecked">
+        <input type="checkbox"  value="hosiptal_radio" formControlName="hosiptal_radio" (click)="selectTab(2,$event)"  [(ngModel)]="hospitalOrDeath">
+
         <span class="checkmark"></span>
           <div class="checkmark_one">
             Hospitalization
@@ -103,13 +102,14 @@
   <div class="rider_plus_rop">
     <div class="all_riders_name">
       <ul class="each_riders">
-        <div class="criti_selected" *ngIf="isHosiptalRiderFlag">
+        <div *ngIf="selectedTab === 1">
+        <div class="criti_selected">
         <div class="criticare">
           <li class="criticare_each_li">Criticare Plus (CCP)</li>
           </div>
           <div class="care_selected">
           <label class="radio_container">
-            <input type="radio" value="criticare_plus" formControlName="criticare_plus" [checked]="isChecked && uncheckCitriCareRiderOption" (click)="unCheckedCriticarePlusRider($event)"/>
+            <input type="checkbox" value="criticare_plus" formControlName="criticare_plus" [(ngModel)]="isCriticareChecked && unCheckCriticareFlag" (click)="unCheckedCriticarePlusRider($event)"/>
             <span class="checkmark"></span>
             <div class="checkmark_one">
               Selected
@@ -118,13 +118,14 @@
             
         </div>
       </div>
-      <div class="criti_selected" *ngIf="isHosiptalRiderFlag">
+      <div class="criti_selected">
         <div class="criticare">
           <li class="criticare_each_li">Accidental Total & Permanent Disability (ATPD)</li>
           </div>
           <div class="care_selected">
           <label class="radio_container">
-            <input type="radio" value="atpd_rider" formControlName="atpd_rider" [checked]="isChecked && uncheckATPDRiderOption" (click)="unCheckedATPDRider($event)"/>
+            <input type="checkbox" value="atpd_rider" formControlName="atpd_rider" [(ngModel)]="isATPDChecked && unCheckedATPDFlag" (click)="unCheckedATPDRider($event)"/>
+
             <span class="checkmark"></span>
             <div class="checkmark_one">
               Selected
@@ -132,13 +133,13 @@
             </label>
         </div>
       </div>
-      <div class="criti_selected" *ngIf="isHosiptalRiderFlag">
+      <div class="criti_selected">
         <div class="criticare">
           <li class="criticare_each_li">Term Booster (TB)</li>
           </div>
           <div class="care_selected">
           <label class="radio_container">
-            <input type="radio" value="tb_rider" formControlName="tb_rider" [checked]="isChecked && uncheckTBRiderOption" (click)="unCheckedTBRRider($event)"/>
+            <input type="checkbox" value="tb_rider" formControlName="tb_rider" [(ngModel)]="isTBChecked && unCheckedTBRFlag" (click)="unCheckedTBRRider($event)"/>
             <span class="checkmark"></span>
             <div class="checkmark_one">
               Selected
@@ -146,13 +147,13 @@
             </label>
         </div>
       </div>
-      <div class="criti_selected" *ngIf="isHosiptalRiderFlag">
+      <div class="criti_selected">
         <div class="criticare">
           <li class="criticare_each_li">Accidental Death (AD)</li>
           </div>
           <div class="care_selected">
           <label class="radio_container">
-            <input type="radio" value="ad_rider" formControlName="ad_rider" [checked]="isChecked && uncheckADRiderOption" (click)="unCheckedADRRider($event)"/>
+            <input type="checkbox" value="ad_rider" formControlName="ad_rider" [(ngModel)]="isADChecked && unCheckedADRFlag" (click)="unCheckedADRRider($event)"/>
             <span class="checkmark"></span>
             <div class="checkmark_one">
               Selected
@@ -160,13 +161,16 @@
             </label>
         </div>
       </div>
-      <div class="criti_selected" *ngIf="isDeathRiderFlag && isChecked">
+    </div>
+    <div *ngIf="selectedTab === 2">
+      <div class="criti_selected" >
         <div class="criticare">
           <li class="criticare_each_li">HospiCare</li>
           </div>
           <div class="care_selected">
           <label class="radio_container">
-            <input type="radio" value="hospicare_rider" formControlName="hospicare_rider" [checked]="isChecked && uncheckHospiCareRiderOption" (click)="unCheckedHospicareRider($event)"/>
+            <input type="checkbox" value="hospicare_rider" formControlName="hospicare_rider" [(ngModel)]="isHospiCareChecked && unCheckedHospiCareFlag" (click)="unCheckedHospicareRider($event)"/>
+
             <span class="checkmark"></span>
             <div class="checkmark_one">
               Selected
@@ -174,10 +178,11 @@
             </label>
         </div>
       </div>
+    </div>
       </ul>
     </div>
     <div class="rop_tick_yes_no">
-      <div class="sign_center" *ngIf="isChecked">
+      <div class="sign_center">
       <label>
         <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/icon-check.svg?v=1677931786189"/>
       </label>
@@ -189,7 +194,7 @@
       </label>  
     </div>
 
-    <div class="sign_center" *ngIf="isHosiptalRiderFlag">
+    <div class="sign_center" *ngIf="deathOrHospital">
       <label>
         <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/icon-check.svg?v=1677931786189"/>
       </label>
@@ -201,7 +206,7 @@
       </label>  
     </div>
 
-    <div class="sign_center" *ngIf="isHosiptalRiderFlag ">
+    <div class="sign_center" *ngIf="deathOrHospital">
       <label>
         <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/icon-check.svg?v=1677931786189"/>
       </label>
@@ -213,7 +218,7 @@
       </label>  
     </div>
 
-    <div class="sign_center" *ngIf="isHosiptalRiderFlag">
+    <div class="sign_center" *ngIf="deathOrHospital">
       <label>
         <img src="https://sellonlineuat.tataaia.com/wps/PA_TATAAIA_SO/assets/images/riders/icon-check.svg?v=1677931786189"/>
       </label>
