@@ -236,7 +236,7 @@ export class SisRiderSelectionComponent implements OnInit {
   }
 
   onContinue(){
-    // this.router.navigate(['/sisRiderCalculation'])
+    this.router.navigate(['/sisRiderCalculation'])
   }
 
 }
