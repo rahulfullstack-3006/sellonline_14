@@ -315,7 +315,7 @@ module.exports.saveSISCaluclationModel=async function(req,resp){
 module.exports.createSISCaluclationModel=async function(req,resp){
       let sisCalculationDetails=new SISCalculation({
         annual_invest_amount:req.body.annual_invest_amount,
-        annual_invest_text:req.body.annual_invest_text,
+        // annual_invest_text:req.body.annual_invest_text,
         regular:req.body.regular,
         pay_mode:req.body.pay_mode,
         period_of:req.body.period_of,
@@ -328,7 +328,7 @@ module.exports.createSISCaluclationModel=async function(req,resp){
       console.log("sisCalculationDetails",sisCalculationDetails);
       try{
           let calculateReceiveAmount=(req.body.annual_invest_amount + req.body.period_of+req.body.income_period) *11/100;
-          console.log("formulaa",req.body.annual_invest_amount,req.body.annual_invest_text,req.body.period_of,req.body.income_period);
+          console.log("formulaa",req.body.annual_invest_amount,req.body.period_of,req.body.income_period);
           console.log("calculateReceiveAmount",calculateReceiveAmount);
         return Math.floor(calculateReceiveAmount)
       }
@@ -341,7 +341,7 @@ module.exports.createSISCaluclationModel=async function(req,resp){
 
 module.exports.createSISCaluclationInvestTextModel=async function(req,resp){
       let sisCalculationDetails=new SISCalculation({
-        annual_invest_amount:req.body.annual_invest_amount,
+        // annual_invest_amount:req.body.annual_invest_amount,
         annual_invest_text:req.body.annual_invest_text,
         regular:req.body.regular,
         pay_mode:req.body.pay_mode,
@@ -387,3 +387,70 @@ module.exports.createSISCaluclationInvestTextModel=async function(req,resp){
         return err
       }
     }
+
+    module.exports.updateChangeHospicareModel=async function(req,resp){
+     let hospicareRiderPremium=972;
+     let hospicareWellnessProgram=97;
+
+     try{
+      console.log("HospicareRider",hospicareRiderPremium,hospicareWellnessProgram);
+      return {hospicareRiderPremium,hospicareWellnessProgram}
+     }
+     catch(err){
+      console.log("error in catch",err);
+     }
+    }
+
+    module.exports.updateChangeAccidentalDeathModel=async function(req,resp){
+      let accidentalDeathRiderPremium=124;
+      let accidentalDeathWellnessProgram=6;
+ 
+      try{
+       console.log("AccidentalDeathRider",accidentalDeathRiderPremium,accidentalDeathWellnessProgram);
+       return {accidentalDeathRiderPremium,accidentalDeathWellnessProgram}
+      }
+      catch(err){
+       console.log("error in catch",err);
+      }
+     }
+
+     module.exports.updateChangeCriticareModel=async function(req,resp){
+      let criticareRiderPremium=900;
+      let criticareWellnessProgram=90;
+ 
+      try{
+       console.log("CriticareRider",criticareRiderPremium,criticareWellnessProgram);
+       return {criticareRiderPremium,criticareWellnessProgram}
+      }
+      catch(err){
+       console.log("error in catch",err);
+      }
+     }
+
+     module.exports.updateChangeTermBoosterModel=async function(req,resp){
+      let termBoosterRiderPremium=489;
+      let termBoosterWellnessProgram=49;
+ 
+      try{
+       console.log("CriticareRider",termBoosterRiderPremium,termBoosterWellnessProgram);
+       return {termBoosterRiderPremium,termBoosterWellnessProgram}
+      }
+      catch(err){
+       console.log("error in catch",err);
+      }
+     }
+
+     module.exports.updateChangeATPDModel=async function(req,resp){
+      let atpdRiderPremium=75;
+      let atpdWellnessProgram=4;
+ 
+      try{
+       console.log("ATPDRider",atpdRiderPremium,atpdWellnessProgram);
+       return {atpdRiderPremium,atpdWellnessProgram}
+      }
+      catch(err){
+       console.log("error in catch",err);
+      }
+     }
+
+    

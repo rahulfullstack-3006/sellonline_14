@@ -66,7 +66,7 @@
        <h3>OR</h3>
       </div>
       <div class="invest_word_text" >
-        <input  type="text"  value="{{radioInvestAmount}}" (input)="sisCalculationInvestTextAmount()" formControlName="annual_invest_text"/>
+        <input  type="text"  value="{{radioInvestAmount}}" (input)="sisCalculationInvestTextAmount($event)" formControlName="annual_invest_text"/>
         <div *ngIf="sisCalculationInvestForm.get('annual_invest_text').errors?.maxlength && numberInWords" class="validationError">
           Annual Income cannot exceed 9 digits.
         </div>

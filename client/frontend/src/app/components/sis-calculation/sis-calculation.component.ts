@@ -88,9 +88,9 @@ export class SisCalculationComponent implements OnInit {
       annual_invest_amount:this.sisCalculationInvestForm.value.annual_invest_amount,
       period_of:this.sisCalculationInvestForm.value.period_of,
       income_period:this.sisCalculationInvestForm.value.income_period,
-      annual_invest_text:this.sisCalculationInvestForm.value.annual_invest_text
+      // annual_invest_text:this.sisCalculationInvestForm.value.annual_invest_text
     }
-    console.log("bodyObj",bodyObj);
+    console.log("bodyObj on load",bodyObj);
     // this.sisIDLocalStorage['sisCalculation']=this.sisCalculationInvestForm.value;
     // console.log("this.sisIDLocalStorage",this.sisIDLocalStorage);  
     // let sisCalculationAllDetailsToken=JSON.stringify(this.sisIDLocalStorage);
@@ -117,9 +117,61 @@ export class SisCalculationComponent implements OnInit {
   })
   }
 
+  inputValueFromAnnualText:any;
+  investTextIntoWords:any
+  radioDataChange(event:any){
+    // this.sisIDLocalStorage['sisCalculation']=this.sisCalculationInvestForm.value;
+    // console.log("this.sisIDLocalStorage",this.sisIDLocalStorage);  
+    // let sisCalculationAllDetailsToken=JSON.stringify(this.sisIDLocalStorage);
+    // console.log("sisCalculationAllDetailsToken",sisCalculationAllDetailsToken);
+    // localStorage.setItem('sisCalculationAllDetailsToken',sisCalculationAllDetailsToken);
+    if(event){
+      this.radioInvestAmount=event.target.value;
+      console.log("this.radioInvestAmount",this.radioInvestAmount);
+     this.sisCalculationInvestForm.patchValue({ annual_invest_amount: this.radioInvestAmount }); 
+     console.log("radio amount change",this.sisCalculationInvestForm.value.annual_invest_amount);
+     this.sisCalculationInvestForm.patchValue({ annual_invest_text: '' }); 
+     console.log("reset annual_invest_text",this.sisCalculationInvestForm.value.annual_invest_text);
+     
+      this.investTextIntoWords=numWords(this.radioInvestAmount);
+      console.log("this.investTextIntoWords",this.investTextIntoWords);
+    }
+ 
+  }
+  // radioDataChange(event:any){
+  //   this.sisIDLocalStorage['sisCalculation']=this.sisCalculationInvestForm.value;
+  //   console.log("this.sisIDLocalStorage",this.sisIDLocalStorage);  
+  //   let sisCalculationAllDetailsToken=JSON.stringify(this.sisIDLocalStorage);
+  //   console.log("sisCalculationAllDetailsToken",sisCalculationAllDetailsToken);
+  //   localStorage.setItem('sisCalculationAllDetailsToken',sisCalculationAllDetailsToken);
+  //   if(event){
+  //     this.radioInvestAmount=event.target.value;
+  //     console.log("this.radioInvestAmount",this.radioInvestAmount);
+  //     this.investTextIntoWords=numWords(this.radioInvestAmount);
+  //     console.log("this.investTextIntoWords",this.investTextIntoWords);
+
+
+  //     // this.sisCalculationInvestForm.valueChanges.subscribe((value:any)=>{
+  //     // this.inputValueFromAnnualText=value.annual_invest_text;
+  //     // console.log("value.annual_invest_text",value.annual_invest_text);
+  //     // if(this.radioInvestAmount !== this.inputValueFromAnnualText){
+  //     //   this.radioInvestFlag=true;
+  //     //   console.log("this.radioInvestFlag",this.radioInvestFlag);     
+  //     // }else{
+  //     //   this.radioInvestFlag=false;
+  //     //   console.log("this.radioInvestFlag",this.radioInvestFlag);     
+  //     // }
+            
+  //     // });
+
+  //   }
+ 
+  // }
+
   receiveGuaranteeInvestTest:any;
-  sisCalculationInvestTextAmount(){
-    this.premiumAnnualDisplay=this.sisCalculationInvestForm.value.annual_invest_text;
+  sisCalculationInvestTextAmount(event:any){
+    // this.premiumAnnualDisplay=this.sisCalculationInvestForm.value.annual_invest_text;
+    this.premiumAnnualDisplay=event.target.value;
     console.log("this.premiumAnnualDisplay Invest",this.premiumAnnualDisplay);
     this.premiumAnnualDisplayIntoTen=this.premiumAnnualDisplay * 10;
     console.log("this.premiumAnnualDisplayIntoTen Invest",this.premiumAnnualDisplayIntoTen);
@@ -128,14 +180,20 @@ export class SisCalculationComponent implements OnInit {
     this.numberInWordsForInvestText=numWords(this.premiumAnnualDisplay);
     console.log("this.numberInWordsForInvestText",this.numberInWordsForInvestText);
     
+    this.sisCalculationInvestForm.patchValue({ annual_invest_text: this.premiumAnnualDisplay }); 
+     console.log("radio amount change",this.sisCalculationInvestForm.value.annual_invest_amount);
+    
+    this.sisCalculationInvestForm.patchValue({ annual_invest_amount: '' }); 
+     console.log("reset annual_invest_amount",this.sisCalculationInvestForm.value.annual_invest_amount);
+     
     
     let bodyObj={
-      annual_invest_amount:this.sisCalculationInvestForm.value.annual_invest_amount,
+      // annual_invest_amount:this.sisCalculationInvestForm.value.annual_invest_amount,
       period_of:this.sisCalculationInvestForm.value.period_of,
       income_period:this.sisCalculationInvestForm.value.income_period,
       annual_invest_text:this.sisCalculationInvestForm.value.annual_invest_text
     }
-    console.log("bodyObj",bodyObj);
+    console.log("bodyObj on text",bodyObj);
     this.sisIDLocalStorage['sisCalculation']=this.sisCalculationInvestForm.value;
     console.log("this.sisIDLocalStorage",this.sisIDLocalStorage);  
     let sisCalculationAllDetailsToken=JSON.stringify(this.sisIDLocalStorage);
@@ -164,6 +222,8 @@ export class SisCalculationComponent implements OnInit {
   sisAllData:any;
   onSubmit(){
     if(this.sisCalculationInvestForm.valid){
+      console.log("onSubmit",this.sisCalculationInvestForm.value);  
+      // this.sisCalculationInvestForm.value.annual_invest_amount=this.sisCalculationInvestForm.get('annual_invest_amount').value =='annual_invest_amount'?'':''
     this.mainService.saveSISCalculation(this.sisCalculationInvestForm.value).subscribe({
       next:(sisCalData:any)=>{
         console.log("sisCalData",sisCalData);     
@@ -216,37 +276,7 @@ export class SisCalculationComponent implements OnInit {
   
     }
 
-  inputValueFromAnnualText:any;
-  investTextIntoWords:any
-  radioDataChange(event:any){
-    this.sisIDLocalStorage['sisCalculation']=this.sisCalculationInvestForm.value;
-    console.log("this.sisIDLocalStorage",this.sisIDLocalStorage);  
-    let sisCalculationAllDetailsToken=JSON.stringify(this.sisIDLocalStorage);
-    console.log("sisCalculationAllDetailsToken",sisCalculationAllDetailsToken);
-    localStorage.setItem('sisCalculationAllDetailsToken',sisCalculationAllDetailsToken);
-    if(event){
-      this.radioInvestAmount=event.target.value;
-      console.log("this.radioInvestAmount",this.radioInvestAmount);
-      this.investTextIntoWords=numWords(this.radioInvestAmount);
-      console.log("this.investTextIntoWords",this.investTextIntoWords);
-
-
-      // this.sisCalculationInvestForm.valueChanges.subscribe((value:any)=>{
-      // this.inputValueFromAnnualText=value.annual_invest_text;
-      // console.log("value.annual_invest_text",value.annual_invest_text);
-      // if(this.radioInvestAmount !== this.inputValueFromAnnualText){
-      //   this.radioInvestFlag=true;
-      //   console.log("this.radioInvestFlag",this.radioInvestFlag);     
-      // }else{
-      //   this.radioInvestFlag=false;
-      //   console.log("this.radioInvestFlag",this.radioInvestFlag);     
-      // }
-            
-      // });
-
-    }
- 
-  }
+  
 
   originalRadioPosition:boolean=false;
   radioData:any;

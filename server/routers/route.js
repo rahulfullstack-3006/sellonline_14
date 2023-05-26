@@ -36,6 +36,16 @@ router.post('/saveSISCalculation',leadDashboard.saveSISCalculationController);
 router.post('/sisCalculation',leadDashboard.createSISCalculationController);
 router.post('/sisCalculation/InvestTextAmount',leadDashboard.createSISCaluclationInvestTextController);
 router.post('/saveSISRiderSelection',leadDashboard.saveSISRiderSelectionController);
+router.get('/hospicareRiderPremium',leadDashboard.updateChangeHospicareController);
+router.get('/accidentalDeathRiderPremium',leadDashboard.updateChangeAccidentalDeathController);
+router.get('/criticareRiderPremium',leadDashboard.updateCriticareController);
+router.get('/termBoosterRiderPremium',leadDashboard.updateChangeTermBoosterController);
+router.get('/atpdRiderPremium',leadDashboard.updateChangeATPDController);
+
+
+
+
+
 
 
 

@@ -24,6 +24,11 @@ export class MainService {
   sisCalculation='/sisCalculation';
   sisCalculationInvestTextAmount='/sisCalculation/InvestTextAmount';
   sisRiderSelectionUrl='/saveSISRiderSelection';
+  hospicareRiderPremiumUrl='/hospicareRiderPremium';
+  accidentalDeathRiderPremiumUrl='/accidentalDeathRiderPremium';
+  criticareRiderPremiumUrl='/criticareRiderPremium';
+  termBoosterRiderPremiumUrl='/termBoosterRiderPremium';
+  atpdRiderPremiumUrl='/atpdRiderPremium';
 
 
 
@@ -107,6 +112,26 @@ export class MainService {
 
   public saveSISRiderSelected(body:any){ 
     return this.http.post(this.APIURL + this.sisRiderSelectionUrl,body,{headers:this.headerObj()});
+  }
+
+  public getHospicareRiderPremium(){
+    return this.http.get(this.APIURL + this.hospicareRiderPremiumUrl,{headers:this.headerObj()});
+  }
+
+  public getAccidentalDeathRiderPremium(){
+    return this.http.get(this.APIURL + this.accidentalDeathRiderPremiumUrl,{headers:this.headerObj()});
+  }
+
+  public getCriticareeRiderPremium(){
+    return this.http.get(this.APIURL + this.criticareRiderPremiumUrl,{headers:this.headerObj()});
+  }
+
+  public getTermBoosterRiderPremium(){
+    return this.http.get(this.APIURL + this.termBoosterRiderPremiumUrl,{headers:this.headerObj()});
+  }
+
+  public getATPDRiderPremium(){
+    return this.http.get(this.APIURL + this.atpdRiderPremiumUrl,{headers:this.headerObj()});
   }
 
 }

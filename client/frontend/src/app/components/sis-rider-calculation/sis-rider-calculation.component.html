@@ -42,7 +42,7 @@
           <mat-icon><img src="{{tab.icon}}"></mat-icon>
           {{ tab.label }}
         </ng-template>
-        <form>
+        <form [formGroup]="sisRiderCalculationForm" (ngSubmit)="onSubmit()">
         <div class="buy_rider_text">
           <h2>Buying the rider of</h2>
         </div>
@@ -67,24 +67,24 @@
             </div>
             </div>
         </div>
-        <div class="lumpsum_heading">
+        <!-- <div class="lumpsum_heading">
           <h2>Lumpsum and Income</h2>
-        </div>
+        </div> -->
         <div class="lumpsum_income_main">
-          <div class="subsection_lump_sum">
+          <!-- <div class="subsection_lump_sum">
           <div class="get_lumpsum_text">
             <h2>Get Lumpsum and/or Income for future needs</h2>
           </div>
           <div class="get_lumsum_radio">
             <div class="tabacco_radio">
               <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox" formControlName="get_lumpsum_radio">
                 <span class="slider round"></span>
               </label>
             </div>
           </div>
-        </div>
-        <div class="choose_benefit_payout">
+        </div> -->
+        <!-- <div class="choose_benefit_payout">
           <div class="choose_sum">
         <p style="font-size: 16px;color: #2f2f2f;">Choose a Benefit Payout</p>
         <p style=" font-size: 12px;color: #8C8C8C;margin: 0;">How would you like to get the Sum Assured?</p>
@@ -92,24 +92,24 @@
       <div class="income_mode_radio">
         <div class="amount_radio">
           <label class="radio_container">
-            <input type="radio" name="benefit_radio" value="">
+            <input type="radio"  value="lumpsum" formControlName="benefit_radio">
             <span class="checkmark"></span>
               <div class="checkmark_one">
                 Lumpsum
               </div>
           </label>
           <label class="radio_container">
-            <input type="radio" name="benefit_radio" value="">
+            <input type="radio"  value="income" formControlName="benefit_radio">
             <span class="checkmark"></span>
               <div class="checkmark_one">
                 Income
               </div>
           </label>
           <label class="radio_container">
-            <input type="radio" name="benefit_radio" value="">
+            <input type="radio"  value="lumpsum_income" formControlName="benefit_radio">
             <span class="checkmark"></span>
               <div class="checkmark_one">
-                Lumpsum
+                Lumpsum & Income
               </div>
           </label>
       </div>
@@ -120,12 +120,12 @@
           <fa-icon [icon]="faIndianRupee"></fa-icon> 
           </div>
           <div class="grid-item">
-            <input type="text"/>
+            <input type="text"   value="lumpsum_amount"  formControlName="lumpsum_amount"/>
           </div>
         </div>
       </div>
       </div>
-      </div>
+      </div> -->
       <div class="sum_amount_individual">
         <div class="assured_text">
           <h2>Sum Assured</h2>
@@ -141,7 +141,7 @@
         </div>
         <div class="tabacco_radio">
           <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" value="rop" formControlName="rop_radio">
             <span class="slider round"></span>
           </label>
         </div>
@@ -154,7 +154,7 @@
         </div>
         <div class="lumpsum_input_rider">
           <div class="grid_item_rider">
-            <input type="text" value="5"/>
+            <input type="text" value="5" formControlName="rider_duration"/>
           </div>
           <div class="grid_image_rider">
             years
@@ -169,7 +169,7 @@
           </div>
           <div class="lumpsum_input_rider">
             <div class="grid_item_rider">
-              <input type="text" value="5"/>
+              <input type="text" value="5" formControlName="rider_payment_term"/>
             </div>
             <div class="grid_image_rider">
               years
@@ -183,10 +183,28 @@
             <h2>
               Rider premimum
               <small>(excluding GST)</small>&nbsp;&nbsp;
-              <span>
+              <span *ngIf="hospicareRiderUpdateFlag">
                 <fa-icon [icon]="faIndianRupee"></fa-icon>
-                900
+                {{hospicareRiderPremium}}
               </span>
+              <span *ngIf="adRiderUpdateFlag">
+                <fa-icon [icon]="faIndianRupee"></fa-icon>
+                {{adRiderPremium}}
+              </span>
+              <span *ngIf="criticareRiderUpdateFlag">
+                <fa-icon [icon]="faIndianRupee"></fa-icon>
+                {{criticarePlusRiderPremium}}
+              </span>
+              <span *ngIf="tbRiderUpdateFlag">
+                <fa-icon [icon]="faIndianRupee"></fa-icon>
+                {{tbRiderPremium}}
+              </span>
+              <span *ngIf="atpdRiderUpdateFlag">
+                <fa-icon [icon]="faIndianRupee"></fa-icon>
+                {{aTPDRiderPremium}}
+              </span>
+              
+              
             </h2>
           </div>
           <div class="discount_wellness">
@@ -200,12 +218,32 @@
         </div>
         <div class="amount_button">
           <div class="rupee_icon">
-            <span>
-              <fa-icon [icon]="faIndianRupee"></fa-icon>90
+            <span *ngIf="hospicareRiderUpdateFlag">
+              <fa-icon [icon]="faIndianRupee"></fa-icon>{{hospicareWellnessProgram}}
             </span>
+            <span *ngIf="adRiderUpdateFlag"> 
+              <fa-icon [icon]="faIndianRupee"></fa-icon>{{adWellnessProgram}}
+            </span>
+            <span *ngIf="criticareRiderUpdateFlag">
+              <fa-icon [icon]="faIndianRupee"></fa-icon>{{criticarePlusWellnessProgram}}
+            </span>
+            <span *ngIf="tbRiderUpdateFlag">
+              <fa-icon [icon]="faIndianRupee"></fa-icon>{{tbWellnessProgram}}
+            </span>
+            <span *ngIf="atpdRiderUpdateFlag">
+              <fa-icon [icon]="faIndianRupee"></fa-icon>{{aTPDWellnessProgram}}
+            </span>
+            
+            
+            
           </div>
           <div class="update_changes">
-            <button class="btn btn-primary">Update Changes</button>
+            <button class="btn btn-primary" (click)="onUpdateHospiLoaderChanges()" *ngIf="hospicareRiderUpdateFlag">Update Changes</button>
+            <button class="btn btn-primary" (click)="onUpdateADLoaderChanges()" *ngIf="adRiderUpdateFlag">Update Changes</button>
+            <button class="btn btn-primary" (click)="onUpdateCritiLoaderChanges()" *ngIf="criticareRiderUpdateFlag">Update Changes</button>
+            <button class="btn btn-primary" (click)="onUpdateTBLoaderChanges()" *ngIf="tbRiderUpdateFlag">Update Changes</button>
+            <button class="btn btn-primary" (click)="onUpdateATPDLoaderChanges()" *ngIf="atpdRiderUpdateFlag">Update Changes</button>
+
           </div>
         </div>
         </div>
@@ -226,7 +264,7 @@
       <p>Base Premimum</p>
     </div>
     <div class="base_amount">
-      <p><fa-icon [icon]="faIndianRupee"></fa-icon>&nbsp;24,000</p>
+      <p><fa-icon [icon]="faIndianRupee"></fa-icon>&nbsp;{{sisAnnualText}}</p>
     </div>
   </div>
   <p class="riders_head">Riders</p>
@@ -310,7 +348,19 @@
 
       <div class="continue_skip">
         <div class="pos_button">
-          <button class="btn btn-primary" (click)="onContinue()">Continue to the Next Step</button>
+          <!-- <button class="btn btn-primary" (click)="onContinueHospicare()" [disabled]="!hospicareRiderUpdateFlag" *ngIf="hospicareRiderUpdateFlag">Continue to the Next Step {{hospicareRiderUpdateFlag}}</button>
+          <button class="btn btn-primary" (click)="onContinueADRider()" [disabled]="!adRiderUpdateFlag" *ngIf="adRiderUpdateFlag">Continue to the Next Step {{adRiderUpdateFlag}}</button>
+          <button class="btn btn-primary" (click)="onContinueCriticarePlusRider()" [disabled]="!criticareRiderUpdateFlag"  *ngIf="criticareRiderUpdateFlag">Continue to the Next Step {{criticareRiderUpdateFlag}}</button>
+          <button class="btn btn-primary" (click)="onContinueTBRider()" [disabled]="!tbRiderUpdateFlag" *ngIf="tbRiderUpdateFlag">Continue to the Next Step {{tbRiderUpdateFlag}}</button> -->
+          <!-- <button class="btn btn-primary" (click)="onContinue()" >Continue</button> -->
+          <button class="btn btn-primary" (click)="continueAdRider()"  *ngIf="hospicareRiderUpdateFlag">Continue</button>
+          <button class="btn btn-primary" (click)="continueAdRider()" >Continue</button>
+
+
+
+
+
+
         </div>
       </div>
  

@@ -212,3 +212,64 @@ module.exports.saveSISRiderSelectionController=async function(req,resp){
 
   }
 }
+
+module.exports.updateChangeHospicareController=async function(req,resp){
+  try{
+   let data=await leadDashboard.updateChangeHospicareModel();
+   console.log("data",data);
+  resp.json({status:'true',message:'Hospicare Rider Premium',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in Hospicare Rider Premium'});
+
+  }
+}
+
+module.exports.updateChangeAccidentalDeathController=async function(req,resp){
+  try{
+   let data=await leadDashboard.updateChangeAccidentalDeathModel();
+   console.log("data",data);
+  resp.json({status:'true',message:'Accidental Death Rider Premium',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in Accidental Death Rider Premium'});
+
+  }
+}
+
+module.exports.updateCriticareController=async function(req,resp){
+  try{
+   let data=await leadDashboard.updateChangeCriticareModel();
+   console.log("data",data);
+  resp.json({status:'true',message:'Criticare Rider Premium',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in Criticare Rider Premium'});
+
+  }
+}
+
+
+module.exports.updateChangeTermBoosterController=async function(req,resp){
+  try{
+   let data=await leadDashboard.updateChangeTermBoosterModel();
+   console.log("data",data);
+  resp.json({status:'true',message:'TermBooster Rider Premium',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in TermBooster Rider Premium'});
+
+  }
+}
+
+module.exports.updateChangeATPDController=async function(req,resp){
+  try{
+   let data=await leadDashboard.updateChangeATPDModel();
+   console.log("data",data);
+  resp.json({status:'true',message:'ATPD Rider Premium',data});
+  }
+  catch(err){
+  resp.json({status:'false',message:'Error in ATPD Rider Premium'});
+
+  }
+}
